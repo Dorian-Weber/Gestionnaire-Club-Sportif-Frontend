@@ -1,3 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 
 @import 'tailwindcss';
+
+:root {
+  --color-primary: #C5A059;
+  --color-secondary: #2C2C2E;
+  --color-tertiary: #8FA5D6;
+  --color-neutral: #121212;
+
+  --color-title: #E3E1E0;
+  --color-text: #C9C4B6;
+  --color-label: #C9C4B6;
+
+  --font-inter: "Inter", sans-serif;
+
+  background-color: #2C2C2E;
+  color: var(--color-text);
+}
