@@ -13,7 +13,7 @@
         <div class="relative h-48">
           <img src="assets/images/football.jpg" class="w-full h-full object-cover" alt="Football">
           <div class="absolute inset-0 bg-black/40"></div>
-          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2">
+          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2 pb-1 rounded-full">
             <i class="fa-solid fa-futbol"></i> Football
           </span>
         </div>
@@ -42,9 +42,16 @@
           </div>
 
           <!-- CTA -->
-          <button class="mt-6 w-full px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
-            Réserver
-          </button>
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <button class="px-4 py-2 border border-(--color-primary) text-(--color-primary) font-semibold rounded-md hover:bg-(--color-primary)/10 transition cursor-pointer" routerLink="/detail">
+              Détails
+            </button>
+            <button class="px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+              Réserver
+            </button>
+
+          </div>
+
         </div>
 
       </div>
@@ -56,7 +63,7 @@
         <div class="relative h-48">
           <img src="assets/images/basket.jpg" class="w-full h-full object-cover" alt="Basketball">
           <div class="absolute inset-0 bg-black/40"></div>
-          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2">
+          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2 pb-1 rounded-full">
           <i class="fa-solid fa-basketball"></i> Basketball
     </span>
         </div>
@@ -79,10 +86,15 @@
             <i class="fa-solid fa-users"></i>
             <span>Places restantes : <span class="text-(--color-primary)">5</span></span>
           </div>
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <button class="px-4 py-2 border border-(--color-primary) text-(--color-primary) font-semibold rounded-md hover:bg-(--color-primary)/10 transition cursor-pointer" routerLink="/detail">
+              Détails
+            </button>
+            <button class="px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+              Réserver
+            </button>
 
-          <button class="mt-6 w-full px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
-            Réserver
-          </button>
+          </div>
         </div>
       </div>
 
@@ -93,7 +105,7 @@
         <div class="relative h-48">
           <img src="assets/images/course.jpg" class="w-full h-full object-cover" alt="Course à pied">
           <div class="absolute inset-0 bg-black/40"></div>
-          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2">
+          <span class="absolute bottom-2 left-2 text-(--color-primary) font-semibold bg-(--color-neutral)/60 backdrop-blur-sm px-2 pb-1 rounded-full">
       <i class="fa-solid fa-person-running"></i> Course à pied
           </span>
         </div>
@@ -116,11 +128,14 @@
             <i class="fa-solid fa-users"></i>
             <span>Places restantes : <span class="text-(--color-primary)">30</span></span>
           </div>
-
-          <button class="mt-6 w-full px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
-            Réserver
-          </button>
-
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <button class="px-4 py-2 border border-(--color-primary) text-(--color-primary) font-semibold rounded-md hover:bg-(--color-primary)/10 transition cursor-pointer" routerLink="/detail">
+              Détails
+            </button>
+            <button class="px-4 py-2 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+              Réserver
+            </button>
+          </div>
         </div>
 
       </div>

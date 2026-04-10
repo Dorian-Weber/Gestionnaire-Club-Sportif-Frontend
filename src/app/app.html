@@ -1,4 +1,4 @@
-<header class="w-full bg-(--color-neutral) text-(--color-title) flex items-center justify-between px-4 md:px-8 py-3 md:py-4 shadow-md">
+<header class="w-full bg-(--color-neutral) text-(--color-title) flex items-center justify-between px-4 md:px-8 py-3 md:py-4 shadow-md border-b border-(--color-primary)">
 
   <!-- Logo -->
   <div class="flex items-center">
@@ -11,10 +11,10 @@
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/events">Événements</a>
   </nav>
 
-  <!-- Bouton de connexion (desktop only) -->
+  <!-- Bouton de login (desktop only) -->
   <div class="hidden md:flex items-center gap-6 font-(--font-inter)">
-    <a class="hover:text-(--color-primary) transition cursor-pointer">Inscription</a>
-    <a class="px-4 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition cursor-pointer">
+    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
+    <a class="px-4 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition cursor-pointer" routerLink="/login">
       <i class="fa-solid fa-right-to-bracket"></i> Connexion
     </a>
   </div>
@@ -30,11 +30,11 @@
 
 <!-- MENU MOBILE -->
 @if (menuOpen()) {
-  <nav class="md:hidden bg-(--color-neutral) flex flex-col gap-4 px-6 py-4 font-(--font-inter) shadow-lg">
+  <nav class="md:hidden bg-(--color-neutral) flex flex-col gap-4 px-6 py-4 font-(--font-inter) shadow-lg border-b border-(--color-primary)">
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/">Accueil</a>
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/events">Événements</a>
-    <a class="hover:text-(--color-primary) transition cursor-pointer">Connexion</a>
-    <a class="hover:text-(--color-primary) transition cursor-pointer">Inscription</a>
+    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/login">Connexion</a>
+    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
   </nav>
 }
 
