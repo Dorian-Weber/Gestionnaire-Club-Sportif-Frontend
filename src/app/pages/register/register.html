@@ -1,0 +1,63 @@
+<section class="min-h-screen flex items-center justify-center
+  bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('assets/images/stade.jpg')]
+  bg-cover bg-center bg-no-repeat
+  px-6 py-12">
+
+  <div class="w-full max-w-xl bg-(--color-secondary)/90 backdrop-blur-sm
+    p-8 rounded-xl shadow-lg border border-(--color-primary)/20">
+
+<h2 class="text-3xl font-bold text-(--color-title) text-center mb-8">
+      Créer un compte
+    </h2>
+
+    <form class="flex flex-col gap-5">
+
+      <!-- Nom -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Nom</label>
+        <input type="text" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <!-- Prénom -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Prénom</label>
+        <input type="text" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <!-- Pseudo -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Pseudo (facultatif)</label>
+        <input type="text" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <!-- Téléphone -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Téléphone</label>
+        <input type="tel" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <!-- Email -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Email</label>
+        <input type="email" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="flex flex-col">
+        <label class="text-(--color-title) font-semibold mb-1">Mot de passe</label>
+        <input type="password" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+      </div>
+
+      <button class="mt-4 w-full px-4 py-3 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+        S'inscrire
+      </button>
+
+    </form>
+
+    <p class="text-center text-(--color-text) mt-6 text-sm">
+      Déjà un compte ?
+      <a class="text-(--color-primary) font-semibold hover:underline cursor-pointer" routerLink="/login">Connexion</a>
+    </p>
+
+  </div>
+</section>
