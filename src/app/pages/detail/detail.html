@@ -1,0 +1,91 @@
+<section class="min-h-screen bg-(--color-neutral) text-(--color-title)">
+
+  <!-- HERO IMAGE -->
+  <div class="relative h-72 md:h-96">
+    <img src="assets/images/football.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="absolute bottom-6 left-6">
+      <span class="bg-(--color-neutral)/60 backdrop-blur-sm px-3 py-1 rounded-full text-(--color-primary) font-semibold">
+        <i class="fa-solid fa-futbol"></i> Football
+      </span>
+
+      <h1 class="text-3xl md:text-5xl font-bold mt-3">
+        Tournoi de Football
+      </h1>
+    </div>
+  </div>
+
+  <!-- CONTENU -->
+  <div class="max-w-4xl mx-auto px-6 py-12 flex flex-col gap-10">
+
+    <!-- Infos principales -->
+    <div class="flex flex-col gap-3 text-(--color-text)">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-calendar text-(--color-primary)"></i>
+        <span class="text-lg">15 Mai 2026 — 14h00</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-users text-(--color-primary)"></i>
+        <span class="text-lg">Places restantes :
+          <span class="text-(--color-primary)">12</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-3">Description</h2>
+      <p class="text-(--color-text) leading-relaxed">
+        Ce tournoi amical réunit plusieurs équipes locales dans une ambiance conviviale.
+        Ouvert à tous les niveaux, il est idéal pour rencontrer d’autres passionnés et
+        profiter d’une journée sportive complète. Animations, buvette et récompenses prévues.
+      </p>
+    </div>
+
+    <!-- Liste des participants -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Participants</h2>
+
+      <div class="flex flex-col gap-4">
+
+        <!-- Participant -->
+        <div class="flex items-center gap-4 bg-(--color-secondary) p-4 rounded-lg border border-white/10">
+          <div class="w-12 h-12 rounded-full bg-(--color-primary) text-black font-bold flex items-center justify-center">
+            <i class="fa-solid fa-user"></i>
+          </div>
+            <p class="text-(--color-title) font-semibold">Jean Dupont</p>
+        </div>
+
+        <!-- Participant -->
+        <div class="flex items-center gap-4 bg-(--color-secondary) p-4 rounded-lg border border-white/10">
+          <div class="w-12 h-12 rounded-full bg-(--color-primary) text-black font-bold flex items-center justify-center">
+            <i class="fa-solid fa-user"></i>
+          </div>
+            <p class="text-(--color-title) font-semibold">Marie Leblanc</p>
+        </div>
+
+        <!-- Participant -->
+        <div class="flex items-center gap-4 bg-(--color-secondary) p-4 rounded-lg border border-white/10">
+          <div class="w-12 h-12 rounded-full bg-(--color-primary) text-black font-bold flex items-center justify-center">
+            <i class="fa-solid fa-user"></i>
+          </div>
+            <p class="text-(--color-title) font-semibold">Thomas Silva</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+      <button class="px-4 py-3 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+        Réserver ma place
+      </button>
+
+      <button class="px-4 py-3 border border-(--color-primary) text-(--color-primary) font-semibold rounded-md hover:bg-(--color-primary)/10 transition cursor-pointer" routerLink="/events">
+        Retour aux événements
+      </button>
+    </div>
+  </div>
+</section>
