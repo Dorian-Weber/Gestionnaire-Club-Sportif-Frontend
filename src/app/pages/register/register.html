@@ -48,15 +48,15 @@
         <input type="password" class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
       </div>
 
-      <button class="mt-4 w-full px-4 py-3 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer">
+      <app-button size="sm_full" variant="primary">
         S'inscrire
-      </button>
+      </app-button>
 
     </form>
 
     <p class="text-center text-(--color-text) mt-6 text-sm">
       Déjà un compte ?
-      <a class="text-(--color-primary) font-semibold hover:underline cursor-pointer" routerLink="/login">Connexion</a>
+      <app-button size="sm" variant="link" routerLink="/login">Connexion</app-button>
     </p>
 
   </div>

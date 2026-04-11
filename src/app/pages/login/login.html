@@ -45,23 +45,17 @@
       </div>
 
       <!-- Bouton -->
-      <button
-        type="submit"
-        class="w-full bg-(--color-primary) text-black font-semibold py-2.5 rounded-md hover:opacity-90 transition"
-      >
+      <app-button type="submit" size="sm_full" variant="primary">
         Se connecter
-      </button>
-
+      </app-button>
     </form>
 
     <!-- Lien inscription -->
     <p class="text-center text-sm mt-6">
       Pas encore de compte ?
-      <a class="text-(--color-primary) hover:underline font-semibold" routerLink="/register" >
+      <app-button size="sm" variant="link" routerLink="/register" >
         Créer un compte
-      </a>
+      </app-button>
     </p>
-
   </div>
-
 </section>
