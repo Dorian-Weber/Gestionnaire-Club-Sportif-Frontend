@@ -11,9 +11,7 @@
     <p class="text-lg md:text-xl text-(--color-text) max-w-2xl">
       La plateforme moderne pour gérer vos réservations.
     </p>
-    <button class="mt-4 px-8 py-3 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer" routerLink="/events">
-      Voir les événements
-    </button>
+      <app-button variant="primary" size="md" routerLink="/events">Voir les événements</app-button>
   </div>
 </section>
 
@@ -61,9 +59,9 @@
             <span>15 Mai 2026 — 14h00</span>
           </div>
 
-          <button class="mt-4 text-(--color-primary) font-semibold hover:underline cursor-pointer" routerLink="/detail">
+          <app-button variant="link"  routerLink="/detail">
             Voir détails
-          </button>
+          </app-button>
         </div>
 
       </div>
@@ -87,9 +85,9 @@
             <span>10 Juin 2026 — 18h00</span>
           </div>
 
-          <button class="mt-4 text-(--color-primary) font-semibold hover:underline cursor-pointer" routerLink="/detail">
+          <app-button variant="link" routerLink="/detail">
             Voir détails
-          </button>
+          </app-button>
         </div>
 
       </div>
@@ -113,15 +111,12 @@
             <span>22 Juin 2026 — 09h00</span>
           </div>
 
-          <button class="mt-4 text-(--color-primary) font-semibold hover:underline cursor-pointer" routerLink="/detail">
+          <app-button variant="link" routerLink="/detail">
             Voir détails
-          </button>
+          </app-button>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </section>
 
@@ -133,8 +128,8 @@
     Rejoignez la communauté SportHive
   </h2>
 
-  <button class="px-8 py-3 bg-(--color-primary) text-black font-semibold rounded-md hover:opacity-90 transition cursor-pointer" routerLink="/register">
+  <app-button variant="primary" size="md" routerLink="/register">
     Créer un compte
-  </button>
+  </app-button>
 </section>
 
