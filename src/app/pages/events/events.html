@@ -1,140 +1,181 @@
 <section class="py-20 px-6 md:px-12 bg-(--color-neutral)">
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[250px_1fr] gap-10">
 
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-(--color-title)">
-      Événements à venir
-    </h2>
-    <!-- liste de carte -->
-    <div class="flex flex-col gap-10">
-      <!-- Carte ÉVÉNEMENT 1 -->
-      <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
+    <!-- SIDEBAR FILTRES -->
+    <aside class="bg-(--color-secondary) border border-(--color-primary)/20 rounded-lg p-6
+              w-full md:w-auto
+              md:sticky md:top-10
+              self-start">
+      <h3 class="text-xl font-semibold text-(--color-title) mb-6">Filtres</h3>
 
-        <!-- Image -->
-        <div class="relative h-48">
-          <img src="assets/images/football.jpg" class="w-full h-full object-cover" alt="Football">
-          <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">
-              <i class="fa-solid fa-futbol"></i> Football
-            </app-tag>
-        </div>
-
-        <!-- Contenu -->
-        <div class="p-6">
-
-          <!-- Titre -->
-          <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Football</h3>
-
-          <!-- Description courte -->
-          <p class="text-(--color-text) text-sm mt-2">
-            Tournoi amical réunissant plusieurs équipes locales. Ouvert à tous les niveaux.
-          </p>
-
-          <!-- Date + heure -->
-          <div class="flex items-center gap-2 text-(--color-text) mt-4">
-            <i class="fa-solid fa-calendar"></i>
-            <span>15 Mai 2026 — 14h00</span>
-          </div>
-
-          <!-- Places restantes -->
-          <div class="flex items-center gap-2 text-(--color-text) mt-1">
-            <i class="fa-solid fa-users"></i>
-            <span>Places restantes : <span class="text-(--color-primary)">12</span></span>
-          </div>
-
-          <!-- CTA -->
-          <div class="mt-6 grid grid-cols-2 gap-3">
-            <app-button size="sm_full" variant="secondary"  routerLink="/detail">
-              Détails
-            </app-button>
-            <app-button size="sm_full" variant="primary">
-              Réserver
-            </app-button>
-          </div>
-        </div>
+      <!-- Recherche -->
+      <div class="mb-6">
+        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-magnifying-glass text-(--color-primary)"></i>
+          Recherche
+        </label>
+        <input
+          type="text"
+          placeholder="Rechercher un événement..."
+          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none"
+        >
       </div>
 
-      <!--Carte EVENEMENT 2 -->
-      <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
-
-        <!-- Image -->
-        <div class="relative h-48">
-          <img src="assets/images/basket.jpg" class="w-full h-full object-cover" alt="Basketball">
-          <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">
-              <i class="fa-solid fa-basketball"></i> Basketball
-            </app-tag>
-        </div>
-
-        <!-- Contenu -->
-        <div class="p-6">
-
-          <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Basket</h3>
-
-          <p class="text-(--color-text) text-sm mt-2">
-            Compétition régionale réunissant les meilleures équipes locales. Ambiance garantie.
-          </p>
-
-          <div class="flex items-center gap-2 text-(--color-text) mt-4">
-            <i class="fa-solid fa-calendar"></i>
-            <span>10 Juin 2026 — 18h00</span>
-          </div>
-
-          <div class="flex items-center gap-2 text-(--color-text) mt-1">
-            <i class="fa-solid fa-users"></i>
-            <span>Places restantes : <span class="text-(--color-primary)">5</span></span>
-          </div>
-          <div class="mt-6 grid grid-cols-2 gap-3">
-            <app-button size="sm_full" variant="secondary"  routerLink="/detail">
-              Détails
-            </app-button>
-            <app-button size="sm_full" variant="primary">
-              Réserver
-            </app-button>
-          </div>
-        </div>
+      <!-- Type -->
+      <div class="mb-6">
+        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-ticket text-(--color-primary)"></i>
+          Type d’événement
+        </label>
+        <select
+          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+        >
+          <option value="">Tous les types</option>
+          <option value="tournoi">Tournoi</option>
+          <option value="entrainement">Entraînement</option>
+          <option value="competition">Compétition</option>
+        </select>
       </div>
 
-      <!-- Carte EVENEMENT 3 -->
-      <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
+      <!-- Sport -->
+      <div class="mb-6">
+        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-person-running text-(--color-primary)"></i>
+          Sport
+        </label>
+        <select
+          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+        >
+          <option value="">Tous les sports</option>
+          <option value="football">Football</option>
+          <option value="basketball">Basketball</option>
+          <option value="course">Course à pied</option>
+        </select>
+      </div>
 
-        <!-- Image -->
-        <div class="relative h-48">
-          <img src="assets/images/course.jpg" class="w-full h-full object-cover" alt="Course à pied">
-          <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">
-              <i class="fa-solid fa-person-running"></i> Course à pied
-            </app-tag>
+      <!-- Date -->
+      <div class="mb-8">
+        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-calendar-days text-(--color-primary)"></i>
+          À partir du
+        </label>
+        <input
+          type="date"
+          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+        >
+      </div>
+      <app-button variant="primary" size="sm_full">Filtrer</app-button>
+    </aside>
+
+
+
+    <!-- LISTE DES ÉVÉNEMENTS -->
+    <div class="max-w-4xl mx-auto md:mx-0">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-(--color-title)">
+        Événements à venir
+      </h2>
+
+      <div class="flex flex-col gap-10">
+
+        <!-- ÉVÉNEMENT 1 -->
+        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
+
+          <div class="relative h-48">
+            <img src="assets/images/football.jpg" class="w-full h-full object-cover" alt="Football">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <app-tag variant="card">Football</app-tag>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Football</h3>
+            <p class="text-(--color-text) text-sm mt-2">
+              Tournoi amical réunissant plusieurs équipes locales. Ouvert à tous les niveaux.
+            </p>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-4">
+              <i class="fa-solid fa-calendar"></i>
+              <span>15 Mai 2026 — 14h00</span>
+            </div>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-1">
+              <i class="fa-solid fa-users"></i>
+              <span>Places restantes : <span class="text-(--color-primary)">12</span></span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
+              <app-button size="sm_full" variant="primary">Réserver</app-button>
+            </div>
+          </div>
         </div>
 
-        <!-- Contenu -->
-        <div class="p-6">
+        <!-- ÉVÉNEMENT 2 -->
+        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
 
-          <h3 class="text-2xl font-semibold text-(--color-title)">Course 10km</h3>
-
-          <p class="text-(--color-text) text-sm mt-2">
-            Une course ouverte à tous, idéale pour les débutants comme les coureurs confirmés.
-          </p>
-
-          <div class="flex items-center gap-2 text-(--color-text) mt-4">
-            <i class="fa-solid fa-calendar"></i>
-            <span>22 Juin 2026 — 09h00</span>
+          <div class="relative h-48">
+            <img src="assets/images/basket.jpg" class="w-full h-full object-cover" alt="Basketball">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <app-tag variant="card">Basketball</app-tag>
           </div>
 
-          <div class="flex items-center gap-2 text-(--color-text) mt-1">
-            <i class="fa-solid fa-users"></i>
-            <span>Places restantes : <span class="text-(--color-primary)">30</span></span>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Basket</h3>
+            <p class="text-(--color-text) text-sm mt-2">
+              Compétition régionale réunissant les meilleures équipes locales. Ambiance garantie.
+            </p>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-4">
+              <i class="fa-solid fa-calendar"></i>
+              <span>10 Juin 2026 — 18h00</span>
+            </div>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-1">
+              <i class="fa-solid fa-users"></i>
+              <span>Places restantes : <span class="text-(--color-primary)">5</span></span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
+              <app-button size="sm_full" variant="primary">Réserver</app-button>
+            </div>
           </div>
-          <div class="mt-6 grid grid-cols-2 gap-3">
-            <app-button size="sm_full" variant="secondary"  routerLink="/detail">
-              Détails
-            </app-button>
-            <app-button size="sm_full" variant="primary">
-              Réserver
-            </app-button>
+        </div>
+
+        <!-- ÉVÉNEMENT 3 -->
+        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
+
+          <div class="relative h-48">
+            <img src="assets/images/course.jpg" class="w-full h-full object-cover" alt="Course à pied">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <app-tag variant="card">Course à pied</app-tag>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold text-(--color-title)">Course 10km</h3>
+            <p class="text-(--color-text) text-sm mt-2">
+              Une course ouverte à tous, idéale pour les débutants comme les coureurs confirmés.
+            </p>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-4">
+              <i class="fa-solid fa-calendar"></i>
+              <span>22 Juin 2026 — 09h00</span>
+            </div>
+
+            <div class="flex items-center gap-2 text-(--color-text) mt-1">
+              <i class="fa-solid fa-users"></i>
+              <span>Places restantes : <span class="text-(--color-primary)">30</span></span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
+              <app-button size="sm_full" variant="primary">Réserver</app-button>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
+
   </div>
 </section>
