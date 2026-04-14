@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { SmallCard } from '../../composants/small-card/small-card';
-import { EventService } from '../../services/eventService';
+import { EventService } from '../../services/event-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({

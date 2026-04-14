@@ -1,17 +1,17 @@
+@if (event()) {
 <section class="min-h-screen bg-(--color-neutral) text-(--color-title)">
-
   <!-- HERO IMAGE -->
   <div class="relative h-72 md:h-96">
-    <img src="../../../assets/images/Football.jpg" class="w-full h-full object-cover">
+    <img [src]="'../../../assets/images/' + event()?.sport?.sportName + '.jpg'" class="w-full h-full object-cover">
     <div class="absolute inset-0 bg-black/50"></div>
 
     <div class="absolute bottom-6 left-6">
       <app-tag>
-        Football
+        {{ event()?.sport?.sportName }}
       </app-tag>
 
       <h1 class="text-3xl md:text-5xl font-bold mt-3">
-        Tournoi de Football
+        {{ event()?.eventName }}
       </h1>
     </div>
   </div>
@@ -23,7 +23,7 @@
     <div class="flex flex-col gap-3 text-(--color-text) text-5xl">
       <div class="flex items-center gap-3">
         <i class="fa-solid fa-calendar text-(--color-primary)"></i>
-        <span class="text-lg">15 Mai 2026 — 14h00</span>
+        <span class="text-lg">{{ event()?.eventDate| date : 'dd MMMM yyyy à HH:mm' }}</span>
       </div>
 
       <div class="flex items-center gap-3">
@@ -38,9 +38,7 @@
     <div>
       <h2 class="text-2xl font-semibold mb-3">Description</h2>
       <p class="text-(--color-text) leading-relaxed">
-        Ce tournoi amical réunit plusieurs équipes locales dans une ambiance conviviale.
-        Ouvert à tous les niveaux, il est idéal pour rencontrer d’autres passionnés et
-        profiter d’une journée sportive complète. Animations, buvette et récompenses prévues.
+        {{ event()?.eventDescription }}
       </p>
     </div>
 
@@ -87,3 +85,4 @@
     </div>
   </div>
 </section>
+}

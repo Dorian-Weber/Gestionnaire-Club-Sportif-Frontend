@@ -18,7 +18,7 @@
       <span>{{ event.eventDate | date: 'dd MMMM yyyy à HH:mm' }}</span>
     </div>
 
-    <a class ='text-(--color-primary) hover:underline font-semibold rounded-md hover:opacity-90 transition cursor-pointer'  routerLink="/detail">
+    <a class ='text-(--color-primary) hover:underline font-semibold rounded-md hover:opacity-90 transition cursor-pointer'  [routerLink]="['/event', event.idEvent]">
       Voir détails
     </a>
   </div>

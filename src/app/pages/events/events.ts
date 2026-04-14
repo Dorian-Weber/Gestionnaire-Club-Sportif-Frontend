@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Card } from '../../composants/card/card';
-import { EventService } from '../../services/eventService';
+import { EventService } from '../../services/event-service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { EventTypeService } from '../../services/event-type-service';
 import { SportService } from '../../services/sport-service';
