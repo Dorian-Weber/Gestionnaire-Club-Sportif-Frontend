@@ -44,11 +44,10 @@
         </label>
         <select
           class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        >
-          <option value="">Tous les sports</option>
-          <option value="football">Football</option>
-          <option value="basketball">Basketball</option>
-          <option value="course">Course à pied</option>
+        > <option value="">Tous les sports</option>
+          @for (sport of sports() ; track sport.idSport) {
+            <option [value]= sport.sportName >{{ sport.sportName }}</option>
+          }
         </select>
       </div>
 
