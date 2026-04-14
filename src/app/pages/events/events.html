@@ -8,7 +8,7 @@
               self-start">
       <h3 class="text-xl font-semibold text-(--color-title) mb-6">Filtres</h3>
 
-      <!-- Recherche -->
+      <!-- Barre de Recherche -->
       <div class="mb-6">
         <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
           <i class="fa-solid fa-magnifying-glass text-(--color-primary)"></i>
@@ -21,20 +21,19 @@
         >
       </div>
 
-      <!-- Type -->
+      <!-- Barre de tri par Type -->
       <div class="mb-6">
         <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
           <i class="fa-solid fa-ticket text-(--color-primary)"></i>
           Type d’événement
         </label>
+        <!-- Boucle sur eventType pour les noms -->
         <select
           class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        >
-          <option value="">Tous les types</option>
-          <option value="tournoi">Tournoi</option>
-          <option value="entrainement">Entraînement</option>
-          <option value="competition">Compétition</option>
-        </select>
+        > <option value="">Tous les types</option>
+          @for (eventType of eventTypes(); track eventType.idEventType) {
+            <option [value]= eventType.eventTypeName >{{ eventType.eventTypeName }}</option>
+        } </select>
       </div>
 
       <!-- Sport -->
