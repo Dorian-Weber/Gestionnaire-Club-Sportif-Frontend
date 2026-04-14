@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
-import { Tag } from '../../composants/tag/tag';
 import { SmallCard } from '../../composants/small-card/small-card';
 import { EventService } from '../../services/eventService';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,7 +12,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './home.css',
 })
 export class Home {
-  private eventService = inject(EventService)
+  private eventService = inject(EventService);
 
-  events = toSignal(this.eventService.getEvents(), {initialValue : [] });
+  events = toSignal(this.eventService.getEvents(), { initialValue: [] });
 }
