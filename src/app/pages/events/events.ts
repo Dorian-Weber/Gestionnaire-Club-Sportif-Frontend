@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { Button } from '../../composants/button/button';
-import { Tag } from '../../composants/tag/tag';
+import { Card } from '../../composants/card/card';
+import { EventService } from '../../services/eventService';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-events',
-  imports: [RouterLink, Button, Tag],
+  imports: [Button, Card],
   templateUrl: './events.html',
   styleUrl: './events.css',
 })
-export class Events {}
+export class Events {
+  private eventService = inject(EventService);
+
+  events = toSignal(this.eventService.getEvents(), { initialValue: [] });
+}

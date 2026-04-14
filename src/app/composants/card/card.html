@@ -1,0 +1,30 @@
+<div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
+
+  <div class="relative h-48">
+    <img [src]="'../../../assets/images/'+ event.sport?.sportName +'.jpg'" class="w-full h-full object-cover" alt="Football">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <app-tag variant="card">{{ event.sport?.sportName }}</app-tag>
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-2xl font-semibold text-(--color-title)">{{ event.eventName }}</h3>
+    <p class="text-(--color-text) text-sm mt-2">
+      {{ event.eventDescription }}
+    </p>
+
+    <div class="flex items-center gap-2 text-(--color-text) mt-4">
+      <i class="fa-solid fa-calendar"></i>
+      <span>{{ event.eventDate | date : 'dd MMMM yyyy à HH:mm' }}</span>
+    </div>
+
+    <div class="flex items-center gap-2 text-(--color-text) mt-1">
+      <i class="fa-solid fa-users"></i>
+      <span>Places restantes : <span class="text-(--color-primary)">12</span></span>
+    </div>
+
+    <div class="mt-6 grid grid-cols-2 gap-3">
+      <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
+      <app-button size="sm_full" variant="primary">Réserver</app-button>
+    </div>
+  </div>
+</div>

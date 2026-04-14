@@ -71,109 +71,15 @@
 
     <!-- LISTE DES ÉVÉNEMENTS -->
     <div class="max-w-4xl mx-auto md:mx-0">
-
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-(--color-title)">
         Événements à venir
       </h2>
-
       <div class="flex flex-col gap-10">
 
-        <!-- ÉVÉNEMENT 1 -->
-        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
-
-          <div class="relative h-48">
-            <img src="../../../assets/images/Football.jpg" class="w-full h-full object-cover" alt="Football">
-            <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">Football</app-tag>
-          </div>
-
-          <div class="p-6">
-            <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Football</h3>
-            <p class="text-(--color-text) text-sm mt-2">
-              Tournoi amical réunissant plusieurs équipes locales. Ouvert à tous les niveaux.
-            </p>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-4">
-              <i class="fa-solid fa-calendar"></i>
-              <span>15 Mai 2026 — 14h00</span>
-            </div>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-1">
-              <i class="fa-solid fa-users"></i>
-              <span>Places restantes : <span class="text-(--color-primary)">12</span></span>
-            </div>
-
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
-              <app-button size="sm_full" variant="primary">Réserver</app-button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÉVÉNEMENT 2 -->
-        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
-
-          <div class="relative h-48">
-            <img src="../../../assets/images/Basketball.jpg" class="w-full h-full object-cover" alt="Basketball">
-            <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">Basketball</app-tag>
-          </div>
-
-          <div class="p-6">
-            <h3 class="text-2xl font-semibold text-(--color-title)">Tournoi de Basket</h3>
-            <p class="text-(--color-text) text-sm mt-2">
-              Compétition régionale réunissant les meilleures équipes locales. Ambiance garantie.
-            </p>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-4">
-              <i class="fa-solid fa-calendar"></i>
-              <span>10 Juin 2026 — 18h00</span>
-            </div>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-1">
-              <i class="fa-solid fa-users"></i>
-              <span>Places restantes : <span class="text-(--color-primary)">5</span></span>
-            </div>
-
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
-              <app-button size="sm_full" variant="primary">Réserver</app-button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÉVÉNEMENT 3 -->
-        <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
-
-          <div class="relative h-48">
-            <img src="../../../assets/images/Athlétisme.jpg" class="w-full h-full object-cover" alt="Course à pied">
-            <div class="absolute inset-0 bg-black/40"></div>
-            <app-tag variant="card">Course à pied</app-tag>
-          </div>
-
-          <div class="p-6">
-            <h3 class="text-2xl font-semibold text-(--color-title)">Course 10km</h3>
-            <p class="text-(--color-text) text-sm mt-2">
-              Une course ouverte à tous, idéale pour les débutants comme les coureurs confirmés.
-            </p>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-4">
-              <i class="fa-solid fa-calendar"></i>
-              <span>22 Juin 2026 — 09h00</span>
-            </div>
-
-            <div class="flex items-center gap-2 text-(--color-text) mt-1">
-              <i class="fa-solid fa-users"></i>
-              <span>Places restantes : <span class="text-(--color-primary)">30</span></span>
-            </div>
-
-            <div class="mt-6 grid grid-cols-2 gap-3">
-              <app-button size="sm_full" variant="secondary" routerLink="/detail">Détails</app-button>
-              <app-button size="sm_full" variant="primary">Réserver</app-button>
-            </div>
-          </div>
-        </div>
-
+        <!-- Boucle List event -->
+        @for (event of events(); track event.idEvent) {
+          <app-card [event]="event"></app-card>
+        }
       </div>
     </div>
 
