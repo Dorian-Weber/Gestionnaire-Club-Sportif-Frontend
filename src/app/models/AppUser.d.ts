@@ -11,8 +11,8 @@ export interface AppUser {
   appUserEmail?: string;
   appUserPassword?: string;
   appUserPhone?: string;
-  createDate?: Date;
-  lastModifiedDate?: Date;
+  createDate?: string | Date;
+  lastModifiedDate?: string | Date;
   accountType?: AccountType;
   relationUser?: Relation[];
   relationSecondUser?: Relation[];

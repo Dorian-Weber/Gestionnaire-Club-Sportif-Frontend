@@ -5,7 +5,7 @@ import {Seat} from './Seat';
 
 export interface Reservation {
   idReservation?: number;
-  createdAt?: Date;
+  createdAt?: string | Date;
   statusPresence?: StatusPresence;
   event?: Event;
   user?: AppUser;

@@ -8,7 +8,7 @@ export interface Athlete {
   idAthlete?: number;
   athleteName: String;
   athleteFirstName: string;
-  athleteBirthDate?: Date;
+  athleteBirthDate?: string | Date;
   events?: Event[];
   teams?: Team[];
   disciplines?: Discipline[];

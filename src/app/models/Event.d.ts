@@ -12,7 +12,7 @@ export interface Event {
   eventDate: Date;
   eventType?: EventType;
   sport?: Sport;
-  teams: Team[];
+  teams?: Team[];
   athletes?: Athlete[];
   votes?: Vote[];
   reservations?: Reservation[];
