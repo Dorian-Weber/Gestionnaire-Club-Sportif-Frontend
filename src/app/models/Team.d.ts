@@ -5,5 +5,5 @@ export interface Team {
   idTeam?: number;
   teamName: string;
   events?: Event[];
-  Athlete: Athlete[];
+  athletes: Athlete[];
 }

@@ -7,10 +7,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { InfoAthlete } from '../../composants/info-athlete/info-athlete';
+import { InfoTeam } from '../../composants/info-team/info-team';
 
 @Component({
   selector: 'app-detail_event',
-  imports: [RouterLink, Button, Tag, DatePipe, InfoAthlete],
+  imports: [RouterLink, Button, Tag, DatePipe, InfoAthlete, InfoTeam],
   templateUrl: './detail_event.html',
   styleUrl: './detail_event.css',
 })

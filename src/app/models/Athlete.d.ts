@@ -5,7 +5,7 @@ import {Country} from './Country';
 import { Vote } from './Vote';
 
 export interface Athlete {
-  idAthlete?: number;
+  idAthlete: number;
   athleteName: String;
   athleteFirstName: string;
   athleteBirthDate?: string | Date;

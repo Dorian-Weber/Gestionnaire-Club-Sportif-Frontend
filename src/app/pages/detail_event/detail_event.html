@@ -1,67 +1,78 @@
 @if (event()) {
 <section class="min-h-screen bg-(--color-neutral) text-(--color-title)">
     <!-- HERO IMAGE -->
-    <div class="relative h-72 md:h-96">
-      <img [src]="'../../../assets/images/' + event()?.sport?.sportName + '.jpg'" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative h-72 md:h-96">
+    <img [src]="'../../../assets/images/' + event()?.sport?.sportName + '.jpg'" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/50"></div>
 
-      <div class="absolute bottom-6 left-6">
-        <app-tag>
-          {{ event()?.sport?.sportName }}
-        </app-tag>
+    <div class="absolute bottom-6 left-6">
+      <app-tag>
+        {{ event()?.sport?.sportName }}
+      </app-tag>
 
-        <h1 class="text-3xl md:text-5xl font-bold mt-3">
-          {{ event()?.eventName }}
-        </h1>
-      </div>
+      <h1 class="text-3xl md:text-5xl font-bold mt-3">
+        {{ event()?.eventName }}
+      </h1>
     </div>
+  </div>
 
-    <!-- CONTENU -->
-    <div class="max-w-4xl mx-auto px-6 py-12 flex flex-col gap-10">
+  <!-- CONTENU -->
+  <div class="max-w-4xl mx-auto px-6 py-12 flex flex-col gap-10">
 
-      <!-- Infos principales -->
-      <div class="flex flex-col gap-3 text-(--color-text) text-5xl">
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-calendar text-(--color-primary)"></i>
-          <span class="text-lg">{{ event()?.eventDate| date : 'dd MMMM yyyy à HH:mm' }}</span>
-        </div>
+  <!-- Infos principales -->
+    <div class="flex flex-col gap-3 text-(--color-text) text-5xl">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-calendar text-(--color-primary)"></i>
+        <span class="text-lg">{{ event()?.eventDate| date : 'dd MMMM yyyy à HH:mm' }}</span>
+      </div>
 
-        <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3">
           <i class="fa-solid fa-users text-(--color-primary)"></i>
           <span class="text-lg">Places restantes :
             <span class="text-(--color-primary)">12</span>
           </span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-3">Description</h2>
+      <p class="text-(--color-text) leading-relaxed">
+        {{ event()?.eventDescription }}
+      </p>
+    </div>
+
+    <!-- Liste des participants -->
+    <!-- Pour équipe -->
+    @if (event()?.teams) {
+      <div class="mt-10">
+        <h2 class="text-2xl font-semibold mb-6 text-(--color-title)">Équipes participantes</h2>
+        <div class="flex flex-col gap-6">
+      @for (team of event()?.teams; track team.idTeam){
+        <app-info-team [team]="team" ></app-info-team>
+      }
         </div>
       </div>
-
-      <!-- Description -->
-      <div>
-        <h2 class="text-2xl font-semibold mb-3">Description</h2>
-        <p class="text-(--color-text) leading-relaxed">
-          {{ event()?.eventDescription }}
-        </p>
-      </div>
-
-      <!-- Liste des participants -->
+    }
+    <!-- Pour athlete -->
+    @if (event()?.athletes) {
       <div>
         <h2 class="text-2xl font-semibold mb-4">Participants</h2>
         <div class="flex flex-col gap-4">
-          <!-- Participant -->
-          @if (event()?.athletes) {
-            @for (athlete of event()?.athletes; track athlete.idAthlete) {
-              <app-info-athlete [athlete]="athlete"></app-info-athlete>
-            }
-          }
-      <!-- CTA -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          <app-button size="sm_full" variant="primary">
-            Réserver ma place
-          </app-button>
-          <app-button size="sm_full" variant="secondary" routerLink="/events">
-            Retour aux événements
-          </app-button>
-        </div>
+          @for (athlete of event()?.athletes; track athlete.idAthlete) {
+            <app-info-athlete [athlete]="athlete"></app-info-athlete>
+        }</div>
       </div>
+      }
+
+    <!-- CTA -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+      <app-button size="sm_full" variant="primary">
+        Réserver ma place
+      </app-button>
+      <app-button size="sm_full" variant="secondary" routerLink="/events">
+          Retour aux événements
+        </app-button>
     </div>
   </div>
 </section>

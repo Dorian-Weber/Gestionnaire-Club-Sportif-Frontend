@@ -1,0 +1,18 @@
+ <!-- ÉQUIPE 1 -->
+    <div class="bg-(--color-secondary) border border-white/10 rounded-lg p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-semibold text-(--color-title)">{{ team.teamName }}</h3>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <!-- Joueur -->
+        @for (athlete of team.athletes; track athlete.idAthlete) {
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-(--color-primary) text-black font-bold flex items-center justify-center">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <p class="text-(--color-title)">{{ athlete.athleteName }} {{ athlete.athleteFirstName }}</p>
+          </div>
+        }
+      </div>
+    </div>
