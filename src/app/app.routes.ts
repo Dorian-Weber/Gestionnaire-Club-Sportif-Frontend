@@ -4,22 +4,19 @@ import { Events } from './pages/events/events';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Detail_event } from './pages/detail_event/detail_event';
+import { NotFound } from './pages/not-found/not-found';
 
 export const routes: Routes = [
-  {path :'',
-    component : Home
+  { path: '', component: Home },
+  { path: 'events', component: Events },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  {
+    path: 'event/:id',
+    loadComponent: () => import('./pages/detail_event/detail_event').then((m) => m.Detail_event),
   },
-  {path :'events',
-    component : Events
+  {
+    path: 'not-found',
+    loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),
   },
-  {path:'login',
-    component : Login
-  },
-  {path:'register'
-    , component : Register
-  },
-  {path:'event/:id',
-    loadComponent:() => import('./pages/detail_event/detail_event')
-      .then(m => m.Detail_event)
-  }
 ];

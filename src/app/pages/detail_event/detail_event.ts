@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { Tag } from '../../composants/tag/tag';
 import { EventService } from '../../services/event-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { catchError, of, switchMap } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { InfoAthlete } from '../../composants/info-athlete/info-athlete';
 import { InfoTeam } from '../../composants/info-team/info-team';
@@ -18,12 +18,18 @@ import { InfoTeam } from '../../composants/info-team/info-team';
 export class Detail_event {
   private route = inject(ActivatedRoute);
   private eventService = inject(EventService);
+  private router = inject(Router);
 
   event = toSignal(
     this.route.paramMap.pipe(
       switchMap((params) => {
         const id = Number(params.get('id'));
-        return this.eventService.getEventById(id);
+        return this.eventService.getEventById(id).pipe(
+          catchError(() => {
+            this.router.navigate(['/not-found']);
+            return of(null)
+          })
+        );
       }),
     ),
     { initialValue: null },
