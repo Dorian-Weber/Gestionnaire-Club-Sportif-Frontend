@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { SmallCard } from '../../composants/small-card/small-card';
+import { HttpClient } from '@angular/common/http';
 import { EventService } from '../../services/event-service';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +11,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
-  private eventService = inject(EventService);
+export class Home implements OnInit {
+  httpClient = inject(HttpClient);
 
-  events = toSignal(this.eventService.getEvents(), { initialValue: [] });
+
+  nextEvent = signal<EventLight[]>([])
+
+  ngOnInit() {
+    this.httpClient.get<EventLight[]>('http://localhost:8080/event/next')
+      .subscribe(nextEvent => this.nextEvent.set(nextEvent))
+  }
 }

@@ -38,7 +38,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
       <!-- Boucle List card event -->
-      @for (event of events(); track event.idEvent){
+      @for (event of nextEvent(); track event.idEvent){
         <app-small-card [event]="event"></app-small-card>
       }
 

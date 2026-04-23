@@ -30,7 +30,7 @@
         <!-- Boucle sur eventType pour les noms -->
         <select
           class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        > <option value="">Tous les types</option>
+        > <option [value]="null">Tous les types</option>
           @for (eventType of eventTypes(); track eventType.idEventType) {
             <option [value]= eventType.eventTypeName >{{ eventType.eventTypeName }}</option>
         } </select>
@@ -44,7 +44,7 @@
         </label>
         <select
           class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        > <option value="">Tous les sports</option>
+        > <option [value]="null">Tous les sports</option>
           @for (sport of sports() ; track sport.idSport) {
             <option [value]= sport.sportName >{{ sport.sportName }}</option>
           }

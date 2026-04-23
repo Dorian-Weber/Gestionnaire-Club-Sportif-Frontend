@@ -1,6 +1,6 @@
-import {Event} from './Event';
+import { Event} from './event';
 
-export interface EventType {
+type EventType = {
   idEventType? : number;
   eventTypeName : string;
   events? : Event

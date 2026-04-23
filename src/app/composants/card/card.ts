@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Button } from '../button/button';
 import { RouterLink } from '@angular/router';
 import { Tag } from '../tag/tag';
-import { Event } from '../../models/Event';
+import { Event } from '../../models/event';
 import { DatePipe } from '@angular/common';
 
 @Component({

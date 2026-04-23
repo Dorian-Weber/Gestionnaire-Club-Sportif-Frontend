@@ -1,7 +1,4 @@
-import { Sport } from './Sport';
-import { Athlete } from './Athlete';
-
-export interface Discipline {
+type Discipline = {
   idDiscipline?: number;
   disciplineName: string;
   eventRecord?: string;

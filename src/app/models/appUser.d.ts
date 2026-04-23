@@ -1,9 +1,4 @@
-import {AccountType} from './AccountType';
-import {Relation} from './Relation';
-import { Vote } from './Vote';
-import { Reservation } from './Reservation';
-
-export interface AppUser {
+type AppUser = {
   idAppUser?: number;
   appUserName: string;
   appUserFirstName: string;

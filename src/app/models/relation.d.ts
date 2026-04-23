@@ -1,6 +1,4 @@
-import { AppUser } from './AppUser';
-
-export interface Relation {
+type Relation = {
   key?: number
   firstUser: AppUser;
   secondUser: AppUser;

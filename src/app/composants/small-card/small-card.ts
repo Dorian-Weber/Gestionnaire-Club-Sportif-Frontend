@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Tag } from '../tag/tag';
-import {Event} from '../../models/Event';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,5 +10,5 @@ import { DatePipe } from '@angular/common';
   styleUrl: './small-card.css',
 })
 export class SmallCard {
-  @Input() event!: Event;
+  @Input() event!: EventLight;
 }

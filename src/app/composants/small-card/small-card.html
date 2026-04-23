@@ -2,10 +2,10 @@
 
   <!-- Image -->
   <div class="relative h-40">
-    <img [src]="'assets/images/' + event.sport?.sportName + '.jpg'" class="w-full h-full object-cover" alt="Football">
+    <img [src]="'assets/images/' + event.sportName + '.jpg'" class="w-full h-full object-cover" alt="Football">
     <div class="absolute inset-0 bg-black/40"></div>
     <app-tag variant="card">
-      {{ event.sport?.sportName }}
+      {{ event.sportName }}
     </app-tag>
   </div>
 

@@ -1,6 +1,4 @@
-import { Level } from './Level';
-
-export interface Platform {
+type Platform = {
   idPlatform?: number;
   platformName: string;
   levels?: Level[];

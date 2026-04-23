@@ -1,4 +1,4 @@
-export interface StatusPresence {
+type StatusPresence = {
   idStatusPresence?: number;
   statusPresenceName: string
 }

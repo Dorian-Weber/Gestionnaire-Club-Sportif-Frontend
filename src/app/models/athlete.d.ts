@@ -1,10 +1,6 @@
-import {Event} from './Event';
-import { Team } from './Team';
-import {Discipline} from './Discipline';
-import {Country} from './Country';
-import { Vote } from './Vote';
+import { Event} from './event';
 
-export interface Athlete {
+type Athlete = {
   idAthlete: number;
   athleteName: String;
   athleteFirstName: string;

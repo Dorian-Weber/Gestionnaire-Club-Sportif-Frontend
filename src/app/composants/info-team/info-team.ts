@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Event} from '../../models/Event';
-import { Team } from '../../models/Team';
-import { Athlete } from '../../models/Athlete';
+import { Event} from '../../models/event';
+import { Team } from '../../models/team';
+import { Athlete } from '../../models/athlete';
+
 
 @Component({
   selector: 'app-info-team',
