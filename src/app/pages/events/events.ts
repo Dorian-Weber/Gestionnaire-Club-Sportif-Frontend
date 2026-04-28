@@ -2,28 +2,58 @@ import { Component, EventEmitter, inject, OnInit, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Card } from '../../composants/card/card';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-events',
-  imports: [Button, Card],
+  imports: [Button, Card, ReactiveFormsModule, FormsModule],
   templateUrl: './events.html',
   styleUrl: './events.css',
 })
 export class Events implements OnInit {
+  // Injection
   httpClient = inject(HttpClient);
+  formBuilder = inject(FormBuilder);
 
-  fieldSport = signal<SportField[]>([])
-  fieldEventType =  signal<EventTypeField[]>([])
-  eventMedium = signal<EventMedium[]>([])
+  // Création des signaux
+  fieldSport = signal<SportField[]>([]);
+  fieldEventType = signal<EventTypeField[]>([]);
+  eventMedium = signal<EventMedium[]>([]);
 
-  ngOnInit()  {
-    this.httpClient.get<SportField[]>('http://localhost:8080/sport/field')
-      .subscribe(fieldSport => this.fieldSport.set(fieldSport));
+  //Création de formulaire
+  formulaire = this.formBuilder.group({
+    sportName: [],
+    eventTypeName: [],
+  });
 
-    this.httpClient.get<EventTypeField[]>('http://localhost:8080/event-type/field')
-      .subscribe(fieldEventType => this.fieldEventType.set(fieldEventType));
+  // Envoi de la requête de filtre
+  onSearch() {
+    const sportName = this.formulaire.value.sportName;
+    const eventTypeName = this.formulaire.value.eventTypeName;
+    const params: any = {};
 
-    this.httpClient.get<EventMedium[]>('http://localhost:8080/event/list-event')
-      .subscribe(eventMedium => this.eventMedium.set(eventMedium));
+    if (sportName) params.sportName = sportName;
+    if (eventTypeName) params.eventTypeName = eventTypeName;
+
+    this.httpClient
+      .get<EventMedium[]>('http://localhost:8080/event/list-event/search', { params })
+      .subscribe((data) => {console.log("Event FILTRER", data)
+        this.eventMedium.set(data);
+      });
+  }
+
+  //donnée charger au lancement de la page
+  ngOnInit() {
+    this.httpClient
+      .get<SportField[]>('http://localhost:8080/sport/field')
+      .subscribe((fieldSport) => this.fieldSport.set(fieldSport));
+
+    this.httpClient
+      .get<EventTypeField[]>('http://localhost:8080/event-type/field')
+      .subscribe((fieldEventType) => this.fieldEventType.set(fieldEventType));
+
+    this.httpClient
+      .get<EventMedium[]>('http://localhost:8080/event/list-event')
+      .subscribe((eventMedium) => this.eventMedium.set(eventMedium));
   }
 }

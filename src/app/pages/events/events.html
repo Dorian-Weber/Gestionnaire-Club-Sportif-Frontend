@@ -7,62 +7,62 @@
               md:sticky md:top-10
               self-start">
       <h3 class="text-xl font-semibold text-(--color-title) mb-6">Filtres</h3>
+      <form [formGroup]="formulaire" (ngSubmit)="onSearch()">
+        <!-- Barre de Recherche -->
+  <!--      <div class="mb-6">-->
+  <!--        <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
+  <!--          <i class="fa-solid fa-magnifying-glass text-(&#45;&#45;color-primary)"></i>-->
+  <!--          Recherche-->
+  <!--        </label>-->
+  <!--        <input-->
+  <!--          type="text"-->
+  <!--          placeholder="Rechercher un événement..."-->
+  <!--          class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none"-->
+  <!--        >-->
+  <!--      </div>-->
 
-      <!-- Barre de Recherche -->
-      <div class="mb-6">
-        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-magnifying-glass text-(--color-primary)"></i>
-          Recherche
-        </label>
-        <input
-          type="text"
-          placeholder="Rechercher un événement..."
-          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none"
-        >
-      </div>
+        <!-- Barre de tri par Type -->
+        <div class="mb-6">
+          <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-ticket text-(--color-primary)"></i>
+            Type d’événement
+          </label>
 
-      <!-- Barre de tri par Type -->
-      <div class="mb-6">
-        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-ticket text-(--color-primary)"></i>
-          Type d’événement
-        </label>
-        <!-- Boucle sur eventType pour les noms -->
-        <select
-          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        > <option [value]="null">Tous les types</option>
-          @for (eventType of fieldEventType(); track eventType.idEventType) {
-            <option [value]= eventType.eventTypeName >{{ eventType.eventTypeName }}</option>
-        } </select>
-      </div>
+          <select formControlName="eventTypeName"
+            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+          > <option [ngValue]="null">Tous les types</option>
+            @for(eventType of fieldEventType(); track eventType.idEventType) {
+              <option [ngValue]="eventType.eventTypeName"> {{ eventType.eventTypeName }} </option>
+          } </select>
+        </div>
 
-      <!-- Sport -->
-      <div class="mb-6">
-        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-person-running text-(--color-primary)"></i>
-          Sport
-        </label>
-        <select
-          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        > <option [value]="null">Tous les sports</option>
-          @for (sport of fieldSport() ; track sport.idSport) {
-            <option [value]= sport.sportName >{{ sport.sportName }}</option>
-          }
-        </select>
-      </div>
+        <div class="mb-6">
+          <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-person-running text-(--color-primary)"></i>
+            Sport
+          </label>
 
-      <!-- Date -->
-      <div class="mb-8">
-        <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-calendar-days text-(--color-primary)"></i>
-          À partir du
-        </label>
-        <input
-          type="date"
-          class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
-        >
-      </div>
-      <app-button variant="primary" size="sm_full">Filtrer</app-button>
+          <select formControlName="sportName"
+            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+          > <option [ngValue]="null">Tous les sports</option>
+            @for(sport of fieldSport(); track sport.idSport) {
+              <option [ngValue]="sport.sportName"> {{ sport.sportName }} </option>
+            } </select>
+        </div>
+
+        <!-- Date -->
+  <!--      <div class="mb-8">-->
+  <!--        <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
+  <!--          <i class="fa-solid fa-calendar-days text-(&#45;&#45;color-primary)"></i>-->
+  <!--          À partir du-->
+  <!--        </label>-->
+  <!--        <input-->
+  <!--          type="date"-->
+  <!--          class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none cursor-pointer"-->
+  <!--        >-->
+  <!--      </div>-->
+        <app-button type="submit" variant="primary" size="sm_full">Filtrer</app-button>
+      </form>
     </aside>
 
 
@@ -74,7 +74,7 @@
       </h2>
       <div class="flex flex-col gap-10">
 
-         Boucle List event
+        <!-- Boucle List event -->
         @for (event of eventMedium(); track event.idEvent) {
           <app-card [event]="event"></app-card>
         }

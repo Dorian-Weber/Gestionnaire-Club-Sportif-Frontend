@@ -3,8 +3,7 @@ type EventMedium = {
   eventName: string;
   eventDescription: string;
   eventDate: Date;
-  idEventType: number;
-  idSport: number;
+  eventTypeName: string;
   sportName: string;
   totalSeatTaken: number;
   maxSeat: number;
