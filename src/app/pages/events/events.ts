@@ -1,10 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Card } from '../../composants/card/card';
-import { EventService } from '../../services/event-service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { EventTypeService } from '../../services/event-type-service';
-import { SportService } from '../../services/sport-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-events',
@@ -12,14 +9,17 @@ import { SportService } from '../../services/sport-service';
   templateUrl: './events.html',
   styleUrl: './events.css',
 })
-export class Events {
-  // Injection des services
-  private eventService = inject(EventService);
-  private eventTypeService = inject(EventTypeService);
-  private sportService = inject(SportService);
+export class Events implements OnInit {
+  httpClient = inject(HttpClient);
 
-  // Création des signaux
-  events = toSignal(this.eventService.getEvents(), { initialValue: [] });
-  eventTypes = toSignal(this.eventTypeService.getEventTypes(), { initialValue: [] });
-  sports = toSignal(this.sportService.getSports(), { initialValue: [] });
+  fieldSport = signal<SportField[]>([])
+  fieldEventType =  signal<EventTypeField[]>([])
+
+  ngOnInit()  {
+    this.httpClient.get<SportField[]>('http://localhost:8080/sport/field')
+      .subscribe(fieldSport => this.fieldSport.set(fieldSport));
+
+    this.httpClient.get<EventTypeField[]>('http://localhost:8080/event-type/field')
+      .subscribe(fieldEventType => this.fieldEventType.set(fieldEventType));
+  }
 }

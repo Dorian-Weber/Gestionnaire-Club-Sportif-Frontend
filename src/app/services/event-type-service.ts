@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { EventType} from '../models/eventType';
 
 @Injectable({
@@ -10,7 +10,13 @@ export class EventTypeService {
   http = inject(HttpClient);
   apiUrl = 'http://localhost:8080/event-type';
 
-  getEventTypes(): Observable<EventType[]> {
-    return this.http.get<EventType[]>(`${this.apiUrl}/list`);
+  readonly fieldEventType = signal<EventTypeField[]>([]);
+
+  getEventTypeField() {
+    return this.http.get<EventTypeField[]>(`${this.apiUrl}/field`).pipe(
+      tap((result) => {
+        this.fieldEventType.set(result);
+      }),
+    );
   }
 }
