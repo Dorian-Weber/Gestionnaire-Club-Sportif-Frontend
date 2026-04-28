@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Button } from '../button/button';
 import { RouterLink } from '@angular/router';
 import { Tag } from '../tag/tag';
-import { Event } from '../../models/event';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -12,5 +11,5 @@ import { DatePipe } from '@angular/common';
   styleUrl: './card.css',
 })
 export class Card {
-  @Input() event!: Event;
+  @Input() event!: EventMedium;
 }

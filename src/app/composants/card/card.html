@@ -1,9 +1,9 @@
 <div class="bg-(--color-secondary) rounded-lg overflow-hidden shadow-lg border border-(--color-primary)/20">
 
   <div class="relative h-48">
-    <img [src]="'../../../assets/images/'+ event.sport?.sportName +'.jpg'" class="w-full h-full object-cover" alt="Football">
+    <img [src]="'../../../assets/images/'+ event.sportName +'.jpg'" class="w-full h-full object-cover" alt="Football">
     <div class="absolute inset-0 bg-black/40"></div>
-    <app-tag variant="card">{{ event.sport?.sportName }}</app-tag>
+    <app-tag variant="card">{{ event.sportName }}</app-tag>
   </div>
 
   <div class="p-6">
@@ -19,7 +19,7 @@
 
     <div class="flex items-center gap-2 text-(--color-text) mt-1">
       <i class="fa-solid fa-users"></i>
-      <span>Places restantes : <span class="text-(--color-primary)">12</span></span>
+      <span>Places restantes : <span class="text-(--color-primary)">{{event.maxSeat - event.totalSeatTaken }}</span></span>
     </div>
 
     <div class="mt-6 grid grid-cols-2 gap-3">

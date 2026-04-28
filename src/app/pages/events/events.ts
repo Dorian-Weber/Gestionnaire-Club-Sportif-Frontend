@@ -14,6 +14,7 @@ export class Events implements OnInit {
 
   fieldSport = signal<SportField[]>([])
   fieldEventType =  signal<EventTypeField[]>([])
+  eventMedium = signal<EventMedium[]>([])
 
   ngOnInit()  {
     this.httpClient.get<SportField[]>('http://localhost:8080/sport/field')
@@ -21,5 +22,8 @@ export class Events implements OnInit {
 
     this.httpClient.get<EventTypeField[]>('http://localhost:8080/event-type/field')
       .subscribe(fieldEventType => this.fieldEventType.set(fieldEventType));
+
+    this.httpClient.get<EventMedium[]>('http://localhost:8080/event/list-event')
+      .subscribe(eventMedium => this.eventMedium.set(eventMedium));
   }
 }
