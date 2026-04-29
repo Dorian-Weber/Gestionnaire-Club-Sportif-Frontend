@@ -8,18 +8,19 @@
               self-start">
       <h3 class="text-xl font-semibold text-(--color-title) mb-6">Filtres</h3>
       <form [formGroup]="formulaire" (ngSubmit)="onSearch()">
-        <!-- Barre de Recherche -->
-  <!--      <div class="mb-6">-->
-  <!--        <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
-  <!--          <i class="fa-solid fa-magnifying-glass text-(&#45;&#45;color-primary)"></i>-->
-  <!--          Recherche-->
-  <!--        </label>-->
-  <!--        <input-->
-  <!--          type="text"-->
-  <!--          placeholder="Rechercher un événement..."-->
-  <!--          class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none"-->
-  <!--        >-->
-  <!--      </div>-->
+         <!-- Barre de Recherche -->
+        <div class="mb-6">
+          <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-(--color-primary)"></i>
+            Recherche
+          </label>
+          <input
+            type="text"
+            formControlName="search"
+            placeholder="Rechercher un événement..."
+            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none"
+          >
+        </div>
 
         <!-- Barre de tri par Type -->
         <div class="mb-6">
@@ -27,7 +28,6 @@
             <i class="fa-solid fa-ticket text-(--color-primary)"></i>
             Type d’événement
           </label>
-
           <select formControlName="eventTypeName"
             class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
           > <option [ngValue]="null">Tous les types</option>
@@ -41,7 +41,6 @@
             <i class="fa-solid fa-person-running text-(--color-primary)"></i>
             Sport
           </label>
-
           <select formControlName="sportName"
             class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
           > <option [ngValue]="null">Tous les sports</option>
@@ -51,16 +50,17 @@
         </div>
 
         <!-- Date -->
-  <!--      <div class="mb-8">-->
-  <!--        <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
-  <!--          <i class="fa-solid fa-calendar-days text-(&#45;&#45;color-primary)"></i>-->
-  <!--          À partir du-->
-  <!--        </label>-->
-  <!--        <input-->
-  <!--          type="date"-->
-  <!--          class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none cursor-pointer"-->
-  <!--        >-->
-  <!--      </div>-->
+<!--        <div class="mb-8">-->
+<!--          <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
+<!--            <i class="fa-solid fa-calendar-days text-(&#45;&#45;color-primary)"></i>-->
+<!--            À partir du-->
+<!--          </label>-->
+<!--          <input-->
+<!--            type="date"-->
+<!--            formControlName="eventDate"-->
+<!--            class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none cursor-pointer"-->
+<!--          >-->
+<!--        </div>-->
         <app-button type="submit" variant="primary" size="sm_full">Filtrer</app-button>
       </form>
     </aside>

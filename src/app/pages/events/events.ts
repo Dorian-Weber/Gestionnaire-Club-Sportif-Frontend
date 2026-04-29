@@ -24,22 +24,25 @@ export class Events implements OnInit {
   formulaire = this.formBuilder.group({
     sportName: [],
     eventTypeName: [],
+    search: ['' as string | null],
   });
+
 
   // Envoi de la requête de filtre
   onSearch() {
     const sportName = this.formulaire.value.sportName;
     const eventTypeName = this.formulaire.value.eventTypeName;
+    const search = this.formulaire.value.search;
     const params: any = {};
 
     if (sportName) params.sportName = sportName;
     if (eventTypeName) params.eventTypeName = eventTypeName;
+    if (search && search.trim() !== '') params.search = search.trim();
 
     this.httpClient
       .get<EventMedium[]>('http://localhost:8080/event/list-event/search', { params })
-      .subscribe((data) => {console.log("Event FILTRER", data)
-        this.eventMedium.set(data);
-      });
+      .subscribe((data) => this.eventMedium.set(data));
+    console.log('PARAMS envoyés :', params);
   }
 
   //donnée charger au lancement de la page
