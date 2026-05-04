@@ -18,7 +18,7 @@
             type="text"
             formControlName="search"
             placeholder="Rechercher un événement..."
-            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none"
+            class="w-full bg-(--color-neutral) text-(--color-text) border border-(--color-primary)/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none"
           >
         </div>
 
@@ -29,7 +29,7 @@
             Type d’événement
           </label>
           <select formControlName="eventTypeName"
-            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+            class="w-full bg-(--color-neutral) text-(--color-text) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
           > <option [ngValue]="null">Tous les types</option>
             @for(eventType of fieldEventType(); track eventType.idEventType) {
               <option [ngValue]="eventType.eventTypeName"> {{ eventType.eventTypeName }} </option>
@@ -42,7 +42,7 @@
             Sport
           </label>
           <select formControlName="sportName"
-            class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
+            class="w-full bg-(--color-neutral) text-(--color-text) border border-white/10 rounded-md px-3 py-2 focus:border-(--color-primary) outline-none cursor-pointer"
           > <option [ngValue]="null">Tous les sports</option>
             @for(sport of fieldSport(); track sport.idSport) {
               <option [ngValue]="sport.sportName"> {{ sport.sportName }} </option>
@@ -50,17 +50,26 @@
         </div>
 
         <!-- Date -->
-<!--        <div class="mb-8">-->
-<!--          <label class="block text-(&#45;&#45;color-title) font-medium mb-2 flex items-center gap-2">-->
-<!--            <i class="fa-solid fa-calendar-days text-(&#45;&#45;color-primary)"></i>-->
-<!--            À partir du-->
-<!--          </label>-->
-<!--          <input-->
-<!--            type="date"-->
-<!--            formControlName="eventDate"-->
-<!--            class="w-full bg-(&#45;&#45;color-neutral) text-(&#45;&#45;color-title) border border-white/10 rounded-md px-3 py-2 focus:border-(&#45;&#45;color-primary) outline-none cursor-pointer"-->
-<!--          >-->
-<!--        </div>-->
+        <div class="mb-8">
+          <label class="block text-(--color-title) font-medium mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-(--color-primary)"></i>
+            À partir du
+          </label>
+
+          <div class="relative">
+            <input
+              type="date"
+              id="dateMinInput"
+              formControlName="dateMin"
+              class="w-full bg-(--color-neutral) text-(--color-title) border border-white/10 rounded-md px-3 py-2 pr-10 focus:border-(--color-primary) outline-none cursor-pointer custom-date"
+            >
+            <i
+              class="fa-solid fa-calendar-days absolute right-3 top-1/2 -translate-y-1/2 text-(--color-primary) cursor-pointer"
+              (click)="openDatePicker()"
+            ></i>
+          </div>
+        </div>
+
         <app-button type="submit" variant="primary" size="sm_full">Filtrer</app-button>
       </form>
     </aside>

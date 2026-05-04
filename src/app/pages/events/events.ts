@@ -25,25 +25,36 @@ export class Events implements OnInit {
     sportName: [],
     eventTypeName: [],
     search: ['' as string | null],
+    dateMin : ['']
   });
-
 
   // Envoi de la requête de filtre
   onSearch() {
     const sportName = this.formulaire.value.sportName;
     const eventTypeName = this.formulaire.value.eventTypeName;
     const search = this.formulaire.value.search;
+    const dateMin = this.formulaire.value.dateMin;
     const params: any = {};
 
     if (sportName) params.sportName = sportName;
     if (eventTypeName) params.eventTypeName = eventTypeName;
     if (search && search.trim() !== '') params.search = search.trim();
+    if (dateMin) params.dateMin = dateMin;
 
     this.httpClient
       .get<EventMedium[]>('http://localhost:8080/event/list-event/search', { params })
       .subscribe((data) => this.eventMedium.set(data));
     console.log('PARAMS envoyés :', params);
   }
+
+  openDatePicker() {
+    const input = document.getElementById('dateMinInput') as HTMLInputElement;
+    if (input) {
+      input.showPicker(); // ouvre le calendrier natif
+    }
+  }
+
+
 
   //donnée charger au lancement de la page
   ngOnInit() {

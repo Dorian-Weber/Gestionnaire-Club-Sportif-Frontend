@@ -19,3 +19,8 @@
   background-color: #2C2C2E;
   color: var(--color-text);
 }
+
+.custom-date::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
