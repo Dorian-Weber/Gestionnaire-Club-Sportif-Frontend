@@ -1,0 +1,117 @@
+<div class="min-h-screen bg-(--color-background) text-white">
+
+  <!-- HEADER / HERO -->
+  <div class="relative h-56">
+    <img src="assets/images/stade.jpg" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="absolute bottom-6 left-6">
+      <h1 class="text-3xl font-bold">Réservation des sièges</h1>
+      <p class="opacity-80">Choisissez votre emplacement</p>
+    </div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- ÉTAPE 1 : TRIBUNE -->
+    <section id="step-tribune" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-6">1. Choix de la tribune</h2>
+
+      <div class="grid grid-cols-2 gap-4">
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Nord
+        </button>
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Est
+        </button>
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Sud
+        </button>
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Ouest
+        </button>
+      </div>
+
+      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+        Continuer
+      </button>
+    </section>
+
+    <!-- ÉTAPE 2 : NIVEAU -->
+    <section id="step-niveau" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-6">2. Choix du niveau</h2>
+
+      <div class="grid grid-cols-3 gap-4">
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Haut
+        </button>
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Milieu
+        </button>
+        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          Bas
+        </button>
+      </div>
+
+      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+        Continuer
+      </button>
+    </section>
+
+    <!-- ÉTAPE 3 : SIÈGES -->
+    <section id="step-siege" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-6">3. Choix du siège</h2>
+
+      <!-- GRID DES SIÈGES -->
+      <div class="grid grid-cols-5 gap-x-4 gap-y-2 mx-auto w-fit">
+
+        <!-- 10 sièges (2 lignes de 5) -->
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+      </div>
+
+      <!-- LÉGENDE -->
+      <div class="space-y-2 text-white/80 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-gray-500 rounded"></div>
+          <span>Siège libre</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-gray-700 rounded"></div>
+          <span>Siège réservé</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 bg-gray-300 rounded"></div>
+          <span>Siège réservé par un ami</span>
+        </div>
+      </div>
+
+      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+        Valider votre réservation
+      </button>
+    </section>
+
+  </div>
+</div>
