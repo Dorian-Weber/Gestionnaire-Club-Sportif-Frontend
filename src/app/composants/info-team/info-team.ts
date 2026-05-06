@@ -1,7 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Event} from '../../models/event';
-import { Team } from '../../models/team';
-import { Athlete } from '../../models/athlete';
 
 
 @Component({
@@ -11,7 +8,7 @@ import { Athlete } from '../../models/athlete';
   styleUrl: './info-team.css',
 })
 export class InfoTeam {
-  @Input() event!: Event;
-  @Input() team!: Team;
-  @Input() athlete!: Athlete;
+  @Input() eventFull!: EventFull;
+  @Input() teamDTO!: TeamDTO;
+  @Input() athleteDTO!: AthleteDTO;
 }

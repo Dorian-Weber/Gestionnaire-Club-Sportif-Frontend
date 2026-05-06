@@ -17,10 +17,6 @@ export class EventService {
     return this.http.get<Event[]>(`${this.apiUrl}/list`);
   }
 
-  getEventById(id: number) {
-    return this.http.get<Event>(`${this.apiUrl}/${id}`);
-  }
-
   getNextEvent() {
     return this.http
       .get<EventLight[]>(`${this.apiUrl}/next`)
@@ -31,6 +27,10 @@ export class EventService {
     return this.http
       .get<EventMedium[]>(`${this.apiUrl}/list-event`)
       .pipe(tap((result) => {this.eventMedium.set(result)}));
+  }
+
+  getEventFull(id: number) {
+    return this.http.get<EventFull>(`${this.apiUrl}/full/${id}`);
   }
 
 }

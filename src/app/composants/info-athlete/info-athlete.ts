@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Event} from '../../models/event';
-import { Athlete } from '../../models/athlete';
 
 @Component({
   selector: 'app-info-athlete',
@@ -9,6 +7,6 @@ import { Athlete } from '../../models/athlete';
   styleUrl: './info-athlete.css',
 })
 export class InfoAthlete {
-  @Input() event!: Event;
-  @Input() athlete!: Athlete;
+  @Input() eventFull!: EventFull;
+  @Input() athleteDTO!: AthleteDTO;
 }

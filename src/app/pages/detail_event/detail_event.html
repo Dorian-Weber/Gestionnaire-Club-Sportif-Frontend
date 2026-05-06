@@ -1,17 +1,17 @@
-@if (event()) {
+@if (eventFull()) {
 <section class="min-h-screen bg-(--color-neutral) text-(--color-title)">
     <!-- HERO IMAGE -->
   <div class="relative h-72 md:h-96">
-    <img [src]="'../../../assets/images/' + event()?.sport?.sportName + '.jpg'" class="w-full h-full object-cover">
+    <img [src]="'../../../assets/images/' + eventFull()?.eventMedium?.sportName + '.jpg'" class="w-full h-full object-cover">
     <div class="absolute inset-0 bg-black/50"></div>
 
     <div class="absolute bottom-6 left-6">
       <app-tag>
-        {{ event()?.sport?.sportName }}
+        {{ eventFull()?.eventMedium?.sportName }}
       </app-tag>
 
       <h1 class="text-3xl md:text-5xl font-bold mt-3">
-        {{ event()?.eventName }}
+        {{ eventFull()?.eventMedium?.eventName }}
       </h1>
     </div>
   </div>
@@ -23,13 +23,13 @@
     <div class="flex flex-col gap-3 text-(--color-text) text-5xl">
       <div class="flex items-center gap-3">
         <i class="fa-solid fa-calendar text-(--color-primary)"></i>
-        <span class="text-lg">{{ event()?.eventDate| date : 'dd MMMM yyyy à HH:mm' }}</span>
+        <span class="text-lg">{{ eventFull()?.eventMedium?.eventDate| date : 'dd MMMM yyyy à HH:mm' }}</span>
       </div>
 
       <div class="flex items-center gap-3">
           <i class="fa-solid fa-users text-(--color-primary)"></i>
           <span class="text-lg">Places restantes :
-            <span class="text-(--color-primary)">12</span>
+            <span class="text-(--color-primary)">{{ (eventFull()?.eventMedium?.maxSeat ?? 0 ) - (eventFull()?.eventMedium?.totalSeatTaken ?? 0) }}</span>
           </span>
       </div>
     </div>
@@ -38,30 +38,31 @@
     <div>
       <h2 class="text-2xl font-semibold mb-3">Description</h2>
       <p class="text-(--color-text) leading-relaxed">
-        {{ event()?.eventDescription }}
+        {{ eventFull()?.eventMedium?.eventDescription }}
       </p>
     </div>
 
     <!-- Liste des participants -->
     <!-- Pour équipe -->
-    @if (event()?.teams) {
+    @if (eventFull()?.teams ) {
       <div class="mt-10">
         <h2 class="text-2xl font-semibold mb-6 text-(--color-title)">Équipes participantes</h2>
         <div class="flex flex-col gap-6">
-      @for (team of event()?.teams; track team.idTeam){
-        <app-info-team [team]="team" ></app-info-team>
-      }
+          @for (team of eventFull()?.teams ; track team.idTeam) {
+            <app-info-team [teamDTO]="team"></app-info-team>
+          }
         </div>
       </div>
     }
+
     <!-- Pour athlete -->
-    @if (event()?.athletes) {
+    @if (eventFull()?.athletes) {
       <div>
         <h2 class="text-2xl font-semibold mb-4">Participants</h2>
         <div class="flex flex-col gap-4">
-          @for (athlete of event()?.athletes; track athlete.idAthlete) {
-            <app-info-athlete [athlete]="athlete"></app-info-athlete>
-        }</div>
+          @for (athlete of eventFull()?.athletes ; track athlete.idAthlete) {
+            <app-info-athlete [athleteDTO]="athlete"></app-info-athlete>
+        } </div>
       </div>
       }
 

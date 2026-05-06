@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { Tag } from '../../composants/tag/tag';
@@ -20,11 +20,13 @@ export class Detail_event {
   private eventService = inject(EventService);
   private router = inject(Router);
 
-  event = toSignal(
+  eventFull:Signal<EventFull | null> = toSignal(
     this.route.paramMap.pipe(
       switchMap((params) => {
         const id = Number(params.get('id'));
-        return this.eventService.getEventById(id).pipe(
+
+        return this.eventService.getEventFull(id)
+          .pipe(
           catchError(() => {
             this.router.navigate(['/not-found']);
             return of(null)
