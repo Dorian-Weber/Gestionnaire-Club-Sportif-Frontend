@@ -1,0 +1,58 @@
+<div class="min-h-screen bg-(--color-background) text-white">
+
+  <!-- HERO -->
+  <div class="relative h-56">
+    <img src="assets/images/stade.jpg" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="absolute bottom-6 left-6">
+      <h1 class="text-3xl font-bold">Confirmation de réservation</h1>
+      <p class="opacity-80">Vérifiez les informations avant de valider</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- EVENT SUMMARY -->
+    <section class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">Événement</h2>
+
+      <div class="space-y-2 text-white/80">
+        <p><span class="font-semibold text-white">Nom :</span> Open de Metz - Simple</p>
+        <p><span class="font-semibold text-white">Sport :</span> Tennis</p>
+        <p><span class="font-semibold text-white">Date :</span> 22 Mai 2026 - 16h00</p>
+        <p><span class="font-semibold text-white">Lieu :</span> Stade Saint-Symphorien</p>
+      </div>
+    </section>
+
+    <!-- SEAT SUMMARY -->
+    <section class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">Votre sélection</h2>
+
+      <div class="space-y-2 text-white/80">
+        <p><span class="font-semibold text-white">Tribune :</span> Nord</p>
+        <p><span class="font-semibold text-white">Niveau :</span> Milieu</p>
+        <p><span class="font-semibold text-white">Siège :</span> A5</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-xl font-semibold mb-4">Validation</h2>
+
+      <p class="text-white/80 mb-6">
+        En validant, votre réservation sera enregistrée et visible dans votre espace personnel.
+      </p>
+
+      <button class="w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+        Valider la réservation
+      </button>
+
+      <a href="/event/7/reservation" class="block text-center mt-4 text-(--color-primary) hover:underline">
+        ← Retour à la sélection des sièges
+      </a>
+    </section>
+
+  </div>
+</div>
