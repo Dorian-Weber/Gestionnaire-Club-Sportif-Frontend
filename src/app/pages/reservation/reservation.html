@@ -14,6 +14,24 @@
   <!-- MAIN WRAPPER -->
   <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
 
+    <!-- ÉTAPE 0 : NOMBRE DE SIÈGES -->
+    <section id="step-nb" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-6">0. Nombre de sièges</h2>
+
+      <div class="flex gap-4">
+        <button class="flex-1 bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          1 siège
+        </button>
+        <button class="flex-1 bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+          2 sièges
+        </button>
+      </div>
+
+      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+        Continuer
+      </button>
+    </section>
+
     <!-- ÉTAPE 1 : TRIBUNE -->
     <section id="step-tribune" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">1. Choix de la tribune</h2>
@@ -64,36 +82,41 @@
       <h2 class="text-2xl font-semibold mb-6">3. Choix du siège</h2>
 
       <!-- GRID DES SIÈGES -->
-      <div class="grid grid-cols-5 gap-x-4 gap-y-2 mx-auto w-fit">
+      <div class="grid grid-cols-5 gap-x-3 gap-y-3.5 mx-auto w-fit">
 
-        <!-- 10 sièges (2 lignes de 5) -->
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-
+        <!-- 20 sièges (4 lignes de 5) -->
+        <!-- Ligne 1 -->
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
 
+        <!-- Ligne 2 -->
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
 
+        <!-- Ligne 3 -->
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
         <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+
+        <!-- Ligne 4 -->
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+
       </div>
 
       <!-- LÉGENDE -->
-      <div class="space-y-2 text-white/80 text-sm">
+      <div class="space-y-2 text-white/80 text-sm mt-6">
         <div class="flex items-center gap-2">
           <div class="w-4 h-4 bg-gray-500 rounded"></div>
           <span>Siège libre</span>
