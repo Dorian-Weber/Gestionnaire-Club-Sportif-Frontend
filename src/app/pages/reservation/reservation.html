@@ -13,70 +13,98 @@
 
   <!-- MAIN WRAPPER -->
   <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
-
+    @if (currentStep() >= 0) {
     <!-- ÉTAPE 0 : NOMBRE DE SIÈGES -->
     <section id="step-nb" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">0. Nombre de sièges</h2>
 
-      <div class="flex gap-4">
-        <button class="flex-1 bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+      <div class="grid grid-cols-2 gap-4">
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedSeatCount()=== 1"
+                    (click)="selectSeatCount(1); nextStep(1)">
           1 siège
-        </button>
-        <button class="flex-1 bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle"  size="md_larger_full"
+                    [active]="selectedSeatCount()=== 2"
+                    (click)="selectSeatCount(2); nextStep(1)" >
           2 sièges
-        </button>
+        </app-button>
       </div>
 
-      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
-        Continuer
-      </button>
+<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
+<!--                  [disabled]="!canContinueStep0()"-->
+<!--                  (click)="nextStep()">-->
+<!--        Continuer-->
+<!--      </app-button>-->
     </section>
+    }
 
+    @if (currentStep() >= 1) {
     <!-- ÉTAPE 1 : TRIBUNE -->
     <section id="step-tribune" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">1. Choix de la tribune</h2>
 
       <div class="grid grid-cols-2 gap-4">
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedTribune()=== 'Nord'"
+                    (click)="selectTribune('Nord'); nextStep(2)">
           Nord
-        </button>
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedTribune()=== 'Est'"
+                    (click)="selectTribune('Est'); nextStep(2)">
           Est
-        </button>
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedTribune()=== 'Sud'"
+                    (click)="selectTribune('Sud'); nextStep(2)">
           Sud
-        </button>
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedTribune()=== 'Ouest'"
+                    (click)="selectTribune('Ouest'); nextStep(2)">
           Ouest
-        </button>
+        </app-button>
       </div>
 
-      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
-        Continuer
-      </button>
+<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
+<!--                  [disabled]="!canContinueStep1()"-->
+<!--                  (click)="nextStep()" >-->
+<!--        Continuer-->
+<!--      </app-button>-->
     </section>
-
+    }
+    @if (currentStep() >= 2) {
     <!-- ÉTAPE 2 : NIVEAU -->
     <section id="step-niveau" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">2. Choix du niveau</h2>
 
       <div class="grid grid-cols-3 gap-4">
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedLevel()=== 'Haut'"
+                    (click)="selectLevel('Haut'); nextStep(3)">
           Haut
-        </button>
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedLevel()=== 'Milieu'"
+                    (click)="selectLevel('Milieu'); nextStep(3)">
           Milieu
-        </button>
-        <button class="bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center">
+        </app-button>
+        <app-button variant="toggle" size="md_larger_full"
+                    [active]="selectedLevel()=== 'Bas'"
+                    (click)="selectLevel('Bas'); nextStep(3)">
           Bas
-        </button>
+        </app-button>
       </div>
 
-      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
-        Continuer
-      </button>
+<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
+<!--                  [disabled]="!canContinueStep2()"-->
+<!--                  (click)="nextStep()">-->
+<!--        Continuer-->
+<!--      </app-button>-->
     </section>
-
+    }
+    @if (currentStep() >= 3) {
     <!-- ÉTAPE 3 : SIÈGES -->
     <section id="step-siege" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">3. Choix du siège</h2>
@@ -84,34 +112,35 @@
       <!-- GRID DES SIÈGES -->
       <div class="grid grid-cols-5 gap-x-3 gap-y-3.5 mx-auto w-fit">
 
-        <!-- 20 sièges (4 lignes de 5) -->
         <!-- Ligne 1 -->
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <app-seat [id]= 1 status="free" [selected]="selectedSeats().includes(1)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 2 status="free" [selected]="selectedSeats().includes(2)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 3 status="free" [selected]="selectedSeats().includes(3)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 4 status="free" [selected]="selectedSeats().includes(4)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 5 status="free" [selected]="selectedSeats().includes(5)" (seatClick)="selectSeat($event)"></app-seat>
 
         <!-- Ligne 2 -->
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <app-seat [id]= 6 status="free" [selected]="selectedSeats().includes(6)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 7 status="free" [selected]="selectedSeats().includes(7)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 8 status="free" [selected]="selectedSeats().includes(8)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 9 status="free" [selected]="selectedSeats().includes(9)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 10 status="free" [selected]="selectedSeats().includes(10)" (seatClick)="selectSeat($event)"></app-seat>
 
         <!-- Ligne 3 -->
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <app-seat [id]= 11 status="free" [selected]="selectedSeats().includes(11)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 12 status="free" [selected]="selectedSeats().includes(12)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 13 status="free" [selected]="selectedSeats().includes(13)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 14 status="free" [selected]="selectedSeats().includes(14)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 15 status="free" [selected]="selectedSeats().includes(15)" (seatClick)="selectSeat($event)"></app-seat>
+
 
         <!-- Ligne 4 -->
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
-        <div class="bg-gray-500 w-10 h-10 rounded-md"></div>
+        <app-seat [id]= 16 status="free" [selected]="selectedSeats().includes(16)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 17 status="free" [selected]="selectedSeats().includes(17)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 18 status="free" [selected]="selectedSeats().includes(18)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 19 status="free" [selected]="selectedSeats().includes(19)" (seatClick)="selectSeat($event)"></app-seat>
+        <app-seat [id]= 20 status="free" [selected]="selectedSeats().includes(20)" (seatClick)="selectSeat($event)"></app-seat>
+
 
       </div>
 
@@ -129,12 +158,18 @@
           <div class="w-4 h-4 bg-gray-300 rounded"></div>
           <span>Siège réservé par un ami</span>
         </div>
+        <div class="flex items-center gap-2 ">
+          <div class="w-4 h-4 bg-(--color-primary) rounded"></div>
+          <span>Siège sélectionné</span>
+        </div>
+
       </div>
 
-      <button class="mt-6 w-full bg-(--color-primary) text-black font-semibold py-3 rounded-lg text-lg hover:opacity-90 transition">
+      <app-button variant="primary" size="md_full" margin="mt6"
+                  [disabled]="!canContinueStep3()">
         Valider votre réservation
-      </button>
+      </app-button>
     </section>
-
+    }
   </div>
 </div>
