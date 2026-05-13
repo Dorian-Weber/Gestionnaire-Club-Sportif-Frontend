@@ -9,7 +9,6 @@ import { Component, Input } from '@angular/core';
 export class Button {
   @Input() variant: 'primary' | 'secondary' | 'toggle' = 'primary';
   @Input() size: 'sm' | 'md' | 'sm_full' | 'md_full' | 'md_larger_full' = 'sm';
-  @Input() margin: 'mt6' | 'none' = 'none';
   @Input() active: boolean = false;
   @Input() disabled: boolean = false;
 
@@ -32,10 +31,6 @@ export class Button {
       md_full: 'px-8 py-3 w-full',
       md_larger_full: 'px-8 py-4 w-full',
     };
-    const margins = {
-      mt6: 'mt-6',
-      none: '',
-    };
     const toggleClass =
       this.variant === 'toggle'
         ? this.active
@@ -45,9 +40,9 @@ export class Button {
 
 
     if (this.disabled) {
-      return `${base} ${margins[this.margin]} ${sizes[this.size]} opacity-40 cursor-not-allowed`;
+      return `${base} ${sizes[this.size]} opacity-40 cursor-not-allowed`;
     } else {
-      return `${base} ${margins[this.margin]} ${toggleClass} ${sizes[this.size]}`;
+      return `${base}  ${toggleClass} ${sizes[this.size]}`;
     }
   }
 }

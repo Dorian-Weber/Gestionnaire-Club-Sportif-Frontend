@@ -5,10 +5,12 @@
     <img src="assets/images/stade.jpg" class="w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black/50"></div>
 
-    <div class="absolute bottom-6 left-6">
-      <h1 class="text-3xl font-bold">Réservation des sièges</h1>
-      <p class="opacity-80">Choisissez votre emplacement</p>
-    </div>
+<!--    <div class="absolute bottom-6 left-6">-->
+    <app-tag variant="card">
+      <h1 class="px-2 text-3xl font-bold">Réservation des sièges</h1>
+      <p class="px-2 opacity-80">Choisissez votre emplacement</p>
+    </app-tag>
+<!--    </div>-->
   </div>
 
   <!-- MAIN WRAPPER -->
@@ -21,21 +23,16 @@
       <div class="grid grid-cols-2 gap-4">
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedSeatCount()=== 1"
-                    (click)="selectSeatCount(1); nextStep(1)">
+                    (click)="selectSeatCount(1); nextStep(1); resetFromStep(1)">
           1 siège
         </app-button>
         <app-button variant="toggle"  size="md_larger_full"
                     [active]="selectedSeatCount()=== 2"
-                    (click)="selectSeatCount(2); nextStep(1)" >
+                    (click)="selectSeatCount(2); nextStep(1); resetFromStep(1)" >
           2 sièges
         </app-button>
       </div>
 
-<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
-<!--                  [disabled]="!canContinueStep0()"-->
-<!--                  (click)="nextStep()">-->
-<!--        Continuer-->
-<!--      </app-button>-->
     </section>
     }
 
@@ -47,31 +44,26 @@
       <div class="grid grid-cols-2 gap-4">
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedTribune()=== 'Nord'"
-                    (click)="selectTribune('Nord'); nextStep(2)">
+                    (click)="selectTribune('Nord'); nextStep(2); resetFromStep(2)">
           Nord
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedTribune()=== 'Est'"
-                    (click)="selectTribune('Est'); nextStep(2)">
+                    (click)="selectTribune('Est'); nextStep(2); resetFromStep(2)">
           Est
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedTribune()=== 'Sud'"
-                    (click)="selectTribune('Sud'); nextStep(2)">
+                    (click)="selectTribune('Sud'); nextStep(2); resetFromStep(2)">
           Sud
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedTribune()=== 'Ouest'"
-                    (click)="selectTribune('Ouest'); nextStep(2)">
+                    (click)="selectTribune('Ouest'); nextStep(2); resetFromStep(2)">
           Ouest
         </app-button>
       </div>
 
-<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
-<!--                  [disabled]="!canContinueStep1()"-->
-<!--                  (click)="nextStep()" >-->
-<!--        Continuer-->
-<!--      </app-button>-->
     </section>
     }
     @if (currentStep() >= 2) {
@@ -82,26 +74,20 @@
       <div class="grid grid-cols-3 gap-4">
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Haut'"
-                    (click)="selectLevel('Haut'); nextStep(3)">
+                    (click)="selectLevel('Haut'); nextStep(3); resetFromStep(3)">
           Haut
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Milieu'"
-                    (click)="selectLevel('Milieu'); nextStep(3)">
+                    (click)="selectLevel('Milieu'); nextStep(3); resetFromStep(3)">
           Milieu
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Bas'"
-                    (click)="selectLevel('Bas'); nextStep(3)">
+                    (click)="selectLevel('Bas'); nextStep(3); resetFromStep(3)">
           Bas
         </app-button>
       </div>
-
-<!--      <app-button variant="primary" size="md_full" margin="mt6"-->
-<!--                  [disabled]="!canContinueStep2()"-->
-<!--                  (click)="nextStep()">-->
-<!--        Continuer-->
-<!--      </app-button>-->
     </section>
     }
     @if (currentStep() >= 3) {
@@ -164,11 +150,15 @@
         </div>
 
       </div>
-
-      <app-button variant="primary" size="md_full" margin="mt6"
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <app-button variant="secondary" size="md_full"
+                    (click)="nextStep(0); resetFromStep(0)">
+          Annuler les séléctions</app-button>
+      <app-button variant="primary" size="md_full"
                   [disabled]="!canContinueStep3()">
         Valider votre réservation
       </app-button>
+        </div>
     </section>
     }
   </div>

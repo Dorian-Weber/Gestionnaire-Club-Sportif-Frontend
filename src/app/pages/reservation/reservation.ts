@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Seat } from '../../composants/seat/seat';
+import { Tag } from '../../composants/tag/tag';
 
 @Component({
   selector: 'app-reservation',
-  imports: [Button, Seat],
+  imports: [Button, Seat, Tag],
   templateUrl: './reservation.html',
   styleUrl: './reservation.css',
 })
@@ -18,7 +19,7 @@ export class Reservation {
 
   //Passe d'une étape a l'autre
   nextStep(step: number) {
-    this.currentStep.update((s) => s = step);
+    this.currentStep.update((s) => (s = step));
   }
 
   // Permet de changer le bouton toggle d'actif à inactif
@@ -62,5 +63,21 @@ export class Reservation {
 
   canContinueStep3() {
     return this.selectedSeats().length === this.selectedSeatCount();
+  }
+
+  // reset des infos sélectionnait si retourne en arrière
+  resetFromStep(step: number) {
+    if (step <= 0) {
+      this.selectedSeatCount.set(null);
+    }
+    if (step <= 1) {
+      this.selectedTribune.set(null);
+    }
+    if (step <= 2) {
+      this.selectedLevel.set(null);
+    }
+    if (step <= 3) {
+      this.selectedSeats.set([]);
+    }
   }
 }
