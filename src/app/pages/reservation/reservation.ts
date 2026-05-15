@@ -1,7 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Seat } from '../../composants/seat/seat';
 import { Tag } from '../../composants/tag/tag';
+import {ActivatedRoute} from '@angular/router';
+import { SeatService } from '../../services/seat-service';
 
 @Component({
   selector: 'app-reservation',
@@ -10,10 +12,17 @@ import { Tag } from '../../composants/tag/tag';
   styleUrl: './reservation.css',
 })
 export class Reservation {
+  // On récupère l'id de l'événement pour lequel on fait la réservation
+  route = inject(ActivatedRoute);
+  eventId = Number(this.route.snapshot.paramMap.get('idEvent'));
+  availableSeats = signal<SeatDTO[]>([])
+  seatService = inject(SeatService);
+
+  // On crée les signaux pour les différentes étapes ainsi que pour chaque choix utilisateur
   currentStep = signal(0);
 
   selectedSeatCount = signal<number | null>(null);
-  selectedTribune = signal<string | null>(null);
+  selectedPlatform = signal<string | null>(null);
   selectedLevel = signal<string | null>(null);
   selectedSeats = signal<number[]>([]);
 
@@ -26,8 +35,8 @@ export class Reservation {
   selectSeatCount(count: number) {
     this.selectedSeatCount.set(count);
   }
-  selectTribune(tribune: string) {
-    this.selectedTribune.set(tribune);
+  selectPlatform(tribune: string) {
+    this.selectedPlatform.set(tribune);
   }
   selectLevel(level: string) {
     this.selectedLevel.set(level);
@@ -49,17 +58,6 @@ export class Reservation {
   }
 
   // Bloque le bouton continué
-  canContinueStep0() {
-    return this.selectedSeatCount() !== null;
-  }
-
-  canContinueStep1() {
-    return this.selectedTribune() !== null;
-  }
-
-  canContinueStep2() {
-    return this.selectedLevel() !== null;
-  }
 
   canContinueStep3() {
     return this.selectedSeats().length === this.selectedSeatCount();
@@ -71,7 +69,7 @@ export class Reservation {
       this.selectedSeatCount.set(null);
     }
     if (step <= 1) {
-      this.selectedTribune.set(null);
+      this.selectedPlatform.set(null);
     }
     if (step <= 2) {
       this.selectedLevel.set(null);
@@ -80,4 +78,17 @@ export class Reservation {
       this.selectedSeats.set([]);
     }
   }
+
+  loadSeats() {
+    const eventId = this.eventId;
+    const userId = 1
+    const platform = this.selectedPlatform() ?? '';
+    const level = this.selectedLevel() ?? '';
+
+    this.seatService.getSeatFilter(eventId, userId, platform, level)
+      .subscribe(seats => {
+        this.availableSeats.set(seats)});
+  }
+
+
 }

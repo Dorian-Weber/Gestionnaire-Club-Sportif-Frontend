@@ -13,9 +13,9 @@ export const routes: Routes = [
   { path: 'events', component: Events },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
+  { path: 'event/reservation/:idEvent', component: Reservation },
   { path: 'event/create', component: EditEvent },
   { path: 'event/edit/:id', component: EditEvent },
-  { path: 'event/reservation', component: Reservation },
   { path: 'event/reservation/confirmation', component: Confirmation },
   {
     path: 'event/:id',

@@ -43,23 +43,23 @@
 
       <div class="grid grid-cols-2 gap-4">
         <app-button variant="toggle" size="md_larger_full"
-                    [active]="selectedTribune()=== 'Nord'"
-                    (click)="selectTribune('Nord'); nextStep(2); resetFromStep(2)">
+                    [active]="selectedPlatform()=== 'Nord'"
+                    (click)="selectPlatform('Nord'); nextStep(2); resetFromStep(2)">
           Nord
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
-                    [active]="selectedTribune()=== 'Est'"
-                    (click)="selectTribune('Est'); nextStep(2); resetFromStep(2)">
+                    [active]="selectedPlatform()=== 'Est'"
+                    (click)="selectPlatform('Est'); nextStep(2); resetFromStep(2)">
           Est
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
-                    [active]="selectedTribune()=== 'Sud'"
-                    (click)="selectTribune('Sud'); nextStep(2); resetFromStep(2)">
+                    [active]="selectedPlatform()=== 'Sud'"
+                    (click)="selectPlatform('Sud'); nextStep(2); resetFromStep(2)">
           Sud
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
-                    [active]="selectedTribune()=== 'Ouest'"
-                    (click)="selectTribune('Ouest'); nextStep(2); resetFromStep(2)">
+                    [active]="selectedPlatform()=== 'Ouest'"
+                    (click)="selectPlatform('Ouest'); nextStep(2); resetFromStep(2)">
           Ouest
         </app-button>
       </div>
@@ -74,17 +74,17 @@
       <div class="grid grid-cols-3 gap-4">
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Haut'"
-                    (click)="selectLevel('Haut'); nextStep(3); resetFromStep(3)">
+                    (click)="selectLevel('Haut'); nextStep(3); resetFromStep(3); loadSeats()">
           Haut
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Milieu'"
-                    (click)="selectLevel('Milieu'); nextStep(3); resetFromStep(3)">
+                    (click)="selectLevel('Milieu'); nextStep(3); resetFromStep(3); loadSeats()">
           Milieu
         </app-button>
         <app-button variant="toggle" size="md_larger_full"
                     [active]="selectedLevel()=== 'Bas'"
-                    (click)="selectLevel('Bas'); nextStep(3); resetFromStep(3)">
+                    (click)="selectLevel('Bas'); nextStep(3); resetFromStep(3); loadSeats()">
           Bas
         </app-button>
       </div>
@@ -97,35 +97,41 @@
 
       <!-- GRID DES SIÈGES -->
       <div class="grid grid-cols-5 gap-x-3 gap-y-3.5 mx-auto w-fit">
+        @for (seat of availableSeats(); track seat.idSeat) {
+        <app-seat [id]="seat.idSeat"
+                  [status]="seat.reservedByFriend ? 'friend' : (seat.status ? 'reserved' : 'free')"
+                  [selected]="selectedSeats().includes(seat.idSeat)"
+                  (seatClick)="selectSeat($event)"></app-seat>
+        }
 
-        <!-- Ligne 1 -->
-        <app-seat [id]= 1 status="free" [selected]="selectedSeats().includes(1)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 2 status="free" [selected]="selectedSeats().includes(2)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 3 status="free" [selected]="selectedSeats().includes(3)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 4 status="free" [selected]="selectedSeats().includes(4)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 5 status="free" [selected]="selectedSeats().includes(5)" (seatClick)="selectSeat($event)"></app-seat>
+<!--        &lt;!&ndash; Ligne 1 &ndash;&gt;-->
+<!--        <app-seat [id]= 1 status="free" [selected]="selectedSeats().includes(1)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 2 status="free" [selected]="selectedSeats().includes(2)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 3 status="free" [selected]="selectedSeats().includes(3)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 4 status="free" [selected]="selectedSeats().includes(4)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 5 status="free" [selected]="selectedSeats().includes(5)" (seatClick)="selectSeat($event)"></app-seat>-->
 
-        <!-- Ligne 2 -->
-        <app-seat [id]= 6 status="free" [selected]="selectedSeats().includes(6)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 7 status="free" [selected]="selectedSeats().includes(7)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 8 status="free" [selected]="selectedSeats().includes(8)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 9 status="free" [selected]="selectedSeats().includes(9)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 10 status="free" [selected]="selectedSeats().includes(10)" (seatClick)="selectSeat($event)"></app-seat>
+<!--        &lt;!&ndash; Ligne 2 &ndash;&gt;-->
+<!--        <app-seat [id]= 6 status="free" [selected]="selectedSeats().includes(6)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 7 status="free" [selected]="selectedSeats().includes(7)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 8 status="free" [selected]="selectedSeats().includes(8)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 9 status="free" [selected]="selectedSeats().includes(9)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 10 status="free" [selected]="selectedSeats().includes(10)" (seatClick)="selectSeat($event)"></app-seat>-->
 
-        <!-- Ligne 3 -->
-        <app-seat [id]= 11 status="free" [selected]="selectedSeats().includes(11)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 12 status="free" [selected]="selectedSeats().includes(12)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 13 status="free" [selected]="selectedSeats().includes(13)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 14 status="free" [selected]="selectedSeats().includes(14)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 15 status="free" [selected]="selectedSeats().includes(15)" (seatClick)="selectSeat($event)"></app-seat>
+<!--        &lt;!&ndash; Ligne 3 &ndash;&gt;-->
+<!--        <app-seat [id]= 11 status="free" [selected]="selectedSeats().includes(11)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 12 status="free" [selected]="selectedSeats().includes(12)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 13 status="free" [selected]="selectedSeats().includes(13)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 14 status="free" [selected]="selectedSeats().includes(14)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 15 status="free" [selected]="selectedSeats().includes(15)" (seatClick)="selectSeat($event)"></app-seat>-->
 
 
-        <!-- Ligne 4 -->
-        <app-seat [id]= 16 status="free" [selected]="selectedSeats().includes(16)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 17 status="free" [selected]="selectedSeats().includes(17)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 18 status="free" [selected]="selectedSeats().includes(18)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 19 status="free" [selected]="selectedSeats().includes(19)" (seatClick)="selectSeat($event)"></app-seat>
-        <app-seat [id]= 20 status="free" [selected]="selectedSeats().includes(20)" (seatClick)="selectSeat($event)"></app-seat>
+<!--        &lt;!&ndash; Ligne 4 &ndash;&gt;-->
+<!--        <app-seat [id]= 16 status="free" [selected]="selectedSeats().includes(16)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 17 status="free" [selected]="selectedSeats().includes(17)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 18 status="free" [selected]="selectedSeats().includes(18)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 19 status="free" [selected]="selectedSeats().includes(19)" (seatClick)="selectSeat($event)"></app-seat>-->
+<!--        <app-seat [id]= 20 status="free" [selected]="selectedSeats().includes(20)" (seatClick)="selectSeat($event)"></app-seat>-->
 
 
       </div>

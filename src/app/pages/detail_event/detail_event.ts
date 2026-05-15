@@ -36,4 +36,8 @@ export class Detail_event {
     ),
     { initialValue: null },
   );
+
+  goToReservation(){
+    this.router.navigate(['/event/reservation', this.eventFull()?.eventMedium.idEvent]);
+  }
 }
