@@ -12,6 +12,7 @@ export class EventService {
 
   readonly nextEvent = signal<EventLight[]>([])
   readonly eventMedium = signal<EventMedium[]>([])
+  readonly eventLight = signal<EventLight | null>(null)
 
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}/list`);
@@ -31,6 +32,10 @@ export class EventService {
 
   getEventFull(id: number) {
     return this.http.get<EventFull>(`${this.apiUrl}/full/${id}`);
+  }
+
+  getEventLight(id: number) {
+    return this.http.get<EventLight>(`${this.apiUrl}/light/${id}`);
   }
 
 }

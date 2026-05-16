@@ -1,22 +1,33 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Seat } from '../../composants/seat/seat';
 import { Tag } from '../../composants/tag/tag';
 import {ActivatedRoute} from '@angular/router';
 import { SeatService } from '../../services/seat-service';
+import { EventService } from '../../services/event-service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reservation',
-  imports: [Button, Seat, Tag],
+  imports: [Button, Seat, Tag, DatePipe],
   templateUrl: './reservation.html',
   styleUrl: './reservation.css',
 })
-export class Reservation {
+export class Reservation implements OnInit {
   // On récupère l'id de l'événement pour lequel on fait la réservation
   route = inject(ActivatedRoute);
   eventId = Number(this.route.snapshot.paramMap.get('idEvent'));
-  availableSeats = signal<SeatDTO[]>([])
   seatService = inject(SeatService);
+  eventService = inject(EventService);
+
+  availableSeats = signal<SeatDTO[]>([]);
+  eventLight = signal<EventLight | null>(null);
+
+  ngOnInit() {
+    this.eventService.getEventLight(this.eventId).subscribe((e) => {
+      this.eventLight.set(e);
+    });
+  }
 
   // On crée les signaux pour les différentes étapes ainsi que pour chaque choix utilisateur
   currentStep = signal(0);
@@ -29,6 +40,13 @@ export class Reservation {
   //Passe d'une étape a l'autre
   nextStep(step: number) {
     this.currentStep.update((s) => (s = step));
+
+    setTimeout(() =>{
+      document.getElementById(`step-${step}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    });
   }
 
   // Permet de changer le bouton toggle d'actif à inactif
@@ -60,7 +78,14 @@ export class Reservation {
   // Bloque le bouton continué
 
   canContinueStep3() {
-    return this.selectedSeats().length === this.selectedSeatCount();
+    if (
+      this.selectedSeatCount() != null &&
+      this.selectedPlatform() != null &&
+      this.selectedLevel() != null
+    ) {
+      return this.selectedSeats().length === this.selectedSeatCount();
+    }
+    return false;
   }
 
   // reset des infos sélectionnait si retourne en arrière
@@ -79,16 +104,19 @@ export class Reservation {
     }
   }
 
+  // Charge les sièges pour la tribune et le niveau sélectionné
   loadSeats() {
     const eventId = this.eventId;
-    const userId = 1
+    const userId = 1;
     const platform = this.selectedPlatform() ?? '';
     const level = this.selectedLevel() ?? '';
 
-    this.seatService.getSeatFilter(eventId, userId, platform, level)
-      .subscribe(seats => {
-        this.availableSeats.set(seats)});
+    this.seatService.getSeatFilter(eventId, userId, platform, level).subscribe((seats) => {
+      this.availableSeats.set(seats);
+    });
   }
-
-
+  // récupère le nom des sièges sélectionné pour l'affichage
+  getSeatName(id: number) {
+    return this.availableSeats().find(seat => seat.idSeat === id)?.seatNumber ?? '';
+  }
 }

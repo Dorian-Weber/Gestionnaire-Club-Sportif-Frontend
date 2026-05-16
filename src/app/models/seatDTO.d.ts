@@ -1,6 +1,6 @@
 type SeatDTO = {
   idSeat: number,
-  seatName: string,
+  seatNumber: string,
   status : boolean,
   reservedByFriend: boolean
 }

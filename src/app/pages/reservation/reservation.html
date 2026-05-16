@@ -7,17 +7,21 @@
 
 <!--    <div class="absolute bottom-6 left-6">-->
     <app-tag variant="card">
-      <h1 class="px-2 text-3xl font-bold">Réservation des sièges</h1>
-      <p class="px-2 opacity-80">Choisissez votre emplacement</p>
+      @if (currentStep() < 4) {
+        <h1 class="px-2 text-3xl font-bold">Réservation des sièges</h1>
+        <p class="px-2 opacity-80">Choisissez votre emplacement</p>
+      } @else {
+        <h1 class="px-2 text-3xl font-bold">Confirmation de réservation</h1>
+        <p class="px-2 opacity-80">Vérifiez les informations avant de valider</p>
+      }
     </app-tag>
-<!--    </div>-->
   </div>
 
   <!-- MAIN WRAPPER -->
   <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
-    @if (currentStep() >= 0) {
+    @if (currentStep() >= 0 && currentStep() < 4) {
     <!-- ÉTAPE 0 : NOMBRE DE SIÈGES -->
-    <section id="step-nb" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+    <section id="step-0" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">0. Nombre de sièges</h2>
 
       <div class="grid grid-cols-2 gap-4">
@@ -36,9 +40,9 @@
     </section>
     }
 
-    @if (currentStep() >= 1) {
+    @if (currentStep() >= 1 && currentStep() < 4) {
     <!-- ÉTAPE 1 : TRIBUNE -->
-    <section id="step-tribune" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+    <section id="step-1" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">1. Choix de la tribune</h2>
 
       <div class="grid grid-cols-2 gap-4">
@@ -66,9 +70,9 @@
 
     </section>
     }
-    @if (currentStep() >= 2) {
+    @if (currentStep() >= 2 && currentStep() < 4) {
     <!-- ÉTAPE 2 : NIVEAU -->
-    <section id="step-niveau" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+    <section id="step-2" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">2. Choix du niveau</h2>
 
       <div class="grid grid-cols-3 gap-4">
@@ -90,9 +94,9 @@
       </div>
     </section>
     }
-    @if (currentStep() >= 3) {
+    @if (currentStep() >= 3 && currentStep() < 4) {
     <!-- ÉTAPE 3 : SIÈGES -->
-    <section id="step-siege" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+    <section id="step-3"  class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
       <h2 class="text-2xl font-semibold mb-6">3. Choix du siège</h2>
 
       <!-- GRID DES SIÈGES -->
@@ -103,37 +107,6 @@
                   [selected]="selectedSeats().includes(seat.idSeat)"
                   (seatClick)="selectSeat($event)"></app-seat>
         }
-
-<!--        &lt;!&ndash; Ligne 1 &ndash;&gt;-->
-<!--        <app-seat [id]= 1 status="free" [selected]="selectedSeats().includes(1)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 2 status="free" [selected]="selectedSeats().includes(2)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 3 status="free" [selected]="selectedSeats().includes(3)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 4 status="free" [selected]="selectedSeats().includes(4)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 5 status="free" [selected]="selectedSeats().includes(5)" (seatClick)="selectSeat($event)"></app-seat>-->
-
-<!--        &lt;!&ndash; Ligne 2 &ndash;&gt;-->
-<!--        <app-seat [id]= 6 status="free" [selected]="selectedSeats().includes(6)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 7 status="free" [selected]="selectedSeats().includes(7)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 8 status="free" [selected]="selectedSeats().includes(8)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 9 status="free" [selected]="selectedSeats().includes(9)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 10 status="free" [selected]="selectedSeats().includes(10)" (seatClick)="selectSeat($event)"></app-seat>-->
-
-<!--        &lt;!&ndash; Ligne 3 &ndash;&gt;-->
-<!--        <app-seat [id]= 11 status="free" [selected]="selectedSeats().includes(11)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 12 status="free" [selected]="selectedSeats().includes(12)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 13 status="free" [selected]="selectedSeats().includes(13)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 14 status="free" [selected]="selectedSeats().includes(14)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 15 status="free" [selected]="selectedSeats().includes(15)" (seatClick)="selectSeat($event)"></app-seat>-->
-
-
-<!--        &lt;!&ndash; Ligne 4 &ndash;&gt;-->
-<!--        <app-seat [id]= 16 status="free" [selected]="selectedSeats().includes(16)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 17 status="free" [selected]="selectedSeats().includes(17)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 18 status="free" [selected]="selectedSeats().includes(18)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 19 status="free" [selected]="selectedSeats().includes(19)" (seatClick)="selectSeat($event)"></app-seat>-->
-<!--        <app-seat [id]= 20 status="free" [selected]="selectedSeats().includes(20)" (seatClick)="selectSeat($event)"></app-seat>-->
-
-
       </div>
 
       <!-- LÉGENDE -->
@@ -161,11 +134,60 @@
                     (click)="nextStep(0); resetFromStep(0)">
           Annuler les séléctions</app-button>
       <app-button variant="primary" size="md_full"
-                  [disabled]="!canContinueStep3()">
+                  [disabled]="!canContinueStep3()"
+                  (click)="nextStep(4)">
         Valider votre réservation
       </app-button>
         </div>
     </section>
+    }
+    @if (currentStep() === 4) {
+      <!-- MAIN CONTENT -->
+      <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+
+        <!-- EVENT SUMMARY -->
+        <section id="step-4" class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+          <h2 class="text-2xl font-semibold mb-4">Événement</h2>
+
+          <div class="space-y-2 text-white/80">
+            <p><span class="font-semibold text-white">Nom : </span>{{ eventLight()?.eventName }}</p>
+            <p><span class="font-semibold text-white">Sport : </span>{{ eventLight()?.sportName}}</p>
+            <p><span class="font-semibold text-white">Date : </span>{{ eventLight()?.eventDate | date: 'dd MMMM yyyy à HH:mm' }}</p>
+          </div>
+        </section>
+
+        <!-- SEAT SUMMARY -->
+        <section class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+          <h2 class="text-2xl font-semibold mb-4">Votre sélection</h2>
+
+          <div class="space-y-2 text-white/80">
+            <p><span class="font-semibold text-white">Tribune : </span> {{selectedPlatform()}}</p>
+            <p><span class="font-semibold text-white">Niveau :</span> {{selectedLevel()}}</p>
+            <p><span class="font-semibold text-white">Siège :</span>
+              @for (seat of selectedSeats(); track $index){
+                {{getSeatName(seat)}} }</p>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-(--color-card) p-6 rounded-xl border border-white/10 shadow-lg">
+          <h2 class="text-xl font-semibold mb-4">Validation</h2>
+
+          <p class="text-white/80 mb-6">
+            En validant, votre réservation sera enregistrée et visible dans votre espace personnel.
+          </p>
+
+          <div class="flex flex-col gap-4">
+            <app-button variant="primary" size="md_full">
+              Valider la réservation
+            </app-button>
+
+            <app-button variant="secondary" size="md_full" (click)="resetFromStep(0);nextStep(0)">
+              ← Retour à la sélection des sièges
+            </app-button>
+          </div>
+        </section>
+      </div>
     }
   </div>
 </div>

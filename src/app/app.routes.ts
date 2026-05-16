@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'event/reservation/:idEvent', component: Reservation },
   { path: 'event/create', component: EditEvent },
   { path: 'event/edit/:id', component: EditEvent },
-  { path: 'event/reservation/confirmation', component: Confirmation },
+  { path: 'event/confirmation', component: Confirmation },
   {
     path: 'event/:id',
     loadComponent: () => import('./pages/detail_event/detail_event').then((m) => m.Detail_event),
