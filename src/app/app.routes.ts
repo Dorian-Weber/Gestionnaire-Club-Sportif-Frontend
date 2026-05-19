@@ -6,7 +6,6 @@ import { Register } from './pages/register/register';
 import { NotFound } from './pages/not-found/not-found';
 import { EditEvent } from './pages/edit-event/edit-event';
 import { Reservation } from './pages/reservation/reservation';
-import { Confirmation } from './pages/confirmation/confirmation';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -16,7 +15,6 @@ export const routes: Routes = [
   { path: 'event/reservation/:idEvent', component: Reservation },
   { path: 'event/create', component: EditEvent },
   { path: 'event/edit/:id', component: EditEvent },
-  { path: 'event/confirmation', component: Confirmation },
   {
     path: 'event/:id',
     loadComponent: () => import('./pages/detail_event/detail_event').then((m) => m.Detail_event),

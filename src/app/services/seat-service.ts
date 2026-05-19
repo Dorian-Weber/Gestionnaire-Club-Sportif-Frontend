@@ -11,10 +11,9 @@ export class SeatService {
 
       readonly seatDTO = signal<SeatDTO[]>([])
 
-    getSeatFilter(id: number, userId: number, platform: string, level: string){
+    getSeatFilter(id: number, platform: string, level: string){
         return this.http.get<SeatDTO[]>(`${this.baseUrl}/reserved/${id}`, {
           params: {
-            currentUserId: 1,
             platform: platform,
             level: level,
           }

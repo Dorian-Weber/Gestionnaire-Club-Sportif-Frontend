@@ -107,11 +107,10 @@ export class Reservation implements OnInit {
   // Charge les sièges pour la tribune et le niveau sélectionné
   loadSeats() {
     const eventId = this.eventId;
-    const userId = 1;
     const platform = this.selectedPlatform() ?? '';
     const level = this.selectedLevel() ?? '';
 
-    this.seatService.getSeatFilter(eventId, userId, platform, level).subscribe((seats) => {
+    this.seatService.getSeatFilter(eventId, platform, level).subscribe((seats) => {
       this.availableSeats.set(seats);
     });
   }
