@@ -4,6 +4,7 @@ import { Button } from '../../composants/button/button';
 import { SmallCard } from '../../composants/small-card/small-card';
 import { HttpClient } from '@angular/common/http';
 import { EventService } from '../../services/event-service';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-home',

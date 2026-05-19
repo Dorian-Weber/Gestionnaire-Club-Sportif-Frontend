@@ -21,6 +21,18 @@
           placeholder="exemple@mail.com"
           class="w-full px-4 py-2.5 rounded-md bg-(--color-neutral) border border-(--color-primary)/30 text-(--color-text) focus:ring-2 focus:ring-(--color-primary) outline-none transition"
         >
+        @if (formulaire.get('appUserEmail')?.invalid
+        && (formulaire.get('appUserEmail')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserEmail')?.hasError('required')) {
+            <span class="text-red-500 text-sm">L'email est obligatoire</span>
+          }
+
+          @if (formulaire.get('appUserEmail')?.hasError('email')) {
+            <span class="text-red-500 text-sm">Format d'email invalide</span>
+          }
+        }
+
       </div>
 
       <!-- Mot de passe -->
@@ -32,19 +44,27 @@
           placeholder="••••••••"
           class="w-full px-4 py-2.5 rounded-md bg-(--color-neutral) border border-(--color-primary)/30 text-(--color-text) focus:ring-2 focus:ring-(--color-primary) outline-none transition"
         >
+        @if (formulaire.get('appUserPassword')?.invalid
+        && (formulaire.get('appUserPassword')?.touched || submitted)) {
+
+          <span class="text-red-500 text-sm"> Le mot de passe est obligatoire </span>
+        }
+
       </div>
       <!-- Bouton -->
-      <app-button type="submit" size="sm_full" variant="primary">
-        Se connecter
-      </app-button>
+      <div class="mb-6">
+        <app-button type="submit" size="sm_full" variant="primary">
+          Se connecter
+        </app-button>
+      </div>
     </form>
 
       <!-- Options -->
       <div class="flex items-center justify-between text-sm">
-        <label class="flex items-center gap-2">
-          <input type="checkbox" class="rounded border-gray-300">
-          <span>Se souvenir de moi</span>
-        </label>
+<!--        <label class="flex items-center gap-2">-->
+<!--          <input type="checkbox" class="rounded border-gray-300">-->
+<!--          <span>Se souvenir de moi</span>-->
+<!--        </label>-->
 
         <a class ='text-(--color-primary) hover:underline font-semibold rounded-md hover:opacity-90 transition cursor-pointer'>
           Mot de passe oublié ?

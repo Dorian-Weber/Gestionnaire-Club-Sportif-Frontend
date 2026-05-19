@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Login {
   formBuilder = inject(FormBuilder)
-  httpClient = inject(HttpClient);
+  authService = inject(Auth)
+
+  submitted = false;
 
   formulaire = this.formBuilder.group({
     appUserEmail: ['',[Validators.required, Validators.email]],
@@ -20,14 +23,15 @@ export class Login {
   });
 
   onLogin() {
+    this.submitted = true;
+    if (this.formulaire.invalid){
+      return
+    }
     if (this.formulaire.valid){
-      this.httpClient.post(
-        'http://localhost:8080/log-in',
-        this.formulaire.value,
-        { responseType: 'text' })
+      this.authService
+        .login(this.formulaire.value as {email: string, password: string})
         .subscribe({
         next: (jwt) => {
-          localStorage.setItem('jwt', jwt);
           alert("Connexion réussi")
         },
         error: (err) => {
