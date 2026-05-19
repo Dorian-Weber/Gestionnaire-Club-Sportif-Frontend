@@ -1,0 +1,14 @@
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { Auth } from '../services/auth';
+
+export const adminGuard: CanActivateFn = (route, state) => {
+
+  const authService = inject(Auth)
+
+  if(authService.jwtInfo()?.role != 'ADMIN' || authService.jwtInfo()?.role != 'SUPER_ADMIN') {
+    const router = inject(Router)
+    return router.parseUrl('/login');
+  }
+  return true;
+};
