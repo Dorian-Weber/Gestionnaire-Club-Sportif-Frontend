@@ -9,20 +9,22 @@
   <nav class="hidden md:flex items-center gap-10 font-(--font-inter) text-lg">
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/">Accueil</a>
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/events">Événements</a>
-  @if (authService.jwtInfo()?.role === "User") {
-    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="">Profil</a>
-  }
   </nav>
   <!-- Bouton de login (desktop only) -->
-
   <div class="hidden md:flex items-center gap-6 font-(--font-inter)">
-    @if (authService.jwtInfo()){
-      <button>Déconnexion</button>
+    @if (!authService.jwtInfo()){
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
+      <app-button variant="primary" size="sm" routerLink="/login" (click)="logOut()">
+        <i class="fa-solid fa-right-to-bracket"></i> Connexion
+      </app-button>
     }
-    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
-    <app-button variant="primary" size="sm" routerLink="/login" (click)="logOut()">
-      <i class="fa-solid fa-right-to-bracket"></i> Connexion
-    </app-button>
+    @if (authService.jwtInfo()?.role === "USER") {
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/" (click)="logOut()">Déconnexion</a>
+      <app-button variant="primary" size="sm" routerLink="" >
+        <i class="fa-solid fa-user"></i> Voir Profil
+      </app-button>
+    }
+
   </div>
 
   <!-- Menu burger (mobile only) -->
@@ -39,8 +41,14 @@
   <nav class="md:hidden bg-(--color-neutral) flex flex-col gap-4 px-6 py-4 font-(--font-inter) shadow-lg border-b border-(--color-primary)">
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/">Accueil</a>
     <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/events">Événements</a>
-    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/login">Connexion</a>
-    <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
+    @if (!authService.jwtInfo()){
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/login" (click)="logOut()" >Connexion</a>
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
+    }
+    @if (authService.jwtInfo()?.role === "USER"){
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/"  >Voir Profil</a>
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/" (click)="logOut()">Déconnexion</a>
+    }
   </nav>
 }
 
