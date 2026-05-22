@@ -17,7 +17,14 @@
     </app-tag>
   </div>
 
+
   <!-- MAIN WRAPPER -->
+  @if (alreadyReserved()) {
+    <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
+      <p class="text-center text-gray-400 py-10"> Vous avez déjà une réservation pour cet événement.</p>
+      <app-button variant="secondary" size="md_full" routerLink="/events"> Retour aux événements</app-button>
+    </div>
+  } @else {
   <div class="max-w-3xl mx-auto px-6 py-10 space-y-10">
     @if (currentStep() >= 0 && currentStep() < 4) {
     <!-- ÉTAPE 0 : NOMBRE DE SIÈGES -->
@@ -190,4 +197,5 @@
       </div>
     }
   </div>
+  }
 </div>

@@ -2,14 +2,15 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Seat } from '../../composants/seat/seat';
 import { Tag } from '../../composants/tag/tag';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink } from '@angular/router';
 import { SeatService } from '../../services/seat-service';
 import { EventService } from '../../services/event-service';
 import { DatePipe } from '@angular/common';
+import { ReservationService } from '../../services/reservation-service';
 
 @Component({
   selector: 'app-reservation',
-  imports: [Button, Seat, Tag, DatePipe],
+  imports: [Button, Seat, Tag, DatePipe, RouterLink],
   templateUrl: './reservation.html',
   styleUrl: './reservation.css',
 })
@@ -19,13 +20,21 @@ export class Reservation implements OnInit {
   eventId = Number(this.route.snapshot.paramMap.get('idEvent'));
   seatService = inject(SeatService);
   eventService = inject(EventService);
+  reservationService = inject(ReservationService);
 
   availableSeats = signal<SeatDTO[]>([]);
   eventLight = signal<EventLight | null>(null);
 
+  // bloque la réservation si déjà réserver
+  alreadyReserved = signal(false);
+
   ngOnInit() {
     this.eventService.getEventLight(this.eventId).subscribe((e) => {
       this.eventLight.set(e);
+    });
+    this.reservationService.getHasReserved(this.eventId).subscribe((res) => {
+      console.log('hasReserved =', res);
+      this.alreadyReserved.set(res);
     });
   }
 
@@ -41,10 +50,10 @@ export class Reservation implements OnInit {
   nextStep(step: number) {
     this.currentStep.update((s) => (s = step));
 
-    setTimeout(() =>{
+    setTimeout(() => {
       document.getElementById(`step-${step}`)?.scrollIntoView({
         behavior: 'smooth',
-        block: 'center'
+        block: 'center',
       });
     });
   }
@@ -116,6 +125,6 @@ export class Reservation implements OnInit {
   }
   // récupère le nom des sièges sélectionné pour l'affichage
   getSeatName(id: number) {
-    return this.availableSeats().find(seat => seat.idSeat === id)?.seatNumber ?? '';
+    return this.availableSeats().find((seat) => seat.idSeat === id)?.seatNumber ?? '';
   }
 }
