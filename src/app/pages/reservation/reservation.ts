@@ -26,15 +26,16 @@ export class Reservation implements OnInit {
   eventLight = signal<EventLight | null>(null);
 
   // bloque la réservation si déjà réserver
-  alreadyReserved = signal(false);
+  canReserve = signal<CanReserveDTO | null>(null);
+
 
   ngOnInit() {
     this.eventService.getEventLight(this.eventId).subscribe((e) => {
       this.eventLight.set(e);
     });
-    this.reservationService.getHasReserved(this.eventId).subscribe((res) => {
-      console.log('hasReserved =', res);
-      this.alreadyReserved.set(res);
+    this.reservationService.getCanReserve(this.eventId).subscribe((res) => {
+      this.canReserve.set(res);
+      console.log(res);
     });
   }
 
