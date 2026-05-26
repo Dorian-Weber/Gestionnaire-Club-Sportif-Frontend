@@ -20,9 +20,8 @@ export class App {
     this.menuOpen.update((v) => !v);
   }
 
-  ngOnInit() {}
-
   logOut() {
+    localStorage.removeItem('jwt')
     this.authService.jwtInfo.set(null)
   }
 

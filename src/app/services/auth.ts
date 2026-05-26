@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { pipe, tap } from 'rxjs';
+import { Observable, pipe, tap } from 'rxjs';
 
 type JwtInfo = {sub: string, role: string};
 
@@ -44,5 +44,9 @@ export class Auth {
 
       this.jwtInfo.set(body);
     }
+  }
+
+  register(payload: any): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/sign-in', payload);
   }
 }
