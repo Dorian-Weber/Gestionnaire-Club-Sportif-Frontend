@@ -3,12 +3,16 @@ import { inject } from '@angular/core';
 import { Auth } from '../services/auth';
 
 export const userGuard: CanActivateFn = (route, state) => {
-
-  const authService = inject(Auth)
+  const authService = inject(Auth);
 
   if (authService.jwtInfo()?.role != 'USER') {
+
+    authService.redirectUrl = state.url;
+
     const router = inject(Router);
     return router.parseUrl('/login');
   }
   return true;
 };
+
+

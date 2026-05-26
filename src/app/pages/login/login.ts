@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -32,7 +32,9 @@ export class Login {
         .login(this.formulaire.value as {email: string, password: string})
         .subscribe({
         next: (jwt) => {
-          alert("Connexion réussi")
+          const redirect = this.authService.redirectUrl ?? '/';
+          this.authService.redirectUrl = null;
+          this.authService.router.navigate([redirect]);
         },
         error: (err) => {
           alert("Identifiant ou mot de passe incorrect")
