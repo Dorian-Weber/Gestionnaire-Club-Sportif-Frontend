@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { Seat } from '../../composants/seat/seat';
 import { Tag } from '../../composants/tag/tag';
-import {ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SeatService } from '../../services/seat-service';
 import { EventService } from '../../services/event-service';
 import { DatePipe } from '@angular/common';
@@ -21,13 +21,13 @@ export class Reservation implements OnInit {
   seatService = inject(SeatService);
   eventService = inject(EventService);
   reservationService = inject(ReservationService);
+  router = inject(Router);
 
   availableSeats = signal<SeatDTO[]>([]);
   eventLight = signal<EventLight | null>(null);
 
   // bloque la réservation si déjà réserver
   canReserve = signal<CanReserveDTO | null>(null);
-
 
   ngOnInit() {
     this.eventService.getEventLight(this.eventId).subscribe((e) => {
@@ -128,4 +128,23 @@ export class Reservation implements OnInit {
   getSeatName(id: number) {
     return this.availableSeats().find((seat) => seat.idSeat === id)?.seatNumber ?? '';
   }
+
+  //crée la réservation
+  createReservation() {
+    const reservationToCreate = {
+      eventId: this.eventId,
+      seatIds: this.selectedSeats()
+    };
+    this.reservationService.createReservation(reservationToCreate)
+      .subscribe({
+        next: (res) => {
+          this.router.navigate(['event/reservation/validation', res.reservationId], {
+            state: {data :res }
+          });
+        },
+        error: (err) => {
+          console.error("Erreur lors de la réservation : ", err);
+        }
+          })
+        };
 }

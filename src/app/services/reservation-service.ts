@@ -13,4 +13,8 @@ export class ReservationService {
   getCanReserve(eventId: number) {
     return this.http.get<CanReserveDTO>(`${this.apiUrl}/can-reserve/${eventId}`);
   }
+
+  createReservation(dto: CreateReservation) {
+    return this.http.post<ReservationConfirmation>(`${this.apiUrl}`, dto);
+  }
 }
