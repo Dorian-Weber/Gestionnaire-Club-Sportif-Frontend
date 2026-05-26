@@ -1,0 +1,32 @@
+<div class="min-h-screen flex items-center justify-center px-4"
+     style="background-color: var(--color-neutral); font-family: var(--font-inter);">
+
+  <div class="w-full max-w-md p-10 rounded-2xl shadow-xl border"
+       style="background-color: var(--color-secondary); border-color: rgba(255,255,255,0.08);">
+
+    <!-- Titre -->
+    <h1 class="text-center text-3xl font-bold mb-6"
+        style="color: var(--color-title);">
+      Réservation validée
+    </h1>
+
+    <p class="text-center mb-10"
+       style="color: var(--color-text);">
+      Votre réservation a bien été enregistrée.
+    </p>
+
+    <!-- Boutons -->
+    <div class="flex flex-col gap-4">
+      <app-button variant="primary" size="md_full" routerLink="/events">
+        Voir mes réservations
+      </app-button>
+
+      <!-- Voir mon profil -->
+      <app-button variant="secondary" size="md_full" routerLink="/">
+        Retour aux événements
+      </app-button>
+
+    </div>
+
+  </div>
+</div>
