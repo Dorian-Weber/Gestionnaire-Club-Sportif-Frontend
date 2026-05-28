@@ -1,9 +1,10 @@
-FROM node:24-alpine as build
+FROM node:24-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build --configuration production
+RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build app/dist/Gest-Club-Sport-Frontend /usr/share/ngnix/html
+FROM nginx:1.31-alpine
+COPY --from=build app/dist/Gest-Club-Sport-Frontend/browser /usr/share/nginx/html
+COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
