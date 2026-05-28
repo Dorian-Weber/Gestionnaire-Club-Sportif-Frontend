@@ -20,7 +20,7 @@
     }
     @if (authService.jwtInfo()?.role === "USER") {
       <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/" (click)="logOut()">Déconnexion</a>
-      <app-button variant="primary" size="sm" routerLink="" >
+      <app-button variant="primary" size="sm" routerLink="/profil" >
         <i class="fa-solid fa-user"></i> Voir Profil
       </app-button>
     }
@@ -46,7 +46,7 @@
       <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/register">Inscription</a>
     }
     @if (authService.jwtInfo()?.role === "USER"){
-      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/"  >Voir Profil</a>
+      <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/profil"  >Voir Profil</a>
       <a class="hover:text-(--color-primary) transition cursor-pointer" routerLink="/" (click)="logOut()">Déconnexion</a>
     }
   </nav>

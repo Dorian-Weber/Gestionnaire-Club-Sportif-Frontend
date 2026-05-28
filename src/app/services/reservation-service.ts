@@ -1,14 +1,14 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
   http = inject(HttpClient);
-  apiUrl = 'http://localhost:8080/reservation';
+  apiUrl = `${environment.serverUrl}/reservation`;
 
-  readonly hasReserved = signal<boolean>(false);
 
   getCanReserve(eventId: number) {
     return this.http.get<CanReserveDTO>(`${this.apiUrl}/can-reserve/${eventId}`);

@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, pipe, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 type JwtInfo = {sub: string, role: string};
 
@@ -21,7 +22,7 @@ export class Auth {
 
   login(credentials: { email: string; password: string }) {
     return this.httpClient
-      .post('http://localhost:8080/log-in', credentials, { responseType: 'text' })
+      .post(`${environment.serverUrl}/log-in`, credentials, { responseType: 'text' })
       .pipe(
         tap((jwt) => {
           localStorage.setItem('jwt', jwt);
@@ -49,6 +50,6 @@ export class Auth {
   }
 
   register(payload: any): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/sign-in', payload);
+    return this.httpClient.post(`${environment.serverUrl}/sign-in`, payload);
   }
 }

@@ -13,13 +13,12 @@ import { Auth } from '../../services/auth';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
-  httpClient = inject(HttpClient);
+  eventService = inject(EventService);
 
+  nextEvent = this.eventService.nextEvent;
 
-  nextEvent = signal<EventLight[]>([])
-
-  ngOnInit() {
-    this.httpClient.get<EventLight[]>('http://localhost:8080/event/next')
-      .subscribe(nextEvent => this.nextEvent.set(nextEvent))
+  ngOnInit(): void {
+    this.eventService.getNextEvent().subscribe();
   }
+
 }

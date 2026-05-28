@@ -3,6 +3,10 @@ import { Button } from '../../composants/button/button';
 import { Card } from '../../composants/card/card';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { EventService } from '../../services/event-service';
+import { SportService } from '../../services/sport-service';
+import { EventTypeService } from '../../services/event-type-service';
 
 @Component({
   selector: 'app-events',
@@ -14,18 +18,21 @@ export class Events implements OnInit {
   // Injection
   httpClient = inject(HttpClient);
   formBuilder = inject(FormBuilder);
+  eventService = inject(EventService);
+  sportService = inject(SportService);
+  eventTypeService = inject(EventTypeService);
 
   // Création des signaux
-  fieldSport = signal<SportField[]>([]);
-  fieldEventType = signal<EventTypeField[]>([]);
-  eventMedium = signal<EventMedium[]>([]);
+  eventMedium = this.eventService.eventMedium;
+  fieldSport = this.sportService.fieldSport;
+  fieldEventType = this.eventTypeService.fieldEventType;
 
   //Création de formulaire
   formulaire = this.formBuilder.group({
     sportName: [],
     eventTypeName: [],
     search: ['' as string | null],
-    dateMin : ['']
+    dateMin: [''],
   });
 
   // Envoi de la requête de filtre
@@ -42,7 +49,7 @@ export class Events implements OnInit {
     if (dateMin) params.dateMin = dateMin;
 
     this.httpClient
-      .get<EventMedium[]>('http://localhost:8080/event/list-event/search', { params })
+      .get<EventMedium[]>(`${environment.serverUrl}/event/list-event/search`, { params })
       .subscribe((data) => this.eventMedium.set(data));
     console.log('PARAMS envoyés :', params);
   }
@@ -54,20 +61,10 @@ export class Events implements OnInit {
     }
   }
 
-
-
   //donnée charger au lancement de la page
   ngOnInit() {
-    this.httpClient
-      .get<SportField[]>('http://localhost:8080/sport/field')
-      .subscribe((fieldSport) => this.fieldSport.set(fieldSport));
-
-    this.httpClient
-      .get<EventTypeField[]>('http://localhost:8080/event-type/field')
-      .subscribe((fieldEventType) => this.fieldEventType.set(fieldEventType));
-
-    this.httpClient
-      .get<EventMedium[]>('http://localhost:8080/event/list-event')
-      .subscribe((eventMedium) => this.eventMedium.set(eventMedium));
+    this.sportService.getSportField().subscribe();
+    this.eventTypeService.getEventTypeField().subscribe();
+    this.eventService.getEventMedium().subscribe();
   }
 }

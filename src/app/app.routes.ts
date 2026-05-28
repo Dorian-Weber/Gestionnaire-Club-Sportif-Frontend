@@ -8,6 +8,7 @@ import { EditEvent } from './pages/edit-event/edit-event';
 import { Reservation } from './pages/reservation/reservation';
 import { userGuard } from './guards/user-guard';
 import { Validation } from './pages/validation/validation';
+import { Profil } from './pages/profil/profil';
 
 export const routes: Routes = [
   { path: '', component: Home},
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'event/reservation/:idEvent', component: Reservation,canActivate : [userGuard] },
   { path: 'event/create', component: EditEvent },
   { path: 'event/edit/:id', component: EditEvent },
+  { path: 'profil', component: Profil},
   {
     path: 'event/:id',
     loadComponent: () => import('./pages/detail_event/detail_event').then((m) => m.Detail_event),

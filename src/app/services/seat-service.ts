@@ -1,22 +1,22 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeatService {
-      http = inject(HttpClient);
-      baseUrl = 'http://localhost:8080/seat';
+  http = inject(HttpClient);
+  baseUrl = `${environment.serverUrl}/seat`;
 
-      readonly seatDTO = signal<SeatDTO[]>([])
 
-    getSeatFilter(id: number, platform: string, level: string){
-        return this.http.get<SeatDTO[]>(`${this.baseUrl}/reserved/${id}`, {
-          params: {
-            platform: platform,
-            level: level,
-          }
-        });
-    }
+  getSeatFilter(id: number, platform: string, level: string) {
+    return this.http.get<SeatDTO[]>(`${this.baseUrl}/reserved/${id}`, {
+      params: {
+        platform: platform,
+        level: level,
+      },
+    });
+  }
 }
