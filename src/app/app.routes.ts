@@ -10,13 +10,13 @@ import { Validation } from './pages/validation/validation';
 import { Profil } from './pages/profil/profil';
 
 export const routes: Routes = [
-  { path: '', component: Home},
+  { path: '', component: Home },
   { path: 'events', component: Events },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
+  { path: 'profil', component: Profil },
   { path: 'event/reservation/validation/:idEvent', component: Validation },
-  { path: 'event/reservation/:idEvent', component: Reservation,canActivate : [userGuard] },
-  { path: 'profil', component: Profil},
+  { path: 'event/reservation/:idEvent', component: Reservation, canActivate: [userGuard] },
   {
     path: 'event/:id',
     loadComponent: () => import('./pages/detail_event/detail_event').then((m) => m.Detail_event),
