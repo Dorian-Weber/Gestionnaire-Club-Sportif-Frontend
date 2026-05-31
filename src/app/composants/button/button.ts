@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './button.html',
 })
 export class Button {
-  @Input() variant: 'primary' | 'secondary' | 'toggle' = 'primary';
+  @Input() variant: 'primary' | 'secondary' | 'toggle' | 'menu' = 'primary';
   @Input() size: 'sm' | 'md' | 'sm_full' | 'md_full' | 'md_larger_full' = 'sm';
   @Input() active: boolean = false;
   @Input() disabled: boolean = false;
@@ -18,6 +18,7 @@ export class Button {
     const variants = {
       primary: `bg-(--color-primary) text-black hover:opacity-90 transition cursor-pointer`,
       secondary: `border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary)/10  transition cursor-pointer`,
+      menu : 'text-left px-4 py-2 rounded-md hover:bg-(--color-secondary)/60 transition',
       toggle_inactive:
         'bg-black/40 hover:bg-black/60 transition p-4 rounded-lg border border-white/10 text-center cursor-pointer',
 

@@ -9,157 +9,203 @@
     </h1>
 
     <!-- ONGLET 1 — INFORMATIONS PERSONNELLES + VISIBILITÉ -->
-    <div id="onglet-informations" class="space-y-8">
+    @if (isActive('info')) {
+      <div id="onglet-informations" class="space-y-8">
 
-      <!-- Carte Informations personnelles -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
-          Informations personnelles
-        </h2>
+        <!-- Carte Informations personnelles -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
+            Informations personnelles
+          </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <p class="text-(--color-label)">Nom</p>
-            <p class="text-(--color-title) font-semibold">Dupont</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-(--color-label)">Nom</p>
+              <p class="text-(--color-title) font-semibold">Dupont</p>
+            </div>
+
+            <div>
+              <p class="text-(--color-label)">Prénom</p>
+              <p class="text-(--color-title) font-semibold">Dorian</p>
+            </div>
+
+            <div>
+              <p class="text-(--color-label)">Email</p>
+              <p class="text-(--color-title) font-semibold">dorian@gmail.com</p>
+            </div>
+
+            <div>
+              <p class="text-(--color-label)">Téléphone</p>
+              <p class="text-(--color-title) font-semibold">+33 6 00 00 00 00</p>
+            </div>
           </div>
 
-          <div>
-            <p class="text-(--color-label)">Prénom</p>
-            <p class="text-(--color-title) font-semibold">Dorian</p>
-          </div>
-
-          <div>
-            <p class="text-(--color-label)">Email</p>
-            <p class="text-(--color-title) font-semibold">dorian@mail.com</p>
-          </div>
-
-          <div>
-            <p class="text-(--color-label)">Téléphone</p>
-            <p class="text-(--color-title) font-semibold">+33 6 00 00 00 00</p>
-          </div>
-        </div>
-
-        <button class="mt-6 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
-          Modifier mes informations
-        </button>
-      </div>
-
-      <!-- Carte Visibilité -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
-          Visibilité du profil
-        </h2>
-
-        <div class="flex items-center gap-4">
-          <span class="text-(--color-label)">Profil :</span>
-
-          <button class="px-4 py-2 rounded-md bg-(--color-primary) text-black font-semibold">
-            Privé
-          </button>
-
-          <button class="px-4 py-2 rounded-md bg-(--color-secondary) border border-(--color-primary)/30 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
-            Public
+          <button class="mt-6 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
+            Modifier mes informations
           </button>
         </div>
+
+        <!-- Carte Visibilité -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
+            Visibilité du profil
+          </h2>
+
+          <div class="flex items-center gap-4">
+            <span class="text-(--color-label)">Profil :</span>
+
+            <button class="px-4 py-2 rounded-md bg-(--color-primary) text-black font-semibold">
+              Privé
+            </button>
+
+            <button class="px-4 py-2 rounded-md bg-(--color-secondary) border border-(--color-primary)/30 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+              Public
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    }
 
-    <!-- ONGLET 3 — PROFIL PUBLIC -->
-    <div id="onglet-profil-public" class="hidden space-y-8">
 
-      <!-- Pseudo -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
-          Profil public
-        </h2>
+    <!-- ONGLET 2 — PROFIL PUBLIC -->
+    @if (isActive("profil")) {
+      <div id="onglet-profil-public" class="space-y-8">
 
-        <p class="text-(--color-label)">Pseudo</p>
-        <p class="text-(--color-title) font-semibold text-xl">Dorian_57</p>
+        <!-- Pseudo -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
+            Profil public
+          </h2>
 
-        <button class="mt-4 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
-          Modifier le pseudo
-        </button>
+          <p class="text-(--color-label)">Pseudo</p>
+          <p class="text-(--color-title) font-semibold text-xl">Dorian_57</p>
+
+          <button class="mt-4 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
+            Modifier le pseudo
+          </button>
+        </div>
+
+        <!-- Derniers événements -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
+
+          <ul class="space-y-3">
+            <li class="border-b border-white/10 pb-2">FC Metz – PSG (12 mai)</li>
+            <li class="border-b border-white/10 pb-2">Tournoi Basket U21 (3 mai)</li>
+            <li>Marathon Metz (28 avril)</li>
+          </ul>
+        </div>
+
+        <!-- Derniers votes -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
+
+          <ul class="space-y-3">
+            <li class="border-b border-white/10 pb-2">
+              Événement : FC Metz – PSG → ★★★★☆
+              MVP : K. Mbappé
+            </li>
+            <li>
+              Événement : Basket U21 → ★★★☆☆
+              MVP : L. Dupont
+            </li>
+          </ul>
+        </div>
       </div>
+    }
 
-      <!-- Derniers événements -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
 
-        <ul class="space-y-3">
-          <li class="border-b border-white/10 pb-2">FC Metz – PSG (12 mai)</li>
-          <li class="border-b border-white/10 pb-2">Tournoi Basket U21 (3 mai)</li>
-          <li>Marathon Metz (28 avril)</li>
-        </ul>
-      </div>
-
-      <!-- Derniers votes -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
-
-        <ul class="space-y-3">
-          <li class="border-b border-white/10 pb-2">
-            Événement : FC Metz – PSG → ★★★★☆
-            MVP : K. Mbappé
-          </li>
-          <li>
-            Événement : Basket U21 → ★★★☆☆
-            MVP : L. Dupont
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ONGLET 4 — RÉSERVATIONS (scroll vertical) -->
-    <div id="onglet-reservations" class="hidden">
-
+    <!-- ONGLET 3— RÉSERVATIONS (scroll vertical) -->
+    @if (isActive('reservation')){
       <div class="flex flex-col gap-8 max-h-[80vh] overflow-y-auto pr-4">
 
-        <!-- Carte Réservation -->
+        <!-- Carte Réservation (à répéter pour chaque réservation à venir) -->
         <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
 
-          <img src="assets/images/event-banner.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+          <!-- Image bannière -->
+          <img src="assets/images/event-banner.jpg"
+               class="w-full h-48 object-cover rounded-lg mb-4">
 
-          <h3 class="text-2xl font-semibold text-(--color-title)">FC Metz – PSG</h3>
-          <p class="text-(--color-label)">12 mai • 20h45 • Stade Saint-Symphorien</p>
+          <!-- Infos événement -->
+          <h3 class="text-2xl font-semibold text-(--color-title)">
+            Nom de l’événement
+          </h3>
 
-          <p class="mt-3 text-(--color-title)">Place : Tribune A – Rang 12 – Siège 8</p>
+          <p class="text-(--color-label)">
+            12 mai • 20h45 • Stade Saint-Symphorien
+          </p>
 
+          <!-- Infos place -->
+          <p class="mt-3 text-(--color-title)">
+            Place : Tribune A – Rang 12 – Siège 8
+          </p>
+
+          <!-- QR Code -->
           <div class="mt-6 flex justify-center">
             <img src="assets/images/qrcode.png" class="w-40 h-40">
           </div>
+
         </div>
 
-        <!-- Réservation suivante… -->
       </div>
-    </div>
 
-    <!-- ONGLET 5 — VOTES -->
-    <div id="onglet-votes" class="hidden space-y-8">
+    }
 
-      <!-- Note événement -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h2 class="text-2xl font-semibold text-(--color-title) mb-4">Noter l’événement</h2>
 
-        <div class="text-3xl text-(--color-primary)">
-          ★★★★★
+    <!-- ONGLET 4 — VOTES -->
+    @if (isActive('vote')) {
+      <div class="space-y-8">
+
+        <!-- Carte Vote (à répéter pour chaque événement passé) -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+
+          <!-- Infos événement -->
+          <h2 class="text-2xl font-semibold text-(--color-title)">
+            Nom de l’événement
+          </h2>
+
+          <p class="text-(--color-label)">
+            28 avril • 18h00 • Stade Saint-Symphorien
+          </p>
+
+          <!-- Note événement -->
+          <div class="mt-6">
+            <p class="text-(--color-title) mb-2">Note de l’événement :</p>
+
+            <div class="flex gap-2 text-3xl text-(--color-primary)">
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+            </div>
+          </div>
+
+          <!-- MVP -->
+          <div class="mt-8">
+            <p class="text-(--color-title) mb-2">Vote MVP :</p>
+
+            <select class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full">
+              <option>Athlète 1</option>
+              <option>Athlète 2</option>
+              <option>Athlète 3</option>
+            </select>
+
+            <div class="mt-4 text-3xl text-(--color-primary)">
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
+            </div>
+          </div>
+
         </div>
+
       </div>
 
-      <!-- MVP -->
-      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-        <h2 class="text-2xl font-semibold text-(--color-title) mb-4">Vote MVP</h2>
+    }
 
-        <select class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full">
-          <option>K. Mbappé</option>
-          <option>L. Dupont</option>
-          <option>A. Traoré</option>
-        </select>
-
-        <div class="mt-4 text-3xl text-(--color-primary)">
-          ★★★★★
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- ONGLET À DROITE -->
@@ -167,21 +213,21 @@
 
     <nav class="flex flex-col gap-4 text-(--color-title) font-semibold">
 
-      <button class="text-left px-4 py-2 rounded-md hover:bg-(--color-secondary)/60 transition">
+      <app-button variant="menu" (click)="setTab('info')">
         Informations
-      </button>
+      </app-button>
 
-      <button class="text-left px-4 py-2 rounded-md hover:bg-(--color-secondary)/60 transition">
-        Profil public
-      </button>
+      <app-button variant="menu" (click)="setTab('profil')">
+        Profil
+      </app-button>
 
-      <button class="text-left px-4 py-2 rounded-md hover:bg-(--color-secondary)/60 transition">
+      <app-button variant="menu" (click)="setTab('reservation')">
         Réservations
-      </button>
+      </app-button>
 
-      <button class="text-left px-4 py-2 rounded-md hover:bg-(--color-secondary)/60 transition">
+      <app-button variant="menu" (click)="setTab('vote')">
         Votes
-      </button>
+      </app-button>
 
     </nav>
   </aside>
