@@ -11,52 +11,73 @@ import { Auth } from '../../services/auth';
 })
 export class Register {
   formBuilder = inject(FormBuilder);
-  authService = inject(Auth)
-  router = inject(Router)
+  authService = inject(Auth);
+  router = inject(Router);
+
+  submitted = false;
 
   formulaire = this.formBuilder.group(
     {
-      appUserName: ['', [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(50)]],
+      appUserName: ['',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(50)
+        ]
+      ],
       appUserFirstName: [
-        '',[
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(50)
-      ]],
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.maxLength(50)
+        ],
+      ],
       appUserPseudo: [
-        '',[
-        Validators.minLength(5),
-        Validators.maxLength(30),
-        Validators.pattern('^[a-zA-Z0-9_]+$'),
-      ]],
-      appUserPhone: ['',[
-        Validators.required,
-        Validators.pattern('^\\+?[0-9]{10,15}$')]],
-      appUserEmail: ['',[
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(100)]],
+        '',
+        [
+          Validators.minLength(5),
+          Validators.maxLength(30),
+          Validators.pattern('^[a-zA-Z0-9À-ÖØ-öø-ÿ_-]+$'),
+        ],
+      ],
+      appUserPhone: ['',
+        [
+          Validators.required,
+          Validators.pattern('^\\+?[0-9]{10,15}$')
+        ]
+      ],
+      appUserEmail: ['',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(100)
+        ]
+      ],
       appUserPassword: [
-        '',[
-        Validators.required,
-        Validators.pattern(
-          '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
-        ),
-      ]],
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(50),
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+          ),
+        ],
+      ],
       confirmPassword: [
-        '',[
-        Validators.required,
-        Validators.pattern(
-          '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
-        ),
-      ]],
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+          ),
+        ],
+      ],
     },
     {
-      validators: this.passwordMatchValidator
-    }
+      validators: this.passwordMatchValidator,
+    },
   );
 
   passwordMatchValidator(form: AbstractControl) {
@@ -67,6 +88,7 @@ export class Register {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.formulaire.invalid) {
       this.formulaire.markAsTouched();
       return;
@@ -78,11 +100,11 @@ export class Register {
       appUserPseudo: this.formulaire.value.appUserPseudo,
       appUserPhone: this.formulaire.value.appUserPhone,
       appUserEmail: this.formulaire.value.appUserEmail,
-      appUserPassword: this.formulaire.value.appUserPassword
+      appUserPassword: this.formulaire.value.appUserPassword,
     };
     this.authService.register(payload).subscribe({
       next: () => this.router.navigate(['/login']),
-      error: error => console.log(error)
+      error: (error) => console.log(error),
     });
   }
 }

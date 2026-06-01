@@ -11,48 +11,129 @@
     </h2>
 
     <form class="flex flex-col gap-5" [formGroup]="formulaire" (ngSubmit)="onSubmit()" >
+    <!--Input Nom -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Nom</label>
         <input formControlName="appUserName"
                type="text"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserName')?.invalid &&
+        (formulaire.get('appUserName')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserName')?.hasError('required')) {
+            <span class="text-red-500 text-sm">Le nom est obligatoire.</span>
+          }
+          @if (formulaire.get('appUserName')?.hasError('minlength')
+          || formulaire.get('appUserName')?.hasError('maxlength')){
+            <span class="text-red-500 text-sm">Le nom doit faire entre 1 et 50 caractères.</span>
+          }
+        }
       </div>
+      <!--Input Prénom -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Prénom</label>
         <input formControlName="appUserFirstName"
                type="text"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserFirstName')?.invalid &&
+        (formulaire.get('appUserFirstName')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserFirstName')?.hasError('required')) {
+            <span class="text-red-500 text-sm">Le Prénom est obligatoire.</span>
+          }
+          @if (formulaire.get('appUserFirstName')?.hasError('minlength')
+          || formulaire.get('appUserFirstName')?.hasError('maxlength')){
+            <span class="text-red-500 text-sm">Le Prénom doit faire entre 1 et 50 caractères.</span>
+          }
+        }
       </div>
+    <!--Input Pseudo -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Pseudo (facultatif)</label>
         <input formControlName="appUserPseudo"
                type="text"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserPseudo')?.invalid &&
+        (formulaire.get('appUserPseudo')?.touched || submitted)){
+
+          @if (formulaire.get('appUserPseudo')?.hasError('minlength')
+            || formulaire.get('appUserPseudo')?.hasError('maxlength')){
+            <span class="text-red-500 text-sm">Le Pseudo doit faire entre 5 et 30 caractères.</span>
+          }
+          @if (formulaire.get('appUserPseudo')?.hasError('pattern')){
+            <span class="text-rend-500 text-sm">Le Pseudo ne peut contenir que des lettres, chiffres et "_" . </span>
+          }
+        }
       </div>
+    <!--Input Telephone -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Téléphone</label>
         <input formControlName="appUserPhone"
                type="tel"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserPhone')?.invalid &&
+        (formulaire.get('appUserPhone')?.touched || submitted)){
+
+          @if (formulaire.get('appUserPhone')?.hasError('required')){
+            <span class="text-red-500 text-sm">Le numéro de téléphone est obligatoire.</span>
+          }
+          @if (formulaire.get('appUserPhone')?.hasError('pattern')){
+            <span class="text-red-500 text-sm">Le numéro de téléphone est invalid.</span>
+          }
+        }
       </div>
+      <!--Input Email -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Email</label>
         <input formControlName="appUserEmail"
                type="email"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserEmail')?.invalid
+        && (formulaire.get('appUserEmail')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserEmail')?.hasError('required')) {
+            <span class="text-red-500 text-sm">L'email est obligatoire.</span>
+          }
+          @if (formulaire.get('appUserEmail')?.hasError('email')) {
+            <span class="text-red-500 text-sm">Format d'email invalide.</span>
+          }
+        }
       </div>
+    <!--Input Mot de passe -->
       <div class="flex flex-col">
         <label class="text-(--color-title) font-semibold mb-1">Mot de passe</label>
         <input formControlName="appUserPassword"
                type="password"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('appUserPassword')?.invalid
+        &&(formulaire.get('appUserPassword')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserPassword')?.hasError('required')){
+            <span class="text-red-500 text-sm">Le mot de passe est obligatoire.</span>
+          }
+          @if (formulaire.get('appUserPassword')?.hasError('minlength')
+          || formulaire.get('appUserPassword')?.hasError('maxlength')){
+            <span class="text-red-500 text-sm">Le mot de passe doit faire entre 8 et 50 caractères.</span>
+          }
+          @if (formulaire.get('appUserPassword')?.hasError('pattern')) {
+            <span class="text-red-500 text-sm">Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.</span>
+          }
+
+        }
       </div>
 
       <div class="flex flex-col">
-        <label class="text-(--color-title) font-semibold mb-1">Verification mot de passe</label>
+        <label class="text-(--color-title) font-semibold mb-1">Verification mot de passe.</label>
         <input formControlName="confirmPassword"
                type="password"
                class="px-4 py-2 rounded-md bg-(--color-neutral) text-(--color-title) border border-white/10 focus:border-(--color-primary) outline-none">
+        @if (formulaire.get('confirmPassword')?.invalid
+        &&(formulaire.get('confirmPassword')?.touched || submitted)) {
+
+          @if (formulaire.get('appUserPassword')?.hasError('required')){
+            <span class="text-red-500 text-sm">Le mot de passe est obligatoire.</span>
+          }
+        }
       </div>
 
       <app-button type="submit" size="sm_full" variant="primary">
