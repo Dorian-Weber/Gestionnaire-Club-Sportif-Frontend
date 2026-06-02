@@ -35,7 +35,6 @@ export class Reservation implements OnInit {
     });
     this.reservationService.getCanReserve(this.eventId).subscribe((res) => {
       this.canReserve.set(res);
-      console.log(res);
     });
   }
 

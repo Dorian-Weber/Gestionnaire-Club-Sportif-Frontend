@@ -1,79 +1,25 @@
-<section class="min-h-screen flex bg-(--color-secondary) text-(--color-text)">
+<section class="min-h-screen flex flex-col md:flex-row bg-(--color-secondary) text-(--color-text)">
 
   <!-- CONTENU PRINCIPAL -->
-  <div class="flex-1 p-10">
+  <div class="flex-1 p-4 md:p-10 pb-24 md:pb-10">
 
     <!-- TITRE -->
-    <h1 class="text-4xl font-bold text-(--color-title) mb-10">
+    <h1 class="text-3xl md:text-4xl font-bold text-(--color-title) mb-6 md:mb-10">
       Mon espace
     </h1>
 
-    <!-- ONGLET 1 — INFORMATIONS PERSONNELLES + VISIBILITÉ -->
+    <!-- ONGLET 1 — INFORMATIONS PERSONNELLES -->
     @if (isActive('info')) {
-      <div id="onglet-informations" class="space-y-8">
-
-        <!-- Carte Informations personnelles -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
-            Informations personnelles
-          </h2>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <p class="text-(--color-label)">Nom</p>
-              <p class="text-(--color-title) font-semibold">Dupont</p>
-            </div>
-
-            <div>
-              <p class="text-(--color-label)">Prénom</p>
-              <p class="text-(--color-title) font-semibold">Dorian</p>
-            </div>
-
-            <div>
-              <p class="text-(--color-label)">Email</p>
-              <p class="text-(--color-title) font-semibold">dorian@gmail.com</p>
-            </div>
-
-            <div>
-              <p class="text-(--color-label)">Téléphone</p>
-              <p class="text-(--color-title) font-semibold">+33 6 00 00 00 00</p>
-            </div>
-          </div>
-
-          <button class="mt-6 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
-            Modifier mes informations
-          </button>
-        </div>
-
-        <!-- Carte Visibilité -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
-            Visibilité du profil
-          </h2>
-
-          <div class="flex items-center gap-4">
-            <span class="text-(--color-label)">Profil :</span>
-
-            <button class="px-4 py-2 rounded-md bg-(--color-primary) text-black font-semibold">
-              Privé
-            </button>
-
-            <button class="px-4 py-2 rounded-md bg-(--color-secondary) border border-(--color-primary)/30 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
-              Public
-            </button>
-          </div>
-        </div>
-      </div>
+     <app-information></app-information>
     }
-
 
     <!-- ONGLET 2 — PROFIL PUBLIC -->
     @if (isActive("profil")) {
-      <div id="onglet-profil-public" class="space-y-8">
+      <div id="onglet-profil-public" class="space-y-6 md:space-y-8">
 
         <!-- Pseudo -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-          <h2 class="text-2xl font-semibold text-(--color-title) mb-4">
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+          <h2 class="text-xl md:text-2xl font-semibold text-(--color-title) mb-4">
             Profil public
           </h2>
 
@@ -86,8 +32,8 @@
         </div>
 
         <!-- Derniers événements -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+          <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
 
           <ul class="space-y-3">
             <li class="border-b border-white/10 pb-2">FC Metz – PSG (12 mai)</li>
@@ -97,8 +43,8 @@
         </div>
 
         <!-- Derniers votes -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+          <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
 
           <ul class="space-y-3">
             <li class="border-b border-white/10 pb-2">
@@ -114,20 +60,84 @@
       </div>
     }
 
+    <!-- ONGLET 3 — AMIS -->
+    @if (isActive('friend')) {
+      <div class="space-y-6 md:space-y-8">
 
-    <!-- ONGLET 3— RÉSERVATIONS (scroll vertical) -->
-    @if (isActive('reservation')){
-      <div class="flex flex-col gap-8 max-h-[80vh] overflow-y-auto pr-4">
+        <!-- Header : Recherche + Ajouter -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
 
-        <!-- Carte Réservation (à répéter pour chaque réservation à venir) -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+          <!-- Barre de recherche -->
+          <div class="flex items-center bg-(--color-neutral)/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg w-full max-w-md">
+            <i class="fa-solid fa-magnifying-glass text-(--color-primary) mr-3"></i>
+            <input
+              type="text"
+              placeholder="Rechercher un ami..."
+              class="bg-transparent outline-none text-(--color-title) w-full placeholder-(--color-label)"
+            >
+          </div>
 
-          <!-- Image bannière -->
+          <!-- Bouton Ajouter -->
+          <button class="px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition w-full sm:w-auto">
+            Ajouter un ami
+          </button>
+        </div>
+
+        <!-- Liste des amis -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+
+          <!-- Carte Ami -->
+          <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-4 md:p-5 shadow-lg flex items-center justify-between">
+
+            <div>
+              <p class="text-(--color-label) text-sm">Pseudo</p>
+              <p class="text-(--color-title) font-semibold text-lg">Dorian_57</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button class="px-3 py-1 rounded-md bg-(--color-secondary) border border-white/10 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+                Voir
+              </button>
+              <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
+                Retirer
+              </button>
+            </div>
+          </div>
+
+          <!-- Ami suivant -->
+          <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-4 md:p-5 shadow-lg flex items-center justify-between">
+
+            <div>
+              <p class="text-(--color-label) text-sm">Pseudo</p>
+              <p class="text-(--color-title) font-semibold text-lg">MetzFan_08</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button class="px-3 py-1 rounded-md bg-(--color-secondary) border border-white/10 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+                Voir
+              </button>
+              <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
+                Retirer
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    }
+
+    <!-- ONGLET 4 — RÉSERVATIONS -->
+    @if (isActive('reservation')) {
+      <div class="flex flex-col gap-6 md:gap-8 max-h-[70vh] md:max-h-[80vh] overflow-y-auto pr-1 md:pr-4">
+
+        <!-- Carte Réservation -->
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+
           <img src="assets/images/event-banner.jpg"
-               class="w-full h-48 object-cover rounded-lg mb-4">
+               class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
 
-          <!-- Infos événement -->
-          <h3 class="text-2xl font-semibold text-(--color-title)">
+          <h3 class="text-xl md:text-2xl font-semibold text-(--color-title)">
             Nom de l’événement
           </h3>
 
@@ -135,32 +145,26 @@
             12 mai • 20h45 • Stade Saint-Symphorien
           </p>
 
-          <!-- Infos place -->
           <p class="mt-3 text-(--color-title)">
             Place : Tribune A – Rang 12 – Siège 8
           </p>
 
-          <!-- QR Code -->
           <div class="mt-6 flex justify-center">
-            <img src="assets/images/qrcode.png" class="w-40 h-40">
+            <img src="assets/images/qrcode.png" class="w-32 h-32 md:w-40 md:h-40">
           </div>
 
         </div>
 
       </div>
-
     }
 
-
-    <!-- ONGLET 4 — VOTES -->
+    <!-- ONGLET 5 — VOTES -->
     @if (isActive('vote')) {
-      <div class="space-y-8">
+      <div class="space-y-6 md:space-y-8">
 
-        <!-- Carte Vote (à répéter pour chaque événement passé) -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg">
+        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
 
-          <!-- Infos événement -->
-          <h2 class="text-2xl font-semibold text-(--color-title)">
+          <h2 class="text-xl md:text-2xl font-semibold text-(--color-title)">
             Nom de l’événement
           </h2>
 
@@ -172,7 +176,7 @@
           <div class="mt-6">
             <p class="text-(--color-title) mb-2">Note de l’événement :</p>
 
-            <div class="flex gap-2 text-3xl text-(--color-primary)">
+            <div class="flex gap-2 text-2xl md:text-3xl text-(--color-primary)">
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
@@ -191,7 +195,7 @@
               <option>Athlète 3</option>
             </select>
 
-            <div class="mt-4 text-3xl text-(--color-primary)">
+            <div class="mt-4 text-2xl md:text-3xl text-(--color-primary)">
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
               <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
@@ -203,29 +207,42 @@
         </div>
 
       </div>
-
     }
 
   </div>
 
-  <!-- ONGLET À DROITE -->
-  <aside class="w-64 border-l border-white/10 p-6 bg-(--color-neutral)/40 backdrop-blur-md">
+  <!-- ONGLET À DROITE / BAS -->
+  <aside
+    class="w-full md:w-64
+           sticky bottom-0 md:static
+           border-t md:border-t-0 md:border-l border-white/10
+           p-3 md:p-6
+           bg-(--color-neutral)/60 backdrop-blur-md z-50">
 
-    <nav class="flex flex-col gap-4 text-(--color-title) font-semibold">
+    <nav class="flex md:flex-col justify-between md:justify-start gap-2 md:gap-4 text-(--color-title) font-semibold">
 
-      <app-button variant="menu" (click)="setTab('info')">
+      <app-button variant="menu" (click)="setTab('info')"
+                  [ngClass]="{ 'bg-(--color-primary)/20 text-(--color-primary) border-l-4 border-(--color-primary)': isActive('info') }">
         Informations
       </app-button>
 
-      <app-button variant="menu" (click)="setTab('profil')">
+      <app-button variant="menu" (click)="setTab('profil')"
+                  [ngClass]="{ 'bg-(--color-primary)/20 text-(--color-primary) border-l-4 border-(--color-primary)': isActive('profil') }">
         Profil
       </app-button>
 
-      <app-button variant="menu" (click)="setTab('reservation')">
+      <app-button variant="menu" (click)="setTab('friend')"
+                  [ngClass]="{ 'bg-(--color-primary)/20 text-(--color-primary) border-l-4 border-(--color-primary)': isActive('friend') }">
+        Amis
+      </app-button>
+
+      <app-button variant="menu" (click)="setTab('reservation')"
+                  [ngClass]="{ 'bg-(--color-primary)/20 text-(--color-primary) border-l-4 border-(--color-primary)': isActive('reservation') }">
         Réservations
       </app-button>
 
-      <app-button variant="menu" (click)="setTab('vote')">
+      <app-button variant="menu" (click)="setTab('vote')"
+                  [ngClass]="{ 'bg-(--color-primary)/20 text-(--color-primary) border-l-4 border-(--color-primary)': isActive('vote') }">
         Votes
       </app-button>
 

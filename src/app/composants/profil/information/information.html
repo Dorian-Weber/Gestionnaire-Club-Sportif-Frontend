@@ -1,0 +1,107 @@
+@if (userInfo()){
+<div id="onglet-informations" class="space-y-6 md:space-y-8">
+
+  <!-- Carte Informations personnelles -->
+  <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+    <h2 class="text-xl md:text-2xl font-semibold text-(--color-title) mb-4">
+      Informations personnelles
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div>
+        <p class="text-(--color-label)">Nom</p>
+        <p class="text-(--color-title) font-semibold">{{ userInfo()?.appUserName }}</p>
+      </div>
+
+      <div>
+        <p class="text-(--color-label)">Prénom</p>
+        <p class="text-(--color-title) font-semibold">{{ userInfo()?.appUserFirstName }}</p>
+      </div>
+
+      <div>
+        <p class="text-(--color-label)">Email</p>
+        <p class="text-(--color-title) font-semibold">{{ userInfo()?.appUserEmail }}</p>
+      </div>
+
+      <div>
+        <p class="text-(--color-label)">Téléphone</p>
+        <p class="text-(--color-title) font-semibold">{{ userInfo()?.appUserPhone }}</p>
+      </div>
+    </div>
+
+    <button class="mt-6 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
+      Modifier mes informations
+    </button>
+  </div>
+
+
+
+  <!-- Carte Visibilité -->
+  <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 shadow-lg">
+    <h2 class="text-xl font-semibold text-(--color-title) mb-4">
+      Visibilité du profil
+    </h2>
+    <div class="grid grid-cols-2">
+      <div class="flex flex-col gap-4">
+      <!-- Boutons -->
+      <div class="flex items-center gap-3">
+
+        <!-- PUBLIC -->
+        @if (selectedVisibility() === UserVisibility.PUBLIC) {
+          <app-button variant="primary" size="sm"> Public </app-button>
+        } @else {
+          <app-button variant="secondary" size="sm" (click)="selectVisibility(UserVisibility.PUBLIC)" > Public </app-button>
+        }
+
+        <!-- PRIVATE -->
+        @if (selectedVisibility() === UserVisibility.PRIVATE) {
+          <app-button variant="primary" size="sm"> Privé </app-button>
+        } @else {
+          <app-button variant="secondary" size="sm" (click)="selectVisibility(UserVisibility.PRIVATE)" > Privé </app-button>
+        }
+
+        <!-- CLOSED -->
+        @if (selectedVisibility() === UserVisibility.CLOSE) {
+          <app-button variant="primary" size="sm"> Fermé </app-button>
+        } @else {
+          <app-button variant="secondary" size="sm" (click)="selectVisibility(UserVisibility.CLOSE)" > Fermé </app-button>
+        }
+      </div>
+
+      <!-- Bouton Valider -->
+      <div class="mt-4">
+        @if (selectedVisibility() !== currentVisibility()) {
+          <app-button variant="primary"  size="md" (click)="validateVisibility()">
+            Valider la modification
+          </app-button>
+        }
+        @if (toastVisible()) {
+          <span class="px-8 py-3 bg-(--color-primary) text-black hover:opacity-90 transition cursor-pointer rounded-lg">
+          Visibilité mise à jour ✔
+        </span>
+        }
+      </div>
+    </div>
+      <div class="p-5 bg-(--color-neutral)/80 border border-(--color-primary) rounded-lg text-md text-(-color-label)"
+      >
+        @if (selectedVisibility() === UserVisibility.PUBLIC){
+          <span class="text-lg font-bold">Public :</span>
+          <p>Permet a tout les utilisateurs de voir votre profil ainsi que vos dernière activité.</p>
+        }
+        @if (selectedVisibility() === UserVisibility.PRIVATE){
+          <span class="text-lg font-bold">Privé :</span>
+          <p> Seulement les utilisateurs dans votre liste d'amis peuvent voir vos dernière activité.</p>
+        }
+        @if (selectedVisibility() === UserVisibility.CLOSE){
+          <span class="text-lg font-bold">Fermé :</span>
+          <p>Vos dernières activité ne sont visible que par vous et vos amis ne peuvent vous voir lors de la séléction de leur sièges.</p>
+        }
+          </div>
+
+    </div>
+  </div>
+
+</div>
+} @else {
+  <span>Aucune information a afficher</span>
+}
