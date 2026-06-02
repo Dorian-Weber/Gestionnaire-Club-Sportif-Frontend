@@ -15,49 +15,7 @@
 
     <!-- ONGLET 2 — PROFIL PUBLIC -->
     @if (isActive("profil")) {
-      <div id="onglet-profil-public" class="space-y-6 md:space-y-8">
-
-        <!-- Pseudo -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
-          <h2 class="text-xl md:text-2xl font-semibold text-(--color-title) mb-4">
-            Profil public
-          </h2>
-
-          <p class="text-(--color-label)">Pseudo</p>
-          <p class="text-(--color-title) font-semibold text-xl">Dorian_57</p>
-
-          <button class="mt-4 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
-            Modifier le pseudo
-          </button>
-        </div>
-
-        <!-- Derniers événements -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
-          <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
-
-          <ul class="space-y-3">
-            <li class="border-b border-white/10 pb-2">FC Metz – PSG (12 mai)</li>
-            <li class="border-b border-white/10 pb-2">Tournoi Basket U21 (3 mai)</li>
-            <li>Marathon Metz (28 avril)</li>
-          </ul>
-        </div>
-
-        <!-- Derniers votes -->
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
-          <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
-
-          <ul class="space-y-3">
-            <li class="border-b border-white/10 pb-2">
-              Événement : FC Metz – PSG → ★★★★☆
-              MVP : K. Mbappé
-            </li>
-            <li>
-              Événement : Basket U21 → ★★★☆☆
-              MVP : L. Dupont
-            </li>
-          </ul>
-        </div>
-      </div>
+      <app-public-profil></app-public-profil>
     }
 
     <!-- ONGLET 3 — AMIS -->

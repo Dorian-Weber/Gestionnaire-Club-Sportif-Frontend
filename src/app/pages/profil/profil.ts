@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Button } from '../../composants/button/button';
 import { NgClass } from '@angular/common';
 import { Information } from '../../composants/profil/information/information';
+import { PublicProfil } from '../../composants/profil/public-profil/public-profil';
 
 @Component({
   selector: 'app-profil',
-  imports: [Button, NgClass, Information],
+  imports: [Button, NgClass, Information, PublicProfil],
   templateUrl: './profil.html',
   styleUrl: './profil.css',
 })

@@ -18,4 +18,8 @@ export class UserService {
   updateVisibility(visibility: UserVisibility | null) {
     return this.http.patch(`${this.apiUrl}/info`, { visibility });
   }
+
+  getMyPublicProfil() {
+    return this.http.get<UserPublicProfil>(`${this.apiUrl}/public`)
+  }
 }

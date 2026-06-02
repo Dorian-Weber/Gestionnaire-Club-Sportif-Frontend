@@ -1,7 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { Event} from '../models/event';
 import { environment } from '../../environments/environment';
 
 @Injectable({

@@ -1,0 +1,40 @@
+<div id="onglet-profil-public" class="space-y-6 md:space-y-8 bg-(--color-tertiary)/20 p-6 rounded-lg">
+
+  <!-- Pseudo -->
+  <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+    <h2 class="text-xl md:text-2xl font-semibold text-(--color-title) mb-4">
+      Profil public
+    </h2>
+
+    <p class="text-(--color-label)">Pseudo</p>
+    <p class="text-(--color-title) font-semibold text-xl">{{ userPublicProfil()?.appUserPseudo }}</p>
+
+    <button class="mt-4 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
+      Modifier le pseudo
+    </button>
+  </div>
+
+  <!-- Derniers événements -->
+  <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+    <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers événements</h3>
+    <ul class="space-y-3">
+    @for (event of userPublicProfil()?.lastEvents; track $index) {
+      <li class="border-b border-white/10 pb-2">{{ event.eventName }} ({{ event.eventDate | date:'dd/MM/yyyy'  }}), Sport : {{ event.sportName }}</li>
+    }
+    </ul>
+  </div>
+
+  <!-- Derniers votes -->
+  <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+    <h3 class="text-lg md:text-xl font-semibold text-(--color-title) mb-4">Derniers votes</h3>
+    <ul class="space-y-3">
+    @for (vote of userPublicProfil()?.lastVotes; track $index) {
+        <li class="border-b border-white/10 pb-2">
+            <p>Événement : {{ vote.eventName }}</p>
+            <p>Note : {{ vote.eventRating }}/5 </p>
+            <p>Meilleur Sportif : {{ vote.athleteName }} {{ vote.athleteFirstName }}</p>
+        </li>
+    }
+    </ul>
+  </div>
+</div>
