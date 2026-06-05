@@ -22,4 +22,8 @@ export class UserService {
   getMyPublicProfil() {
     return this.http.get<UserPublicProfil>(`${this.apiUrl}/public`)
   }
+
+  updatePseudo(appUserPseudo: String ) {
+    return this.http.patch(`${this.apiUrl}/pseudo`, { appUserPseudo });
+  }
 }

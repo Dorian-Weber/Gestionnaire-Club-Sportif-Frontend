@@ -7,11 +7,34 @@
     </h2>
 
     <p class="text-(--color-label)">Pseudo</p>
-    <p class="text-(--color-title) font-semibold text-xl">{{ userPublicProfil()?.appUserPseudo }}</p>
+    @if (!isEditing()) {
+      <p class="mb-4 text-(--color-title) font-semibold text-xl">{{ newPseudo() }}</p>
 
-    <button class="mt-4 px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition">
-      Modifier le pseudo
-    </button>
+      @if (toastVisible()) {
+        <span class="px-3 py-2 bg-(--color-primary) text-black hover:opacity-90 transition cursor-pointer font-semibold rounded-md hover:opacity-90 transition">
+          Pseudo mis à jour ✔
+        </span>
+      } @else {
+        <app-button variant="primary" size="sm" (click)="startEditPseudo()">
+          Modifier le pseudo
+        </app-button>
+      }
+    }
+    @if (isEditing()){
+      <p class="mb-4 text-(--color-title) font-semibold text-xl">{{ newPseudo() }}</p>
+      <form [formGroup]="formulaire" (ngSubmit)="validatePseudo()">
+        <label class="mr-2 text-(--color-title) font font-semibold mb-1">Nouveau Pseudo :</label>
+        <input formControlName="formPseudo"
+          type="text"
+          class="mr-3 px-3 py-2 rounded-md bg-white/10 border border-white/20 text-(--color-title) focus:outline-none focus:ring-2 focus:ring-(--color-primary)"
+        >
+        <app-button type="submit" variant="primary" size="sm" (click)="stopEditPseudo()" >
+          Valider
+        </app-button>
+      </form>
+
+    }
+
   </div>
 
   <!-- Derniers événements -->
