@@ -6,34 +6,42 @@
     <h2 class="text-xl font-semibold text-(--color-title) mb-4">Demandes en attente</h2>
 
     <!-- Demandes reçues -->
-    <h3 class="text-lg font-semibold text-(--color-title) mb-2">Reçues</h3>
+    <h3 class="text-lg font-semibold text-(--color-title) mb-4">Reçues</h3>
+    <div class="space-y-12">
+    @for (request of requestReceived(); track request.idAppUser) {
+        <div class="flex items-center justify-between border-b border-white/10 pb-2">
+          <p class="text-(--color-title) font-semibold">{{ request.appUserPseudo }}</p>
 
-    <div class="space-y-3">
-      <div class="flex items-center justify-between border-b border-white/10 pb-2">
-        <p class="text-(--color-title) font-semibold">Alex_2000</p>
-
-        <div class="flex gap-2">
-          <button class="px-3 py-1 rounded-md bg-(--color-primary) text-black hover:opacity-90 transition">
-            Accepter
-          </button>
-          <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
-            Refuser
-          </button>
+          <div class="flex gap-2">
+            <button class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+              Voir
+            </button>
+            <button class="px-3 py-1 rounded-md bg-(--color-primary) text-black hover:opacity-90 transition">
+              Accepter
+            </button>
+            <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
+              Refuser
+            </button>
+          </div>
         </div>
-      </div>
+    }
     </div>
 
+
     <!-- Demandes envoyées -->
-    <h3 class="text-lg font-semibold text-(--color-title) mt-6 mb-2">Envoyées</h3>
+    <h3 class="text-lg font-semibold text-(--color-title) mt-6 mb-4">Envoyées</h3>
 
-    <div class="space-y-3">
-      <div class="flex items-center justify-between border-b border-white/10 pb-2">
-        <p class="text-(--color-title) font-semibold">SportLover_92</p>
+    <div class="space-y-12">
+      @for (request of requestSend(); track request.idAppUser) {
+        <div class="flex items-center justify-between border-b border-white/10 pb-2">
 
-        <button class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition">
-          Annuler
-        </button>
-      </div>
+          <p class="text-(--color-title) font-semibold">{{ request.appUserPseudo }}</p>
+          <button class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+            Annuler
+          </button>
+        </div>
+      }
+
     </div>
 
   </div>

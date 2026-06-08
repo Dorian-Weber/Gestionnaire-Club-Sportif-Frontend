@@ -12,7 +12,10 @@ export class Friends implements OnInit {
 
   friendList = this.relationService.friendList;
   filterFriendList = signal<FriendDTO[]>([]);
+  requestReceived = signal<FriendDTO[]>([]);
+  requestSend = signal<FriendDTO[]>([]);
 
+  //Filtre dans la liste d'ami
   filterFriends(event: Event) {
     const input = event.target as HTMLInputElement;
     const q = input.value.toLowerCase();
@@ -27,18 +30,24 @@ export class Friends implements OnInit {
       this.friendList.set(list);
       this.filterFriendList.set(list);
     });
+    this.relationService.getRequestReceived().subscribe((list) => {
+      this.requestReceived.set(list);
+    })
+    this.relationService.getRequestSend().subscribe((list) => {
+      this.requestSend.set(list);
+    })
+    console.log(this.requestReceived())
+    console.log(this.requestSend());
   }
 
   //Confirmation de suppréssion
   selectedFriendToRemove = signal<FriendDTO | null>(null);
-
   openRemoveConfirmation(friend: FriendDTO) {
     this.selectedFriendToRemove.set(friend);
   }
   cancelRemove() {
     this.selectedFriendToRemove.set(null);
   }
-
   confirmRemove() {
     const friend = this.selectedFriendToRemove();
     if (!friend) return;
