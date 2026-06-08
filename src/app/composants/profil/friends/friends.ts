@@ -28,4 +28,30 @@ export class Friends implements OnInit {
       this.filterFriendList.set(list);
     });
   }
+
+  //Confirmation de suppréssion
+  selectedFriendToRemove = signal<FriendDTO | null>(null);
+
+  openRemoveConfirmation(friend: FriendDTO) {
+    this.selectedFriendToRemove.set(friend);
+  }
+  cancelRemove() {
+    this.selectedFriendToRemove.set(null);
+  }
+
+  confirmRemove() {
+    const friend = this.selectedFriendToRemove();
+    if (!friend) return;
+
+    this.relationService.removeFriend(friend.idAppUser).subscribe(() => {
+      const updated = this.friendList().filter((f) =>
+        f.idAppUser !== friend.idAppUser);
+      this.friendList.set(updated);
+      this.filterFriendList.set(updated);
+      console.log(updated);
+      console.log(this.selectedFriendToRemove())
+      this.selectedFriendToRemove.set(null);
+      console.log(this.selectedFriendToRemove())
+    });
+  }
 }

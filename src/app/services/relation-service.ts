@@ -16,9 +16,11 @@ export class RelationService {
     return this.http.get<FriendDTO[]>(`${this.apiUrl}/user`).pipe(
       tap((result) => {
         this.friendList.set(result)
-        console.log(result)
-        console.log(this.friendList())
       }),
     );
+  }
+
+  removeFriend(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`)
   }
 }
