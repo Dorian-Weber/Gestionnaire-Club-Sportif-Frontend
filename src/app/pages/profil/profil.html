@@ -20,69 +20,7 @@
 
     <!-- ONGLET 3 — AMIS -->
     @if (isActive('friend')) {
-      <div class="space-y-6 md:space-y-8">
-
-        <!-- Header : Recherche + Ajouter -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-
-          <!-- Barre de recherche -->
-          <div class="flex items-center bg-(--color-neutral)/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg w-full max-w-md">
-            <i class="fa-solid fa-magnifying-glass text-(--color-primary) mr-3"></i>
-            <input
-              type="text"
-              placeholder="Rechercher un ami..."
-              class="bg-transparent outline-none text-(--color-title) w-full placeholder-(--color-label)"
-            >
-          </div>
-
-          <!-- Bouton Ajouter -->
-          <button class="px-5 py-2 rounded-md bg-(--color-primary) text-black font-semibold hover:opacity-90 transition w-full sm:w-auto">
-            Ajouter un ami
-          </button>
-        </div>
-
-        <!-- Liste des amis -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-
-          <!-- Carte Ami -->
-          <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-4 md:p-5 shadow-lg flex items-center justify-between">
-
-            <div>
-              <p class="text-(--color-label) text-sm">Pseudo</p>
-              <p class="text-(--color-title) font-semibold text-lg">Dorian_57</p>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <button class="px-3 py-1 rounded-md bg-(--color-secondary) border border-white/10 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
-                Voir
-              </button>
-              <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
-                Retirer
-              </button>
-            </div>
-          </div>
-
-          <!-- Ami suivant -->
-          <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-4 md:p-5 shadow-lg flex items-center justify-between">
-
-            <div>
-              <p class="text-(--color-label) text-sm">Pseudo</p>
-              <p class="text-(--color-title) font-semibold text-lg">MetzFan_08</p>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <button class="px-3 py-1 rounded-md bg-(--color-secondary) border border-white/10 text-(--color-title) hover:bg-(--color-neutral)/40 transition">
-                Voir
-              </button>
-              <button class="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-700 transition">
-                Retirer
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      <app-friends></app-friends>
     }
 
     <!-- ONGLET 4 — RÉSERVATIONS -->
