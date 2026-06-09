@@ -1,9 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RelationService } from '../../../services/relation-service';
+import { RelationStatus } from '../../../enum/relationStatus';
+import { SearchUser } from '../search-user/search-user';
 
 @Component({
   selector: 'app-friends',
-  imports: [],
+  imports: [SearchUser],
   templateUrl: './friends.html',
   styleUrl: './friends.css',
 })
@@ -32,12 +34,10 @@ export class Friends implements OnInit {
     });
     this.relationService.getRequestReceived().subscribe((list) => {
       this.requestReceived.set(list);
-    })
+    });
     this.relationService.getRequestSend().subscribe((list) => {
       this.requestSend.set(list);
-    })
-    console.log(this.requestReceived())
-    console.log(this.requestSend());
+    });
   }
 
   //Confirmation de suppréssion
@@ -52,15 +52,56 @@ export class Friends implements OnInit {
     const friend = this.selectedFriendToRemove();
     if (!friend) return;
 
-    this.relationService.removeFriend(friend.idAppUser).subscribe(() => {
-      const updated = this.friendList().filter((f) =>
-        f.idAppUser !== friend.idAppUser);
+    this.relationService.removeRelation(friend.idAppUser).subscribe(() => {
+      const updated = this.friendList().filter((f) => f.idAppUser !== friend.idAppUser);
       this.friendList.set(updated);
       this.filterFriendList.set(updated);
-      console.log(updated);
-      console.log(this.selectedFriendToRemove())
       this.selectedFriendToRemove.set(null);
-      console.log(this.selectedFriendToRemove())
     });
+  }
+
+  //Gestion des requêtes :
+  accepteRequest(id: number) {
+    this.relationService.acceptRequest(id, RelationStatus.ACCEPTED).subscribe(() => {
+      const updated = this.requestReceived().filter((f) => f.idAppUser !== id);
+      this.requestReceived.set(updated);
+
+      this.relationService.getFriendList().subscribe((friends) => {
+        this.friendList.set(friends);
+        this.filterFriendList.set(friends);
+      });
+    });
+  }
+  refuseRequest(id: number) {
+    this.relationService.removeRelation(id).subscribe(() => {
+      const update = this.requestReceived().filter((f) => f.idAppUser !== id);
+      this.requestReceived.set(update);
+    });
+  }
+  cancelRequest(id: number) {
+    this.relationService.removeRelation(id).subscribe(() => {
+      const update = this.requestSend().filter((f) => f.idAppUser !== id);
+      this.requestSend.set(update);
+    });
+  }
+
+  searchQuery = signal('');
+  searchResults = signal<AppUserLight[]>([]);
+
+  search(query: string) {
+    this.searchQuery.set(query);
+
+    if (!query || query.trim().length === 0) {
+      this.searchResults.set([]);
+      return;
+    }
+
+    this.relationService.searchUsers(query).subscribe((result) => {
+      this.searchResults.set(result.content);
+    });
+  }
+
+  onRequestSent(user: AppUserLight) {
+    this.requestSend.update(list => [...list, user]);
   }
 }

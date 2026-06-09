@@ -1,6 +1,6 @@
 type FriendDTO = {
   idAppUser: number;
   appUserPseudo: string;
-  appUserFirstName: string;
-  appUserName: string;
+  appUserFirstName?: string;
+  appUserName?: string;
 };

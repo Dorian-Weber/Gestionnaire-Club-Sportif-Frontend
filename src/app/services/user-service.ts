@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { UserInfoDTO } from '../dto/userInfoDTO';
 import { UserVisibility } from '../enum/userVisibility';
+import { Page } from '../dto/page';
 
 @Injectable({
   providedIn: 'root',
