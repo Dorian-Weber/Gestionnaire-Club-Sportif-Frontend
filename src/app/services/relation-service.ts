@@ -39,7 +39,6 @@ export class RelationService {
     return this.http.get<FriendDTO[]>(`${this.apiUrl}/user/request-send`).pipe(
       tap((result) => {
         this.requestSend.set(result);
-        console.log('result :' + result);
       }),
     );
   }

@@ -1,0 +1,29 @@
+<div class="scrollbar-left flex flex-col gap-6 md:gap-8 max-h-[70vh] md:max-h-[80vh] overflow-y-auto pr-1 md:pr-4">
+
+<!-- Carte Réservation -->
+  @for (reservation of myReservations();track reservation.event.idEvent) {
+    <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
+
+      <img [src]="'../../../assets/images/' + reservation.event.sportName + '.jpg'"
+           class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+      <h3 class="text-xl md:text-2xl font-semibold text-(--color-title)">
+        {{ reservation.event.eventName }}
+      </h3>
+      <p class="text-(--color-label)">
+        {{ reservation.event.eventDate  | date:'dd MMM yyyy - HH:mm'  }}
+      </p>
+      <p class="mt-3 text-(--color-title)">Place :</p>
+      @for (seat of reservation.seats; track seat.seatId){
+        <p class="mt-3 text-(--color-title)">
+          Tribune {{ seat.platformName }} – Niveau {{ seat.levelName }} – Siège {{ seat.seatName }}
+        </p>
+      }
+      <div class="mt-6 flex justify-center">
+        <img [src]="'data:image/png;base64,' + reservation.qrCodeBase64" class="w-32 h-32 md:w-40 md:h-40">
+      </div>
+
+    </div>
+
+  }
+
+</div>
