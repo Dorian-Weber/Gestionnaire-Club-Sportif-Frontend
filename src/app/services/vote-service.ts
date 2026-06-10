@@ -27,4 +27,8 @@ export class VoteService {
       }),
     );
   }
+
+  submitVote(payload: VoteSubmitDTO) {
+    return this.http.post(`${this.apiUrl}`, payload);
+  }
 }

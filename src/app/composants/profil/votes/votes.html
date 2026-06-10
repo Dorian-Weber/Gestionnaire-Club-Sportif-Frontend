@@ -76,7 +76,8 @@
 
             }
           </div>
-          <app-button variant="primary" size="md">
+          <app-button variant="primary" size="md"
+          (click)="submitVote(vote.voteDTO.eventId)">
             Valider le vote
           </app-button>
           </div>
@@ -123,14 +124,7 @@
             {{ getMvpName(vote) }}
           </p>
         </div>
-
-        <app-button variant="secondary" size="md">
-          Modifier le vote
-        </app-button>
-
       </div>
     }
   </section>
-
-
 </div>

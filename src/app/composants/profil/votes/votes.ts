@@ -13,8 +13,8 @@ import { DatePipe } from '@angular/common';
 export class Votes implements OnInit {
   voteService = inject(VoteService);
 
-  pendingVote = this.voteService.pendingVote;
-  completedVote = this.voteService.completedVote;
+  pendingVote = signal<VoteEventDTO[]>([]);
+  completedVote = signal<VoteEventDTO[]>([]);
 
   selectedRating = signal<{ [eventId: number]: number }>({});
   selectedMvp = signal<{ [eventId: number]: number | null }>({});
@@ -23,11 +23,9 @@ export class Votes implements OnInit {
   updateRating(eventId: number, rating: number) {
     this.selectedRating.update((r) => ({ ...r, [eventId]: rating }));
   }
-
   updateMvp(eventId: number, athleteId: number | null) {
     this.selectedMvp.update((m) => ({ ...m, [eventId]: athleteId }));
   }
-
   updateTeam(eventId: number, teamId: number | null) {
     this.selectedTeam.update((t) => ({ ...t, [eventId]: teamId }));
   }
@@ -41,15 +39,38 @@ export class Votes implements OnInit {
     });
   }
 
+  submitVote(eventId: number) {
+    const payload = {
+      eventId,
+      rating: this.selectedRating()[eventId],
+      mvpAthleteId: this.selectedMvp()[eventId],
+    };
+
+    this.voteService.submitVote(payload).subscribe(() => {
+      // Retirer de pending
+      const updatedPending = this.pendingVote().filter((v) => v.voteDTO.eventId !== eventId);
+      this.pendingVote.set(updatedPending);
+      // Ajouter dans completed
+      const voted = this.pendingVote().find((v) => v.voteDTO.eventId === eventId);
+      if (voted) {
+        this.completedVote.update((list) => [...list, voted]);
+      }
+      // Recharger depuis API
+      this.voteService.getCompletedVote().subscribe((list) => {
+        this.completedVote.set(list);
+      });
+    });
+  }
+
   getMvpName(vote: VoteEventDTO): string {
     const mvpId = vote.voteDTO.userMvp;
     if (!mvpId) return 'Aucun MVP sélectionné';
-    // 1. Chercher dans les athlètes individuels
+    // Chercher dans les athlètes individuels
     const athlete = vote.athletes.find((a) => a.idAthlete === mvpId);
     if (athlete) {
       return `${athlete.athleteName} ${athlete.athleteFirstName}`;
     }
-    // 2. Chercher dans les équipes
+    // Chercher dans les équipes
     for (const team of vote.teams) {
       const teamAthlete = team.athletes.find((a) => a.idAthlete === mvpId);
       if (teamAthlete) {
