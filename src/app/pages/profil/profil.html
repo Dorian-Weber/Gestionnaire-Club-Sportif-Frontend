@@ -30,53 +30,7 @@
 
     <!-- ONGLET 5 — VOTES -->
     @if (isActive('vote')) {
-      <div class="space-y-6 md:space-y-8">
-
-        <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-5 md:p-6 shadow-lg">
-
-          <h2 class="text-xl md:text-2xl font-semibold text-(--color-title)">
-            Nom de l’événement
-          </h2>
-
-          <p class="text-(--color-label)">
-            28 avril • 18h00 • Stade Saint-Symphorien
-          </p>
-
-          <!-- Note événement -->
-          <div class="mt-6">
-            <p class="text-(--color-title) mb-2">Note de l’événement :</p>
-
-            <div class="flex gap-2 text-2xl md:text-3xl text-(--color-primary)">
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-            </div>
-          </div>
-
-          <!-- MVP -->
-          <div class="mt-8">
-            <p class="text-(--color-title) mb-2">Vote MVP :</p>
-
-            <select class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full">
-              <option>Athlète 1</option>
-              <option>Athlète 2</option>
-              <option>Athlète 3</option>
-            </select>
-
-            <div class="mt-4 text-2xl md:text-3xl text-(--color-primary)">
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-              <i class="fa-solid fa-star cursor-pointer hover:scale-110 transition"></i>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      <app-votes></app-votes>
     }
 
   </div>

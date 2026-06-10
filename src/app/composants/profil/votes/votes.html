@@ -1,0 +1,136 @@
+<div class="scrollbar-left space-y-12 max-h-[80vh] overflow-y-auto pr-2">
+
+  <!-- SECTION 1 — ÉVÉNEMENTS À VOTER -->
+  <section>
+    <h2 class="text-2xl font-bold text-(--color-title) mb-4">Événements à voter</h2>
+    @for (vote of pendingVote(); track vote.voteDTO.eventId) {
+      <div class="bg-(--color-neutral)/60 backdrop-blur-md border border-(--color-primary)/20 rounded-xl p-6 shadow-lg space-y-6">
+        <div>
+          <h3 class="text-xl md:text-2xl font-semibold text-(--color-title)">
+            {{ vote.voteDTO.eventName }}
+          </h3>
+          <p class="text-(--color-label)">
+            {{ vote.voteDTO.eventDate |  date:'dd MMM yyyy - HH:mm'}}
+          </p>
+        </div>
+          <!-- Note événement -->
+          <div>
+            <p class="text-(--color-title) mb-2">Note de l’événement :</p>
+
+            <div class="flex gap-2 text-2xl md:text-3xl text-(--color-primary)">
+              @for (i of [1,2,3,4,5]; track i) {
+                <i
+                  class="fa-solid fa-star cursor-pointer transition"
+                  [class.text-(--color-primary)]="selectedRating()[vote.voteDTO.eventId] >= i"
+                  [class.text-gray-600]="selectedRating()[vote.voteDTO.eventId] < i"
+                  (click)="updateRating(vote.voteDTO.eventId, i)"
+                ></i>
+
+              }
+            </div>
+          </div>
+          <!-- MVP -->
+          <div>
+            <p class="text-(--color-title) mb-2">Vote MVP :</p>
+            @if (vote.athletes.length > 0) {
+              <select
+                class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full"
+                (change)="updateMvp(vote.voteDTO.eventId, $any($event.target).value)">
+                <option [value]="null">Sélectionner un athlète</option>
+
+                @for (athlete of vote.athletes; track athlete.idAthlete) {
+                  <option [value]="athlete.idAthlete">
+                    {{ athlete.athleteName }} {{ athlete.athleteFirstName }}
+                  </option>
+                }
+              </select>
+            }
+            @if (vote.teams.length > 0){
+              <select
+                class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full mb-3"
+                (change)="updateTeam(vote.voteDTO.eventId, $any($event.target).value)">
+                <option [value]="null">Sélectionner une équipe</option>
+
+                @for (team of vote.teams; track team.idTeam) {
+                  <option [value]="team.idTeam">{{ team.teamName }}</option>
+                }
+              </select>
+              @if (selectedTeam()[vote.voteDTO.eventId]) {
+                <select
+                  class="bg-(--color-secondary) border border-white/10 text-(--color-title) px-4 py-2 rounded-md w-full"
+                  (change)="updateMvp(vote.voteDTO.eventId, $any($event.target).value)">
+                  <option [value]="null">Sélectionner un athlète</option>
+
+                  @for (team of vote.teams; track team.idTeam) {
+                    @if (team.idTeam == selectedTeam()[vote.voteDTO.eventId]) {
+
+                      @for (athlete of team.athletes; track athlete.idAthlete) {
+                        <option [value]="athlete.idAthlete">
+                          {{ athlete.athleteName }} {{ athlete.athleteFirstName }}
+                        </option>
+                      }
+                    }
+                  }
+                </select>
+              }
+
+            }
+          </div>
+          <app-button variant="primary" size="md">
+            Valider le vote
+          </app-button>
+          </div>
+        }
+  </section>
+
+  <!-- SECTION 2 — VOTES DÉJÀ EFFECTUÉS -->
+  <section>
+    <h2 class="text-2xl font-bold text-(--color-title) mb-4">Vos précédents votes</h2>
+
+    @for (vote of completedVote(); track vote.voteDTO.eventId) {
+
+      <div class="bg-(--color-neutral)/40 backdrop-blur-md border border-(--color-primary)/10 rounded-xl p-6 shadow-lg space-y-6 opacity-80">
+
+        <!-- Titre + date -->
+        <div>
+          <h3 class="text-xl md:text-2xl font-semibold text-(--color-title)">
+            {{ vote.voteDTO.eventName }}
+          </h3>
+          <p class="text-(--color-label)">
+            {{ vote.voteDTO.eventDate | date:'dd MMM yyyy - HH:mm' }}
+          </p>
+        </div>
+
+        <!-- NOTE -->
+        <div>
+          <p class="text-(--color-title) mb-2">Votre note :</p>
+
+          <div class="flex gap-2 text-2xl md:text-3xl text-(--color-primary)">
+            @for (i of [1,2,3,4,5]; track i) {
+              <i
+                class="fa-solid fa-star"
+                [class.text-(--color-primary)]="(vote.voteDTO.eventRating ?? 0) >= i"
+                [class.text-gray-600]="(vote.voteDTO.eventRating ??0 ) < i"
+              ></i>
+            }
+          </div>
+        </div>
+
+        <!-- MVP -->
+        <div>
+          <p class="text-(--color-title) mb-2">Votre MVP :</p>
+          <p class="text-(--color-label)">
+            {{ getMvpName(vote) }}
+          </p>
+        </div>
+
+        <app-button variant="secondary" size="md">
+          Modifier le vote
+        </app-button>
+
+      </div>
+    }
+  </section>
+
+
+</div>
