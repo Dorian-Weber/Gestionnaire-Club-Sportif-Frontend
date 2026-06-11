@@ -13,9 +13,12 @@
           <p class="text-(--color-title) font-semibold">{{ request.appUserPseudo }}</p>
 
           <div class="flex gap-2">
-            <button class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+            <button
+              class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition"
+              (click)="openProfile(request.idAppUser)">
               Voir
             </button>
+
             <button
               class="px-3 py-1 rounded-md bg-(--color-primary) text-black hover:opacity-90 transition"
               (click)="accepteRequest(request.idAppUser)">
@@ -111,7 +114,9 @@
               <p class="text-(--color-title) font-semibold text-lg">{{ friend.appUserPseudo }}</p>
             </div>
             <div class="flex items-center gap-3">
-              <button class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition">
+              <button
+                class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title) hover:bg-(--color-neutral)/40 transition"
+                (click)="openProfile(friend.idAppUser)">
                 Voir
               </button>
               <button
@@ -127,6 +132,13 @@
   </div>
 
   <!-- SECTION 3 : TROUVER DES AMIS -->
-  <app-search-user (requestSent)="onRequestSent($event)"></app-search-user>
+  <app-search-user (requestSent)="onRequestSent($event)"
+                   (viewProfile)="openProfile($event)"></app-search-user>
 
 </div>
+@if (popupUserId()) {
+  <app-profil-public-popup
+    [userId]="popupUserId()!"
+    [onClose]="closePopup.bind(this)">
+  </app-profil-public-popup>
+}

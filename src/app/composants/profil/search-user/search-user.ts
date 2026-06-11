@@ -10,6 +10,8 @@ import { RelationService } from '../../../services/relation-service';
 })
 export class SearchUser implements OnInit {
   @Output() requestSent = new EventEmitter<AppUserLight>();
+  @Output() viewProfile = new EventEmitter<number>();
+
   relationService = inject(RelationService);
 
   searchQuery = signal('');
@@ -43,13 +45,11 @@ export class SearchUser implements OnInit {
   }
 
   sendRequest(id: number) {
-    const user = this.searchResults().find(
-      (u) => u.idAppUser === id);
+    const user = this.searchResults().find((u) => u.idAppUser === id);
 
     this.relationService.sendRequest(id).subscribe(() => {
       // Retirer de la liste
-      this.searchResults.update((list) =>
-        list.filter((u) => u.idAppUser !== id));
+      this.searchResults.update((list) => list.filter((u) => u.idAppUser !== id));
 
       // Envoyer l’utilisateur au parent
       if (user) {

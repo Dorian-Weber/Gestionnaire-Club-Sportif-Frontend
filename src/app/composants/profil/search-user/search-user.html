@@ -24,6 +24,13 @@
           >
             Ajouter
           </button>
+          <button
+            class="px-3 py-1 rounded-md bg-(--color-secondary) text-(--color-title)"
+            (click)="viewProfile.emit(user.idAppUser)"
+          >
+            Voir
+          </button>
+
         </div>
       } @empty {
         <div class="text-gray-500 p-2">

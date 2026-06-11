@@ -1,0 +1,76 @@
+<!-- OVERLAY -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center
+         bg-black/50 backdrop-blur-sm"
+  (click)="close()"
+>
+
+  <!-- POPUP -->
+  <div
+    class="relative w-[90%] max-w-3xl rounded-2xl p-10
+           bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl"
+    (click)="$event.stopPropagation()"
+  >
+
+    <!-- CLOSE BUTTON -->
+    <button
+      class="absolute right-5 top-5 text-3xl text-white/70 hover:text-white"
+      (click)="close()"
+    >
+      ✕
+    </button>
+
+    <!-- HEADER -->
+    <h2 class="mb-8 text-5xl font-extrabold text-white tracking-wide">
+      {{ profile()?.appUserPseudo }}
+    </h2>
+
+    <!-- PROFIL VIDE -->
+    @if (!profile()?.lastEvents && !profile()?.lastVotes) {
+      <p class="text-xl text-white/80 leading-relaxed">
+        Ce profil est privé ou fermé.
+      </p>
+    }
+
+    <!-- EVENTS -->
+    @if (profile()?.lastEvents) {
+      <section class="mb-10">
+        <h3 class="mb-4 text-3xl font-semibold text-white">
+          Derniers événements
+        </h3>
+
+        @for (event of profile()?.lastEvents; track event) {
+          <div class="mb-4 rounded-xl bg-white/10 p-5 border border-white/10">
+            <p class="text-2xl font-medium text-white">{{ event.eventName }}</p>
+            <p class="text-lg text-white/70">{{ event.eventDate | date : 'dd MMMM yyyy' }}</p>
+            <p class="text-lg text-white/70">Sport : {{ event.sportName }}</p>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- VOTES -->
+    @if (profile()?.lastVotes) {
+      <section>
+        <h3 class="mb-4 text-3xl font-semibold text-white">
+          Derniers votes
+        </h3>
+
+        @for (vote of profile()?.lastVotes; track vote) {
+          <div class="mb-4 rounded-xl bg-white/10 p-5 border border-white/10">
+            <p class="text-2xl font-medium text-white">
+              Événement : {{ vote.eventName }}
+            </p>
+            <p class="text-lg text-white/70">
+              Note : {{ vote.eventRating }}/5
+            </p>
+            <p class="text-lg text-white/70">
+              Meilleur sportif : {{ vote.eventName }} {{ vote.athleteFirstName }}
+            </p>
+          </div>
+        }
+      </section>
+    }
+
+  </div>
+</div>

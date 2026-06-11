@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RelationService } from '../../../services/relation-service';
 import { RelationStatus } from '../../../enum/relationStatus';
 import { SearchUser } from '../search-user/search-user';
+import { ProfilPublicPopup } from '../../profil-public-popup/profil-public-popup';
 
 @Component({
   selector: 'app-friends',
-  imports: [SearchUser],
+  imports: [SearchUser, ProfilPublicPopup],
   templateUrl: './friends.html',
   styleUrl: './friends.css',
 })
@@ -16,6 +17,7 @@ export class Friends implements OnInit {
   filterFriendList = signal<FriendDTO[]>([]);
   requestReceived = signal<FriendDTO[]>([]);
   requestSend = signal<FriendDTO[]>([]);
+  popupUserId = signal<number | null>(null);
 
   //Filtre dans la liste d'ami
   filterFriends(event: Event) {
@@ -25,6 +27,15 @@ export class Friends implements OnInit {
     this.filterFriendList.set(
       this.friendList().filter((f) => f.appUserPseudo.toLowerCase().includes(q)),
     );
+  }
+
+  openProfile(id: number) {
+    console.log('openProfile appelé avec id =', id);
+    this.popupUserId.set(id);
+  }
+
+  closePopup() {
+    this.popupUserId.set(null);
   }
 
   ngOnInit() {
@@ -102,6 +113,6 @@ export class Friends implements OnInit {
   }
 
   onRequestSent(user: AppUserLight) {
-    this.requestSend.update(list => [...list, user]);
+    this.requestSend.update((list) => [...list, user]);
   }
 }
