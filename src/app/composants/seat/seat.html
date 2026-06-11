@@ -1,1 +1,19 @@
-<div [class]="classes" (click)="onClick()"></div>
+<div class="relative group w-10 h-10">
+
+  <!-- Tooltip -->
+  @if (tooltip) {
+    <div class="absolute -top-8 left-1/2 -translate-x-1/2
+                bg-black/80 text-white text-2xl px-2 py-1 rounded
+                opacity-0 group-hover:opacity-100 transition
+                whitespace-nowrap pointer-events-none z-20">
+      Réservé par : {{ tooltip }}
+    </div>
+  }
+
+  <!-- Seat -->
+  <div [class]="classes"
+       class="w-full h-full rounded-md cursor-pointer"
+       (click)="onClick()">
+  </div>
+
+</div>

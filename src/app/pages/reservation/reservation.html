@@ -131,6 +131,7 @@
         <app-seat [id]="seat.idSeat"
                   [status]="seat.reservedByFriend ? 'friend' : (seat.status ? 'reserved' : 'free')"
                   [selected]="selectedSeats().includes(seat.idSeat)"
+                  [tooltip]="seat.appUserPseudo"
                   (seatClick)="selectSeat($event)"></app-seat>
         }
       </div>

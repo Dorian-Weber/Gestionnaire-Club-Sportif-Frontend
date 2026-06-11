@@ -7,12 +7,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './seat.css',
 })
 export class Seat {
-  @Input() id?: number ;
+  @Input() id?: number;
   @Input() seatName?: string;
   @Input() status: 'free' | 'reserved' | 'friend' = 'free';
   @Input() selected: boolean = false;
   @Input() disabled = false;
   @Output() seatClick = new EventEmitter<number>();
+  @Input() tooltip: string | null = null;
 
   get classes() {
     const base = 'w-10 h-10 rounded-md';
