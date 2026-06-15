@@ -1,3 +1,4 @@
 export const environment = {
-  serverUrl: 'http://sporthive.com:8080',
-}
+  production: true,
+  apiUrl: 'https://cda-dorian.stagiairesmns.fr/api',
+};
