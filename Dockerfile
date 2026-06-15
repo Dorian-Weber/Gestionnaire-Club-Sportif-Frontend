@@ -1,10 +1,18 @@
-FROM node:24-alpine AS build
+# Stage 1 — builder
+FROM node:20 AS builder
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package*.json ./
+RUN npm ci --silent
 COPY . .
-RUN npm run build
+RUN npx ng build --configuration production
 
-FROM nginx:1.31-alpine
-COPY --from=build app/dist/Gest-Club-Sport-Frontend/browser /usr/share/nginx/html
-COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
+# Stage 2 — runtime nginx
+FROM nginx:stable
+# Remplacer la config nginx embarquée par celle du repo
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copier le contenu du build Angular (dossier browser) vers la racine nginx
+COPY --from=builder /app/dist/Gest-Club-Sport-Frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
