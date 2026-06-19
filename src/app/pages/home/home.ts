@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Button } from '../../composants/button/button';
 import { SmallCard } from '../../composants/small-card/small-card';
 import { EventService } from '../../services/event-service';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { EventService } from '../../services/event-service';
 })
 export class Home implements OnInit {
   eventService = inject(EventService);
+  authService = inject(Auth);
 
   nextEvent = this.eventService.nextEvent;
 

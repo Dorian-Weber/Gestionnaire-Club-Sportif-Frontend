@@ -53,9 +53,16 @@
   <h2 class="text-3xl md:text-4xl font-bold text-(--color-title) mb-6 font-(--font-inter)">
     Rejoignez la communauté SportHive
   </h2>
+  @if (!authService.jwtInfo()){
+    <app-button variant="primary" size="md" routerLink="/register">
+      Créer un compte
+    </app-button>
+  }
+  @if (authService.jwtInfo()?.role === "USER") {
+    <app-button variant="primary" size="md" routerLink="/register">
+      Voir mon Profil
+    </app-button>
+  }
 
-  <app-button variant="primary" size="md" routerLink="/register">
-    Créer un compte
-  </app-button>
 </section>
 
